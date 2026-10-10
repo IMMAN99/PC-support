@@ -1,16 +1,22 @@
 #!/usr/bin/env bash
-# اجرای پیش‌نمایش سایت — یک دستور، بدون هیچ تنظیمی
-#   bash run-preview.sh
-# اگر پورت ۸۸۹۹ گرفتارِ یک اجرای قبلی بود، همان را نشان می‌دهد و اجرای دوباره نمی‌سازد.
-set -u
-cd "$(dirname "$0")"
+# Local preview. Build the offline page first with:
+#   python3 tools/ops/assemble_offline.py
+# Use PREVIEW_HOST=0.0.0.0 only when a sandbox proxy needs external access.
+set -euo pipefail
 
-PORT=8899
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+PORT="${PORT:-8899}"
+PREVIEW_HOST="${PREVIEW_HOST:-127.0.0.1}"
 
-if command -v ss >/dev/null 2>&1 && ss -ltn 2>/dev/null | grep -q ":$PORT"; then
-  echo "پیش‌نمایش همین حالا روشن است →  http://localhost:$PORT"
-  exit 0
+if ! [[ "$PORT" =~ ^[0-9]{1,5}$ ]] || (( 10#$PORT < 1 || 10#$PORT > 65535 )); then
+  echo "PORT must be an integer between 1 and 65535" >&2
+  exit 2
 fi
 
-echo "پیش‌نمایش را روی پورت $PORT بالا می‌آورم…  (برای توقف: Ctrl+C)"
-exec python3 tools/ops/preview_server.py
+export PORT PREVIEW_HOST
+if [[ "$PREVIEW_HOST" == "127.0.0.1" ]]; then
+  echo "Serving the offline preview at http://127.0.0.1:${PORT}/ (Ctrl+C to stop)"
+else
+  echo "Serving the offline preview on ${PREVIEW_HOST}:${PORT} (Ctrl+C to stop)"
+fi
+exec python3 "$ROOT/tools/ops/preview_server.py"

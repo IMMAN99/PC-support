@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 """
-Regression audit for پشتیبان پی‌سی — measures every finding in docs/بازبینی_رابط_کاربری.html.
+Regression audit for the offline bundle of پشتیبان پی‌سی.
 
-Renders the offline bundle in headless Chromium and prints a PASS/FAIL report.
-Run after every front-end change:   python3 tools/audit.py
-
-First-time setup in a fresh sandbox:
-    pip install playwright
-    python3 -m playwright install --with-deps chromium
+Renders the generated offline HTML in headless Chromium and prints a PASS/FAIL report.
+Run from the repository root: python3 tools/audit.py
+Input/output paths are resolved relative to this script. Install development requirements and Chromium first; see README.md.
 """
 import asyncio, os, re, sys
+from pathlib import Path
 
-FILE = "file:///home/user/پیش‌نمایش_آفلاین.html"
+ROOT = Path(__file__).resolve().parent.parent
+SOURCE_HTML = ROOT / "پشتیبان_رایانه.html"
+OFFLINE_HTML = ROOT / "پیش‌نمایش_آفلاین.html"
+FILE = OFFLINE_HTML.as_uri()
 ok, bad, info = [], [], []
 
 def check(cond, label, detail=""):
@@ -25,7 +26,8 @@ async def main():
     from playwright.async_api import async_playwright
     async with async_playwright() as p:
         b = await p.chromium.launch()
-        pg = await b.new_page(viewport={"width": 1440, "height": 900}, reduced_motion="reduce")
+        ctx = await b.new_context(viewport={"width": 1440, "height": 900}, reduced_motion="reduce")
+        pg = await ctx.new_page()
         await pg.goto(FILE, wait_until="load")
         await pg.wait_for_timeout(800)
 
@@ -54,7 +56,7 @@ async def main():
               f"month.x={cal['monthX']} chip.x={cal['chipX']} «{cal['monthText']}»")
         await pg.evaluate("closeBookingModal()")
 
-        # ---------- F-03 / REMOTE-01: hours policy + live presence engine ----------
+        # ---------- F-03 / REMOTE-01: legacy local schedule logic + neutral availability copy ----------
         info_hours = await pg.evaluate("""() => ({
             shop: (typeof SHOP_HOURS !== 'undefined') ? SHOP_HOURS : null,
             remote: (typeof REMOTE_SUPPORT !== 'undefined') ? REMOTE_SUPPORT : null,
@@ -63,21 +65,22 @@ async def main():
             modalCopy: (document.getElementById('bookingModal') || {}).textContent || ''
         })""")
         shop, remote = info_hours["shop"] or {}, info_hours["remote"] or {}
-        # intake policy: Sat–Wed; the shop moved the start from 09:30 to 10:00 (round 2, item 6)
+        # These legacy local values still drive UI behavior; they are not verified business hours.
         check(shop.get("intake", {}).get("to") == 17 and shop.get("intake", {}).get("from") == 10
               and len(shop.get("weekdays", [])) == 5
               and "weekdayIdx === 5 || weekdayIdx === 6" in info_hours["cal"]
-              and "۱۰:۰۰" in info_hours["modalCopy"],
-              "F-03  سیاست پذیرش حضوری: شنبه–چهارشنبه ۱۰:۰۰ تا ۱۷:۰۰ (تقویم + متن مودال)",
+              and "زمان پذیرش حضوری اعلام نشده" in info_hours["modalCopy"],
+              "F-03  منطق تقویم محلی حفظ است و مودال ساعت/دسترسی را اعلام نمی‌کند",
               f"intake={shop.get('intake')} weekdays={len(shop.get('weekdays', []))}")
-        # remote policy: 24/7 shift coverage
+        # Shift values remain internal UI logic, not a public coverage or response-time promise.
         shifts = remote.get("shifts", [])
         coverage_ok = (len(shifts) >= 3 and all(len(x.get("days", [])) == 7 for x in shifts))
-        check(coverage_ok and remote.get("responseTargetMin") == 15,
-              "REMOTE-01  پوشش ریموت شبانه‌روزی تعریف شده (شیفت‌های چرخشی همهٔ روزها)",
-              f"{len(shifts)} shifts, target={remote.get('responseTargetMin')}min")
+        check(coverage_ok and remote.get("responseTargetMin") is None
+              and "اعلام نشده" in str(remote.get("coverageLabel", "")),
+              "REMOTE-01  قواعد زمانی داخلی حفظ‌اند و پوشش/زمان پاسخ‌گوییِ کسب‌وکار اعلام نمی‌شود",
+              f"{len(shifts)} local shifts, target={remote.get('responseTargetMin')}, label={remote.get('coverageLabel')}")
 
-        # behavioural: someone must be online at every simulated hour (coverage never drops)
+        # Exercise the deterministic local indicator without treating it as actual staffing/availability.
         hours_check = await pg.evaluate("""() => {
             const Real = Date, out = [];
             const probes = ['2026-10-07T00:30:00Z','2026-10-07T05:00:00Z','2026-10-07T09:30:00Z',
@@ -93,11 +96,13 @@ async def main():
             }
             return out;
         }""")
-        always_on = all(r["online"] for r in hours_check)
-        check(always_on, "REMOTE-01  در هر ساعتی از شبانه‌روز دادهٔ شیفت وجود دارد (۶ نقطهٔ آزمون)",
-              "; ".join(f"{r['iso'][11:16]}Z→{r['count']}" for r in hours_check))
+        local_flags = all(isinstance(r["online"], bool) and r["count"] > 0 for r in hours_check)
+        neutral_labels = all("اعلام نشده" in r["badge"] for r in hours_check)
+        check(local_flags and neutral_labels,
+              "REMOTE-01  نشانگر محلی در شش زمان آزمون اجرا می‌شود؛ متن وضعیت همچنان نامشخص است",
+              "; ".join(f"{r['iso'][11:16]}Z→{r['count']} / {r['badge']}" for r in hours_check))
 
-        # honesty: with manualOverride='offline' the badge must NOT claim anyone is online
+        # The local manual override must not change the neutral user-facing status copy.
         offline_mode = await pg.evaluate("""() => {
             const keep = REMOTE_SUPPORT.manualOverride;
             REMOTE_SUPPORT.manualOverride = 'offline';
@@ -107,8 +112,9 @@ async def main():
             renderPresence();
             return { online: p.online, count: p.count, badge };
         }""")
-        check((not offline_mode["online"]) and offline_mode["count"] == 0 and "صف" in offline_mode["badge"],
-              "REMOTE-01  هیچ‌وقت آنلاینِ الکی نشان داده نمی‌شود (override=offline → پیام صف)",
+        check((not offline_mode["online"]) and offline_mode["count"] == 0
+              and "اعلام نشده" in offline_mode["badge"],
+              "REMOTE-01  override محلیِ offline وضعیت تجاریِ تأییدنشده‌ای نمایش نمی‌دهد",
               f"badge=«{offline_mode['badge'][:40]}»")
 
         # remote request form: fields exist, idempotent accept-path saves a ticket
@@ -127,7 +133,7 @@ async def main():
         submit_ok = await pg.evaluate("""() => {
             localStorage.removeItem('poshtiban_tickets');
             document.getElementById('remoteNameInput').value = 'کاربر آزمایشی';
-            document.getElementById('remotePhoneInput').value = '۰۹۱۲۳۴۵۶۷۸۹';
+            document.getElementById('remotePhoneInput').value = '09000000000';
             document.getElementById('remoteConsentCheck').checked = true;
             handleRemoteSubmit({ preventDefault(){} });
             const code = document.getElementById('remoteSuccessCode').textContent.trim();
@@ -181,7 +187,7 @@ async def main():
             const heroText = document.getElementById('overview').textContent.replace(/\\s+/g, ' ');
             const badge = document.getElementById('shopHoursStatusText');
             const badgeLong = document.getElementById('shopHoursStatusTextLong');
-            const navRemote = [...document.querySelectorAll('nav a')].find(a => a.textContent.includes('پشتیبانی ریموت'));
+            const navRemote = [...document.querySelectorAll('nav a')].find(a => a.textContent.includes('راهنمایی از راه دور'));
             const strip = document.getElementById('heroStatusStrip');
             const boxes = strip ? [...strip.children].map(el => ({
                 tone: el.getAttribute('data-tone') || '',
@@ -202,43 +208,46 @@ async def main():
         # item 1 — the H1 carries no comma / full stop any more
         check(not re.search(r"[،.]", r2["h1"]),
               "R2-01  تیتر اصلی بدون «،» و «.» انتهایی", f"«{r2['h1']}»")
-        # item 2 (+5) — the header shows *how many* are online; the bare chip and the
-        # «هدف پاسخ تا ۱۵ دقیقه» line are gone from the hero
-        count_badge = bool(re.search(r"[۰-۹]+ آنلاین", r2["badge"])) or r2["badge"] == "صف"
-        check(count_badge and r2["badge"] != "آنلاین" and "۱۵ دقیقه" not in r2["heroText"]
-              and not r2["staleIds"],
-              "R2-02  هدر «تعداد آنلاین» را نشان می‌دهد و چیپ/خط «آنلاین» از هیرو حذف شده",
-              f"badge=«{r2['badge']}» title=«{r2['badgeTitle'][:30]}…» stale={r2['staleIds']}")
-        # item 3 — the two «پشتیبانی ریموت» labels are told apart (nav link vs CTA)
-        check(r2["navRemoteText"] == "پشتیبانی ریموت" and not r2["navRemoteDot"]
-              and any("درخواست ریموت" in t for t in r2["headerBtn"]),
-              "R2-03  لینک ناوبری بی‌نقطه و CTA هدر «درخواست ریموت»",
+        # item 2 — the indicator may retain its local color logic, but its text no longer
+        # asserts a live count or response-time promise.
+        check(r2["badge"] == "اعلام نشده" and "اعلام نشده" in r2["badgeTitle"]
+              and "۱۵ دقیقه" not in r2["heroText"] and not r2["staleIds"],
+              "R2-02  وضعیت پاسخ‌گویی و زمان آن اعلام‌نشده است؛ شناسه‌های قدیمی هیرو برنگشته‌اند",
+              f"badge=«{r2['badge']}» title=«{r2['badgeTitle'][:40]}…» stale={r2['staleIds']}")
+        # item 3 — neutral navigation/CTA labels distinguish the guidance section and its action.
+        check(r2["navRemoteText"] == "راهنمایی از راه دور" and not r2["navRemoteDot"]
+              and any("درخواست راهنمایی از راه دور" in t for t in r2["headerBtn"]),
+              "R2-03  لینک راهنمایی از راه دور بدون نقطه و CTA هدر با برچسب خنثی",
               f"nav=«{r2['navRemoteText']}» greenDot={r2['navRemoteDot']}")
         # item 4 — AI first: nav, hero CTA, header action, launcher, footer, FAQ, section order
-        ai_first = (bool(r2["nav"]) and "عیب‌یاب" in r2["nav"][0]
+        ai_first = (bool(r2["nav"]) and "راهنمای عیب‌یابی اولیه" in r2["nav"][0]
                     and bool(r2["heroCtas"]) and "عیب‌یابی" in r2["heroCtas"][0]
                     and bool(r2["headerBtn"]) and "مشاور" in r2["headerBtn"][0]
                     and "toggleAiDrawer" in r2["launcherOnclick"]
-                    and "عیب‌یاب" in r2["footerFirst"] and "هوش مصنوعی" in r2["faqFirst"]
+                    and "راهنمای عیب‌یابی اولیه" in r2["footerFirst"]
+                    and "ابزار راهنمایی" in r2["faqFirst"]
                     and r2["sections"].index("ai-diagnostic") < r2["sections"].index("remote-support"))
         check(ai_first,
-              "R2-04  عیب‌یاب/مشاور هوشمند همه‌جا اول است (ناوبری، CTA هیرو، هدر، دکمهٔ شناور، فوتر، پرسش‌ها، ترتیب سکشن)",
+              "R2-04  راهنمای اولیه در ناوبری، CTA، هدر، دکمهٔ شناور، فوتر و FAQ در اولویت است",
               f"nav[0]=«{r2['nav'][0] if r2['nav'] else ''}» · heroCta[0]=«{r2['heroCtas'][0] if r2['heroCtas'] else ''}» · "
               f"header[0]=«{r2['headerBtn'][0][:20] if r2['headerBtn'] else ''}» · launcher=«{r2['launcherOnclick'][:22]}» · "
               f"sections={r2['sections'][:2]}")
-        # item 6 — 10:00 intake start in every live text (no 09:30 left anywhere)
+        # item 6 — no unverified business hours are printed in the visible page copy.
         body_text = await pg.evaluate("() => document.body.textContent")
-        check("۹:۳۰" not in body_text and "۱۰:۰۰" in r2["heroText"],
-              "R2-06  ساعت شروع پذیرش در همهٔ متن‌های صفحه ۱۰:۰۰ است (بدون باقیماندهٔ ۹:۳۰)",
-              f"hero: «{next((b['text'] for b in r2['boxes'] if b['tone'] == 'intake'), '')[:44]}»")
-        # item 7 — the hero status row is two colour-coded boxes, each with a label and a value
+        time_claims = ("۹:۳۰", "09:30", "۱۰:۰۰", "10:00", "۱۷:۰۰", "17:00")
+        check(not any(token in body_text for token in time_claims)
+              and "زمان پذیرش حضوری اعلام نشده" in body_text
+              and "زمان پاسخ‌گویی اعلام نشده" in body_text,
+              "R2-06  متن دیداری ساعت/زمان پاسخ را اعلام‌نشده نشان می‌دهد و ساعت کسب‌وکار نمی‌سازد",
+              f"timeClaims={[token for token in time_claims if token in body_text]}")
+        # item 7 — the hero status row remains two separate, visually differentiated information boxes.
         boxed = (len(r2["boxes"]) == 2
                  and {b["tone"] for b in r2["boxes"]} == {"intake", "remote"}
                  and r2["boxes"][0]["border"] != r2["boxes"][1]["border"]
                  and any("پذیرش حضوری" in b["text"] for b in r2["boxes"])
-                 and any("ریموت" in b["text"] for b in r2["boxes"])
+                 and any("از راه دور" in b["text"] for b in r2["boxes"])
                  and all(b["bg"].startswith("rgba") for b in r2["boxes"]))
-        check(boxed, "R2-07  نوار وضعیت هیرو دو باکس رنگی مستقل دارد (پذیرش/ریموت)",
+        check(boxed, "R2-07  نوار هیرو دو باکس اطلاعاتیِ رنگ‌مایه‌دار و مستقل دارد",
               " · ".join(f"«{b['text'][:24]}» {b['border']}" for b in r2["boxes"]))
         # item 8 — the remote form uses the bottleneck dropdown component (no native selects)
         dd = await pg.evaluate("""() => {
@@ -258,7 +267,7 @@ async def main():
             const sameLook = trigger.className.includes('rounded-xl')
                              && getComputedStyle(trigger).borderRadius === getComputedStyle(sim).borderRadius;
             document.getElementById('remoteNameInput').value = 'آزمون راند ۲';
-            document.getElementById('remotePhoneInput').value = '۰۹۱۲۰۰۰۰۰۰۰';
+            document.getElementById('remotePhoneInput').value = '09000000000';
             document.getElementById('remoteConsentCheck').checked = true;
             handleRemoteSubmit({ preventDefault(){} });
             const code = document.getElementById('remoteSuccessCode').textContent.trim();
@@ -291,9 +300,7 @@ async def main():
             return out;
         }""")
         latin = [v for k, v in d.items() if isinstance(v, str) and re.search(r"[0-9]", v)]
-        # round 3, item 2: fees left the booking flow entirely, so the equality that matters is
-        # «every digit is Persian» + «no price/currency anywhere in the modal» (a separator can
-        # no longer be required — and «۲۵۰٬۰۰۰ تومان» must be gone)
+        # The booking flow has no disclosed amounts, so check Persian digits and absence of currency values.
         no_price = await pg.evaluate(r"""() => {
             openBookingModal();
             const modal = document.getElementById('bookingModal');
@@ -307,7 +314,7 @@ async def main():
                      step3Note: (document.getElementById('bookSummaryPriceText') || {}).textContent || '' };
         }""")
         check(not latin and not d["latinSep"] and not no_price["hit"] and not no_price["step3HasPrice"],
-              "F-04  اعداد فارسی در جریان رزرو و بدون هیچ قیمت/مبلغ (قیمت‌ها فقط در طرح‌های Care)",
+              "F-04  اعداد فارسی در جریان رزرو و بدون مبلغ یا واحد پولی",
               f"latin={latin} latinSep={d['latinSep']} priceWords={no_price['hit']} step3=«{no_price['step3Note']}»")
 
         # ---------- F-05: landmarks ----------
@@ -499,7 +506,7 @@ async def main():
               "F-11  موبایل: حتی بعد از توقف اسکرول هم روی متن نمی‌افتد",
               f"idle overlaps={len(idle_hits)}" + (f" · {idle_hits[0]}" if idle_hits else ""))
         check(mo["badgeVisible"] or mo["aiHeaderVisible"],
-              "F-12  ساعت کاری یا دسترسی عیب‌یاب در موبایل دیده می‌شود",
+              "F-12  نشانگر اطلاعاتیِ خنثی یا دسترسی به راهنمای عیب‌یابی در موبایل دیده می‌شود",
               f"badge={mo['badgeVisible']} aiHeader={mo['aiHeaderVisible']}")
         check(not mo["overflow"], "F-12  بدون سرریز افقی در ۳۹۰px")
 
@@ -537,7 +544,7 @@ async def main():
             const nav = [...document.querySelectorAll('nav a')].map(a => txt(a));
             const headerAll = [...bar.querySelectorAll('a,button')].filter(vis).map(txt);
             const pageText = document.body.textContent.replace(/\s+/g, ' ');
-            // every «تومان» on the page must sit inside the Care plans section
+            // No numeric/currency prices are disclosed; keep a guard against currency nodes.
             const priceNodes = [...document.querySelectorAll('body *')]
                 .filter(e => !e.children.length && e.textContent.includes('تومان'))
                 .map(e => ({ txt: txt(e).slice(0, 20), inPlans: !!e.closest('#plans') }));
@@ -561,15 +568,14 @@ async def main():
                     return last ? (last.id || last.tagName) : ''; })()
             };
         }""")
-        check(r3["nav"] and any("تست سرعت SSD" in t for t in r3["nav"])
-              and any("درخواست ریموت" in t for t in r3["headerAll"])
+        check(r3["nav"] and any("مقایسهٔ حافظه SSD" in t for t in r3["nav"])
+              and any("درخواست راهنمایی از راه دور" in t for t in r3["headerAll"])
               and r3["themeLast"] == "themeToggleBtn",
-              "R3-01  هدر: همهٔ آیتم‌ها برگشتند («تست سرعت SSD» در ناوبری)، CTA «درخواست ریموت» و «حالت شب» آخرین کنترل است",
+              "R3-01  ناوبری، CTA راهنمایی از راه دور و کنترل تم در ترتیب مورد انتظارند",
               f"nav={r3['nav']} · last={r3['themeLast']}")
-        check(bool(r3["priceNodes"]) and all(n["inPlans"] for n in r3["priceNodes"])
-              and r3["priceProps"] == 0,
-              "R3-02  هیچ قیمتی بیرون از «طرح‌های Care» نمانده (نه در متن، نه در کاتالوگ خدمات)",
-              f"price-nodes={len(r3['priceNodes'])} all-in-plans={all(n['inPlans'] for n in r3['priceNodes']) if r3['priceNodes'] else '—'} priceProps={r3['priceProps']}")
+        check(not r3["priceNodes"] and r3["priceProps"] == 0,
+              "R3-02  مبلغ عددی یا ویژگی قیمتِ تأییدنشده در صفحه/کاتالوگ خدمات درج نشده است",
+              f"price-nodes={len(r3['priceNodes'])} priceProps={r3['priceProps']}")
         check(not r3["greetingHasPrice"],
               "R3-03  دستیار هوشمند از ابتدا موضوع قیمت را مطرح نمی‌کند",
               f"greeting=«{r3['greeting'][:44]}…»")
@@ -624,7 +630,7 @@ async def main():
                 const c = document.getElementById(id); if (c) c.checked = true;
             });
             document.getElementById('bookNameInput').value = 'آزمون راند ۳';
-            document.getElementById('bookPhoneInput').value = '۰۹۱۲۰۰۰۰۰۰۰';
+            document.getElementById('bookPhoneInput').value = '09000000000';
             const before = document.getElementById('bookingStep4').classList.contains('hidden');
             confirmBooking({ preventDefault(){} });           // بدون شرح → باید رد شود
             const blocked = document.getElementById('bookingStep4').classList.contains('hidden');
@@ -650,7 +656,7 @@ async def main():
               "R3-05 ب  بدون شرح رد می‌شود؛ با شرح، در خلاصه و در تیکت ثبت می‌شود",
               f"blocked={bk['blocked']} summary=«{bk['rowText'][:32]}» ticket=«{bk['ticketOther'][:32]}» code={bk['code']}")
         check(not r3["intakeDot"] and r3["dotMention"],
-              "R3-06  نقطهٔ «intakeHoursDot» از باکس کهربایی حذف شد و متن ساعت پذیرش سر جایش است",
+              "R3-06  نقطهٔ زمان‌بندیِ محلی حذف است و برچسب خنثیِ پذیرش حضوری باقی می‌ماند",
               f"dot={r3['intakeDot']} text={r3['dotMention']}")
 
         # ---------- R3-07…R3-10: credits — rules frozen for v1 (grace, pause, cap, phone) ----------
@@ -679,9 +685,9 @@ async def main():
             topUpCredits('p2');                       // ۳۰۰ اعتبار
             out.rules = { grace: CREDITS.setupGraceSeconds, capDefault: CREDITS.sessionCapDefault,
                           inactivity: typeof CREDITS.inactivityStopMinutes };
-            const A = '09121110000', B = '09355550000';
+            const A = '09000000000', B = '09000000001';
 
-            // درخواست ریموت با شمارهٔ A → ساعت خوش‌آمد برای همین شماره
+            // Browser-only request with synthetic phone A → local allowance record.
             openRemoteModal();
             document.getElementById('remoteNameInput').value = 'آزمون A';
             document.getElementById('remotePhoneInput').value = A;
@@ -694,22 +700,22 @@ async def main():
 
             const jump = (mins) => { window.__creditNowOverride = creditSession.startedAt + mins * 60000; };
 
-            // جلسهٔ ۱: ۴۵ دقیقه (۲ دقیقه راه‌اندازی) → ۴۳ دقیقه از رایگان، هزینه صفر
+            // Session 1: 45 simulated minutes; 43 minutes recorded against the local allowance.
             startChargeSession(codeA, A);
             jump(45);
             out.free = stopChargeSession('user');
 
-            // جلسهٔ ۲: ۹۰ دقیقه → ۱۷ دقیقهٔ باقی‌مانده رایگان + ۷۱ دقیقهٔ پرداختی
+            // Session 2: 90 simulated minutes → 17 allowance minutes + 71 local units.
             startChargeSession(codeA, A);
             jump(90); tickChargeSession();
             out.second = stopChargeSession('user');
 
-            // جلسهٔ ۳: ۵ دقیقه → دیگر هیچ دقیقهٔ رایگانی ندارد (هر شماره، یک بار)
+            // Session 3: this test number has no local allowance remaining.
             startChargeSession(codeA, A);
             jump(5);
             out.third = stopChargeSession('user');
 
-            // شمارهٔ B → ساعت خوش‌آمد مستقل خودش
+            // Synthetic number B receives its separate local allowance record.
             openRemoteModal();
             document.getElementById('remoteNameInput').value = 'آزمون B';
             document.getElementById('remotePhoneInput').value = B;
@@ -759,41 +765,41 @@ async def main():
             return out;
         }""")
         check(cr["rules"]["grace"] == 120 and cr["rules"]["capDefault"] == 120 and cr["rules"]["inactivity"] == "undefined",
-              "R3-09 الف  قواعد قفل‌شدهٔ نسخهٔ ۱: مهلت راه‌اندازی ۲ دقیقه، سقف پیش‌فرض ۱۲۰، بدون توقف خودکار بر پایهٔ بی‌فعالیتی",
+              "R3-09 الف  قواعد داخلی شبیه‌ساز: مهلت محلی ۲ دقیقه، سقف پیش‌فرض ۱۲۰ واحد، بدون توقف خودکار بر پایهٔ بی‌فعالیتی",
               f"grace={cr['rules']['grace']}s · cap={cr['rules']['capDefault']} · inactivity-rule={cr['rules']['inactivity']}")
         check(cr["grace"]["phase"] == "grace" and cr["grace"]["burned"] == 0 and cr["afterGrace"]["phase"] == "billing"
               and cr["afterGrace"]["minutes"] == 1,
-              "R3-09 ب  مهلت راه‌اندازی: دقیقهٔ اول محاسبه نمی‌شود و از دقیقهٔ سوم محاسبه آغاز می‌شود",
+              "R3-09 ب  شمارندهٔ محلی: دقیقهٔ اول در سهمیه/واحدها محاسبه نمی‌شود و از دقیقهٔ سوم شروع می‌شود",
               f"دقیقهٔ ۱: {cr['grace']['phase']} (هزینه {cr['grace']['burned']}) · دقیقهٔ ۳: {cr['afterGrace']['phase']} ({cr['afterGrace']['minutes']} دقیقه)")
         check(cr["pausedPhase"] == "paused" and cr["paused"]["minutes"] == 13 and cr["paused"]["pausedMinutes"] == 30
               and cr["paused"]["cost"] == 13,
-              "R3-09 پ  توقف موقت کارشناس: ۳۰ دقیقهٔ توقف در محاسبه نمی‌آید (۴۵ دقیقهٔ اتصال → ۱۳ دقیقه محاسبه)",
+              "R3-09 پ  توقف موقتِ شبیه‌ساز: ۳۰ دقیقه از شمارندهٔ محلی کسر نمی‌شود (۴۵ دقیقهٔ آزمون → ۱۳ دقیقه محاسبه)",
               f"فاز={cr['pausedPhase']} محاسبه={cr['paused']['minutes']}د توقف={cr['paused']['pausedMinutes']}د هزینه={cr['paused']['cost']}")
         check(cr["cap"]["stopped"] and cr["cap"]["reason"] == "cap" and cr["cap"]["cost"] == 60
               and cr["cap"]["cap"] == 60 and cr["cap"]["balance"] == 240,
-              "R3-09 ت  سقف مصرف جلسه رعایت می‌شود: با سقف ۶۰ اعتبار، جلسه در همان‌جا بسته می‌شود",
+              "R3-09 ت  سقف محلی جلسه رعایت می‌شود: با سقف ۶۰ واحد، شبیه‌سازی در همان‌جا متوقف می‌شود",
               f"reason={cr['cap']['reason']} مصرف={cr['cap']['cost']} از سقف {cr['cap']['cap']} · مانده={cr['cap']['balance']}")
         check(cr["grantA"]["known"] and cr["grantA"]["left"] == 60 and cr["grantA"]["regrant"] is False
-              and cr["grantA"]["lastPhone"] == "09121110000",
-              "R3-07 الف  ساعت خوش‌آمد به اولین شمارهٔ درخواست گره می‌خورد و دوباره صادر نمی‌شود",
+              and cr["grantA"]["lastPhone"] == "09" + "0" * 9,
+              "R3-07 الف  سهمیهٔ آغازین محلی به شمارهٔ آزمایشی نخست متصل می‌شود و دوباره ثبت نمی‌شود",
               f"known={cr['grantA']['known']} left={cr['grantA']['left']} regrant={cr['grantA']['regrant']}")
         check(cr["free"]["totalMinutes"] == 45 and cr["free"]["minutes"] == 43 and cr["free"]["freeMinutes"] == 43
               and cr["free"]["cost"] == 0 and cr["free"]["freeMinutesLeft"] == 17,
-              "R3-07 ب  جلسهٔ ۴۵ دقیقه‌ای (پس از ۲ دقیقه راه‌اندازی) کاملاً از ساعت خوش‌آمد کم می‌شود",
-              f"کل={cr['free']['totalMinutes']}د محاسبه={cr['free']['minutes']}د رایگان={cr['free']['freeMinutes']}د مانده={cr['free']['freeMinutesLeft']}د")
+              "R3-07 ب  آزمون ۴۵ دقیقه‌ای پس از راه‌اندازی، زمان را از سهمیهٔ محلی کم می‌کند و پرداختی بیرونی ندارد",
+              f"کل={cr['free']['totalMinutes']}د محاسبه={cr['free']['minutes']}د سهمیهٔ محلی={cr['free']['freeMinutes']}د مانده={cr['free']['freeMinutesLeft']}د")
         check(cr["second"]["freeMinutes"] == 17 and cr["second"]["chargedMinutes"] == 71
               and cr["second"]["cost"] == 71 and cr["second"]["balanceAfter"] == 229,
-              "R3-07 پ  جلسهٔ دوم همان شماره: ۱۷ دقیقهٔ باقی‌مانده رایگان + کسر دقیقه‌ای اعتبار",
-              f"۹۰د: رایگان={cr['second']['freeMinutes']} پرداختی={cr['second']['chargedMinutes']} هزینه={cr['second']['cost']} مانده={cr['second']['balanceAfter']}")
+              "R3-07 پ  آزمون بعدی همان شماره: ۱۷ دقیقه سهمیهٔ محلی باقی می‌ماند و سپس واحدهای محلی کم می‌شوند",
+              f"۹۰د: سهمیهٔ محلی={cr['second']['freeMinutes']}د واحدهای محلی={cr['second']['chargedMinutes']} مانده={cr['second']['balanceAfter']}")
         check(cr["third"]["freeMinutes"] == 0 and cr["third"]["chargedMinutes"] == 3 and cr["third"]["cost"] == 3,
-              "R3-08 الف  «هر شماره یک بار»: جلسهٔ سوم همان شماره از دقیقهٔ اول هزینه دارد",
-              f"۵د: رایگان={cr['third']['freeMinutes']} پرداختی={cr['third']['chargedMinutes']} هزینه={cr['third']['cost']}")
+              "R3-08 الف  سهمیهٔ آغازین فقط یک بار برای هر شمارهٔ آزمایشی ثبت می‌شود؛ آزمون سوم از واحدهای محلی استفاده می‌کند",
+              f"۵د: سهمیهٔ محلی={cr['third']['freeMinutes']}د واحدهای محلی={cr['third']['chargedMinutes']}")
         check(cr["otherPhone"]["freeMinutes"] == 18 and cr["otherPhone"]["cost"] == 0
               and cr["otherPhone"]["freeMinutesLeft"] == 42 and cr["grants"] == 2 and cr["balanceAfter"] == 226,
-              "R3-08 ب  شمارهٔ دیگر ساعت خوش‌آمد مستقل خودش را دارد",
-              f"شمارهٔ B ۲۰د: رایگان={cr['otherPhone']['freeMinutes']} مانده={cr['otherPhone']['freeMinutesLeft']} · شماره‌ها={cr['grants']} · کیف={cr['balanceAfter']}")
+              "R3-08 ب  شمارهٔ آزمایشیِ دیگر سهمیهٔ محلیِ مستقلی دارد",
+              f"شمارهٔ B ۲۰د: سهمیهٔ محلی={cr['otherPhone']['freeMinutes']}د مانده={cr['otherPhone']['freeMinutesLeft']}د · شماره‌ها={cr['grants']} · کیف={cr['balanceAfter']}")
         check(cr["autoStop"]["stopped"] and cr["autoStop"]["balance"] == 0,
-              "R3-07 ت  با اعتبار صفر جلسه خودکار بسته می‌شود و موجودی منفی نمی‌شود",
+              "R3-07 ت  با صفرشدن واحدهای محلی، شبیه‌ساز خودکار متوقف می‌شود و مانده منفی نمی‌شود",
               f"auto-stopped={cr['autoStop']['stopped']} balance={cr['autoStop']['balance']}")
 
         cr_ui = await pg.evaluate(r"""() => {
@@ -801,9 +807,9 @@ async def main():
             localStorage.removeItem('poshtiban_last_phone');
             resetCreditDemo();
             topUpCredits('p2');
-            creditGrantFreeHour('09121110000');
-            creditGrantFreeHour('09355550000');
-            const seed = creditState(); seed.freeByPhone['09355550000'] = 12; creditSave(seed);
+            creditGrantFreeHour('09000000000');
+            creditGrantFreeHour('09000000000');
+            const seed = creditState(); seed.freeByPhone['09000000000'] = 12; creditSave(seed);
             openWalletModal();
             const open = !document.getElementById('walletModal').classList.contains('hidden');
             const packs = document.querySelectorAll('#walletPacks button').length;
@@ -815,9 +821,9 @@ async def main():
             closeWalletModal();
             // چیپ اعتبار با شمارهٔ تایپ‌شده
             openRemoteModal();
-            document.getElementById('remotePhoneInput').value = '09355550000'; updateRemoteCreditChip();
+            document.getElementById('remotePhoneInput').value = '09000000000'; updateRemoteCreditChip();
             const chipUsed = document.getElementById('remoteCreditNote').textContent.trim();
-            document.getElementById('remotePhoneInput').value = '09990000000'; updateRemoteCreditChip();
+            document.getElementById('remotePhoneInput').value = '09000000001'; updateRemoteCreditChip();
             const chipFresh = document.getElementById('remoteCreditNote').textContent.trim();
             document.getElementById('remotePhoneInput').value = ''; updateRemoteCreditChip();
             const chipEmpty = document.getElementById('remoteCreditNote').textContent.trim();
@@ -826,7 +832,7 @@ async def main():
             chooseSessionCap(300);
             const capChosen = document.querySelector('#sessionCapChoices button[aria-pressed="true"]').textContent.trim();
             document.getElementById('remoteNameInput').value = 'آزمون UI';
-            document.getElementById('remotePhoneInput').value = '09121110000';
+            document.getElementById('remotePhoneInput').value = '09000000000';
             document.getElementById('remoteConsentCheck').checked = true;
             handleRemoteSubmit({ preventDefault(){} });
             startSessionFromSuccess();
@@ -847,28 +853,35 @@ async def main():
             return { open, packs, packsText, intro, freeRows, mask: mask.slice(0, 60), barVisible, barPhase, barBurn,
                      caps, capChosen, chipUsed, chipFresh, chipEmpty, rowShown, rowText,
                      money: /تومان|ریال/.test(panelText), capOnSession: summary.cap,
-                     maskedStored: (st.sessions[0] || {}).phoneMasked || '', afterFreeLeft: st.freeByPhone['09355550000'] };
+                     maskedStored: (st.sessions[0] || {}).phoneMasked || '', afterFreeLeft: st.freeByPhone['09000000000'] };
         }""")
-        check(cr_ui["open"] and cr_ui["packs"] == 3 and "تا ۵ ساعت" in cr_ui["packsText"] and "تا ۱۵ ساعت" in cr_ui["packsText"]
-              and "تا ۱ ساعت" in cr_ui["packsText"] and not cr_ui["money"],
-              "R3-10 الف  بسته‌ها به زبان زمان نمایش داده می‌شوند (۶۰=تا ۱ ساعت، ۳۰۰=تا ۵ ساعت، ۹۰۰=تا ۱۵ ساعت) و بدون قیمت ریالی",
-              f"packs={cr_ui['packs']} · rial-price={cr_ui['money']}")
-        check("اولین ۶۰ دقیقهٔ اولین جلسهٔ ریموت شما رایگان است" in cr_ui["intro"].replace("\u200c", "\u200c"),
-              "R3-10 ب  متن سایت صریح است: «اولین ۶۰ دقیقهٔ اولین جلسهٔ ریموت شما رایگان است»",
-              f"«{cr_ui['intro'][:70]}…»")
+        check(cr_ui["open"] and cr_ui["packs"] == 3 and "واحد محلی" in cr_ui["packsText"]
+              and "اعلام نشده" in cr_ui["packsText"]
+              and "قیمت یا پرداختی از این صفحه انجام نمی‌شود" in cr_ui["packsText"]
+              and not any(term in cr_ui["packsText"] for term in ("تا ۱ ساعت", "تا ۵ ساعت", "تا ۱۵ ساعت"))
+              and not cr_ui["money"],
+              "R3-10 الف  گزینه‌های اعتبار با واحد محلی و بدون قیمت/مدت خدمتِ ادعاشده نمایش داده می‌شوند",
+              f"packs={cr_ui['packs']} · money={cr_ui['money']} · labels=«{cr_ui['packsText'][:72]}»")
+        check("هزینه و شرایط استفاده اعلام نشده است" in cr_ui["intro"]
+              and "منطق محلی همین صفحه" in cr_ui["intro"]
+              and "این صفحه پرداخت یا خدمت بیرونی انجام نمی‌دهد" in cr_ui["intro"],
+              "R3-10 ب  متن کیف پول، سهمیه را منطق محلی معرفی می‌کند و خدمت/پرداخت بیرونی را وعده نمی‌دهد",
+              f"«{cr_ui['intro'][:90]}…»")
         check(cr_ui["caps"] == 3 and "۳۰۰" in cr_ui["capChosen"] and cr_ui["capOnSession"] == 300,
-              "R3-10 پ  کاربر سقف مصرف جلسه را انتخاب و تأیید می‌کند و همان سقف روی جلسه اعمال می‌شود",
-              f"گزینه‌ها={cr_ui['caps']} انتخاب=«{cr_ui['capChosen']}» سقف جلسه={cr_ui['capOnSession']}")
-        check(cr_ui["barVisible"] and "مهلت راه‌اندازی" in cr_ui["barPhase"] and "سقف" in cr_ui["barBurn"]
-              and cr_ui["rowShown"] and "جلسه" in cr_ui["rowText"] and "***" in cr_ui["maskedStored"],
-              "R3-10 ت  نوار جلسه فاز و سقف را نشان می‌دهد و مصرف همان شماره در تیکت ثبت می‌شود",
+              "R3-10 پ  سقفِ واحدهای محلی انتخاب‌شده روی همان شبیه‌سازی اعمال می‌شود",
+              f"گزینه‌ها={cr_ui['caps']} انتخاب=«{cr_ui['capChosen']}» سقف محلی={cr_ui['capOnSession']}")
+        check(cr_ui["barVisible"] and "محلی" in cr_ui["barPhase"] and "سقف" in cr_ui["barBurn"]
+              and cr_ui["rowShown"] and "واحد محلی" in cr_ui["rowText"] and "***" in cr_ui["maskedStored"],
+              "R3-10 ت  نوار شمارنده و سقف محلی را نشان می‌دهد و خلاصهٔ شبیه‌سازی در تیکت ذخیره می‌شود",
               f"bar=«{cr_ui['barPhase']}» · «{cr_ui['barBurn'][:26]}» · ticket=«{cr_ui['rowText'][:44]}»")
-        check("۱۲ دقیقه رایگان مانده" in cr_ui["chipUsed"] and "ساعت خوش‌آمد" in cr_ui["chipFresh"]
-              and "اولین ۶۰ دقیقه" in cr_ui["chipEmpty"],
-              "R3-10 ث  چیپ اعتبار داخل مودال وضعیت همان شمارهٔ تایپ‌شده را می‌گوید (مصرف‌شده / نو / خالی)",
-              f"شمارهٔ نیمه‌مصرف: «{cr_ui['chipUsed'][:38]}» · شمارهٔ نو: «{cr_ui['chipFresh'][:32]}» · خالی: «{cr_ui['chipEmpty'][:30]}»")
+        check("۱۲ دقیقه" in cr_ui["chipUsed"] and "اعتبار محلی" in cr_ui["chipUsed"]
+              and "اعلام نشده" in cr_ui["chipUsed"]
+              and "اعتبار محلی برای این شماره ثبت نشده است" in cr_ui["chipFresh"]
+              and "هزینه و شرایط استفاده اعلام نشده" in cr_ui["chipEmpty"],
+              "R3-10 ث  چیپ اعتبار، سهمیهٔ محلی ثبت‌شده/ثبت‌نشده و متن خنثیِ شرایط را نشان می‌دهد",
+              f"شمارهٔ ثبت‌شده: «{cr_ui['chipUsed'][:44]}» · شمارهٔ تازه: «{cr_ui['chipFresh'][:44]}» · خالی: «{cr_ui['chipEmpty'][:34]}»")
 
-        # ---------- R3-11…R3-15: پنج تصمیم تأییدشدهٔ اعتبار (انقضا، اعتراض، Care، کم‌موجودی، قطعی) ----------
+        # ---------- R3-11…R3-15: local credit-simulator behavior; public terms remain undisclosed ----------
         cx = await pg.evaluate(r"""() => {
             const out = {};
             out.cfg = { expiry: CREDITS.expiryMonths, dispute: CREDITS.disputeWindowHours,
@@ -896,7 +909,7 @@ async def main():
             out.swept = creditSweepExpired();
             out.afterSweep = { balance: creditState().balance, note: (creditState().history[0] || {}).note || '' };
 
-            // شماره‌ای که ساعت خوش‌آمدش مصرف شده (برای آزمون دقیق محاسبه)
+            // Test number whose local allowance has been partly used.
             const spend = (phone) => {
               const st = creditState();
               st.grants[phone] = st.grants[phone] || new Date().toISOString();
@@ -913,8 +926,8 @@ async def main():
               return code;
             };
 
-            // ۵) قطعی از سمت کارگاه
-            const A = '09121110099';
+            // ۵) local pause simulation in the browser-only session counter
+            const A = '09000000000';
             spend(A); chooseSessionCap(120);
             const balSeed = creditState(); balSeed.balance = 300; creditSave(balSeed);
             const codeA = remoteCode(A);
@@ -947,7 +960,7 @@ async def main():
             out.low.topup = (alertEl.querySelector('button') || {}).getAttribute ? alertEl.querySelector('button').getAttribute('onclick') : '';
             const sumLow = stopChargeSession('user');
 
-            // ۲) اعتراض ۴۸ ساعته
+            // ۲) local simulator note-window behavior; not a published review term
             openTrackingModalWithCode(sumDrop.code);
             const dRow = document.getElementById('trackDisputeRow');
             out.dispute = {
@@ -980,8 +993,8 @@ async def main():
 
             // ۳) اعتبار ماهانهٔ طرح‌های Care
             const plans = document.getElementById('plans').innerText;
-            out.care = { monthly: (plans.match(/اعتبار پشتیبانی ریموت در ماه|اعتبار ریموت تیمی در ماه/g) || []).length,
-                         unlimited: /نامحدود/.test(plans), footnote: /۱۲ ماه/.test(plans),
+            out.care = { undisclosed: (plans.match(/میزان و شرایط اعتبار اعلام نشده/g) || []).length,
+                         unlimited: /نامحدود/.test(plans),
                          wallet: (document.getElementById('walletCareNote') || {}).textContent || '' };
 
             delete window.__creditNowOverride;
@@ -989,40 +1002,44 @@ async def main():
         }""")
         check(cx["cfg"]["expiry"] == 12 and cx["cfg"]["dispute"] == 48 and cx["cfg"]["low"] == 5
               and cx["cfg"]["drop"] == 180 and cx["cfg"]["care"] == [300, 900, 3000],
-              "R3-11 الف  تصمیم‌های تأییدشده در قواعد اعتبار ثبت شد (انقضا ۱۲ ماه، اعتراض ۴۸ ساعت، اعلان ۵ دقیقه، قطعی ۳ دقیقه، اعتبار Care)",
-              f"expiry={cx['cfg']['expiry']}ماه · dispute={cx['cfg']['dispute']}ساعت · low={cx['cfg']['low']}د · drop={cx['cfg']['drop']}ثانیه · care={cx['cfg']['care']}")
+              "R3-11 الف  قواعد شبیه‌ساز محلی حفظ‌اند؛ این آستانه‌ها به‌عنوان شرایط خدمتِ واقعی ارائه نمی‌شوند",
+              f"local expiry={cx['cfg']['expiry']} · note window={cx['cfg']['dispute']} · alert={cx['cfg']['low']} · pause={cx['cfg']['drop']} · units={cx['cfg']['care']}")
         check(cx["expiryLabel"] == cx["expiryExpected"] and cx["nowLabel"] != cx["expiryLabel"]
-              and "اعتبار دارد" in cx["walletExpiry"]["note"]
+              and "اعلام نشده" in cx["walletExpiry"]["note"] and "۱۲ ماه" not in cx["walletExpiry"]["note"]
               and cx["walletExpiry"]["label"] == cx["walletExpiry"]["expected"]
               and cx["walletExpiry"]["lots"] == 1,
-              "R3-11 ب  تاریخ انقضا در کیف پول = ۱۲ ماه بعد از زمان شارژ (شمسی، بدون تاریخ ثابت در آزمون)",
-              f"تابع برای ۱۴ مهر ۱۴۰۵ → «{cx['expiryLabel']}» · کیف=«{cx['walletExpiry']['label']}» (انتظار از لات: «{cx['walletExpiry']['expected']}»)")
+              "R3-11 ب  محاسبهٔ تاریخ در دادهٔ محلی درست است و متن کیف پول شرایط مدت را اعلام‌نشده می‌گذارد",
+              f"تابع → «{cx['expiryLabel']}» · متن کیف=«{cx['walletExpiry']['note']}» · مقدار=«{cx['walletExpiry']['label']}»")
         check(cx["swept"] == 60 and cx["afterSweep"]["balance"] == 0 and "انقضای اعتبار" in cx["afterSweep"]["note"],
-              "R3-11 پ  اعتبار منقضی‌شده هنگام ورود/شروع جلسه سوخته می‌شود و در گردش ثبت می‌گردد",
+              "R3-11 پ  ماندهٔ منقضیِ شبیه‌ساز محلی پاک و در گردش مرورگر ثبت می‌شود",
               f"سوخته={cx['swept']} اعتبار · مانده={cx['afterSweep']['balance']} · «{cx['afterSweep']['note'][:44]}…»")
-        check(cx["drop"]["before"] == 8 and cx["drop"]["during"] == 8 and "قطعی از سمت کارگاه" in cx["drop"]["phaseShort"]
-              and "رایگان" in cx["drop"]["phaseShort"] and cx["drop"]["btn"] == "اتصال برگشت"
-              and "بیش از ۳ دقیقه" in cx["drop"]["phaseLong"] and cx["drop"]["phaseBack"] == "در حال محاسبه",
-              "R3-15  قطعی از سمت کارگاه: وقفه محاسبه نمی‌شود (۸ دقیقه قبل = ۸ دقیقه بعد) و بعد از ۳ دقیقه به کارشناس هشدار می‌دهد",
-              f"قبل/داخل={cx['drop']['before']}/{cx['drop']['during']} · «{cx['drop']['phaseShort']}» · «{cx['drop']['phaseLong']}»")
+        check(cx["drop"]["before"] == 8 and cx["drop"]["during"] == 8
+              and "وقفهٔ محلی ثبت شده است" in cx["drop"]["phaseShort"]
+              and cx["drop"]["btn"] == "اتصال برگشت"
+              and "وقفهٔ محلی ثبت شده است" in cx["drop"]["phaseLong"]
+              and cx["drop"]["phaseBack"] == "محاسبهٔ محلی در حال اجراست",
+              "R3-15  وقفهٔ شبیه‌ساز محلی از شمارنده کنار گذاشته می‌شود؛ رابط ادعای اتصال/پاسخ کارشناس نمی‌کند",
+              f"قبل/داخل={cx['drop']['before']}/{cx['drop']['during']} · «{cx['drop']['phaseShort']}» · «{cx['drop']['phaseBack']}»")
         check(cx["low"]["early"] is False and cx["low"]["late"] is True and "تا اتمام اعتبار" in cx["low"]["text"]
               and cx["low"]["topup"] == "openWalletModal()",
-              "R3-14  اعلان کم‌موجودی پیش از رسیدن به ۵ دقیقه ظاهر نمی‌شود و در آستانه با دکمهٔ «شارژ سریع» می‌آید",
+              "R3-14  هشدار داخلیِ مانده در آستانهٔ تعیین‌شده ظاهر می‌شود و فقط کیف محلی را باز می‌کند",
               f"زودتر: {cx['low']['early']} («{cx['low']['earlyRemaining']}») · در آستانه: {cx['low']['late']} («{cx['low']['text']}»)")
-        check(cx["dispute"]["rowVisible"] and cx["dispute"]["btnVisible"] and "۴۸ ساعت" in cx["dispute"]["status"]
+        check(cx["dispute"]["rowVisible"] and cx["dispute"]["btnVisible"]
+              and "اعلام نشده" in cx["dispute"]["status"]
               and cx["dispute"]["record"] and cx["dispute"]["record"]["status"] == "open"
-              and "اعتراض ثبت شد" in cx["dispute"]["statusAfter"] and cx["dispute"]["btnHiddenAfter"]
-              and cx["dispute"]["shortReasonRejected"],
-              "R3-12 الف  اعتراض ۴۸ ساعته: ردیف و دکمه دیده می‌شود، شرح کوتاه رد می‌شود و اعتراض ثبت و در گردش ثبت می‌گردد",
-              f"وضعیت=«{cx['dispute']['statusAfter'][:40]}» · شرح کوتاه رد شد={cx['dispute']['shortReasonRejected']}")
-        check(cx["dispute"]["staleWithinWindow"] is False and "گذشته است" in cx["dispute"]["staleStatus"]
+              and "یادداشت محلی ذخیره شده است" in cx["dispute"]["statusAfter"]
+              and "بررسی بیرونی متصل نیست" in cx["dispute"]["statusAfter"]
+              and cx["dispute"]["btnHiddenAfter"] and cx["dispute"]["shortReasonRejected"],
+              "R3-12 الف  فرم یادداشت محلی، شرایط بررسی نامشخص، اعتبارسنجی شرح و ذخیرهٔ مرورگری را پوشش می‌دهد",
+              f"وضعیت=«{cx['dispute']['statusAfter'][:52]}» · شرح کوتاه رد شد={cx['dispute']['shortReasonRejected']}")
+        check(cx["dispute"]["staleWithinWindow"] is False and "اعلام نشده" in cx["dispute"]["staleStatus"]
               and cx["dispute"]["staleBtnHidden"],
-              "R3-12 ب  پس از ۴۸ ساعت پنجره بسته می‌شود و امکان ثبت اعتراض برداشته می‌شود",
-              f"پنجرهٔ باز={cx['dispute']['staleWithinWindow']} · «{cx['dispute']['staleStatus']}»")
-        check(cx["care"]["monthly"] == 3 and cx["care"]["unlimited"] is False and cx["care"]["footnote"]
-              and "۳۰۰" in cx["care"]["wallet"] and "۳٬۰۰۰" in cx["care"]["wallet"],
-              "R3-13  هر سه طرح Care اعتبار ماهانه دارند (۳۰۰/۹۰۰/۳٬۰۰۰) و تناقض «نامحدود» برداشته شد",
-              f"ردیف‌های اعتبار=۳ · «نامحدود»={cx['care']['unlimited']} · کیف=«{cx['care']['wallet'][:52]}…»")
+              "R3-12 ب  پنجرهٔ داخلیِ شبیه‌ساز پس از مهلت بسته می‌شود؛ رابط شرایط زمانی را اعلام‌نشده می‌گذارد",
+              f"پنجرهٔ داخلی باز={cx['dispute']['staleWithinWindow']} · «{cx['dispute']['staleStatus']}»")
+        check(cx["care"]["undisclosed"] == 3 and cx["care"]["unlimited"] is False
+              and "اعلام نشده" in cx["care"]["wallet"],
+              "R3-13  هر سه کارت طرح، مقدار/شرایط را اعلام‌نشده می‌گذارند و ادعای «نامحدود» ندارند",
+              f"کارت‌های خنثی={cx['care']['undisclosed']} · «نامحدود»={cx['care']['unlimited']} · کیف=«{cx['care']['wallet'][:64]}»")
 
         # ---------- R2-09: the header bar must fit its own container at every width ----------
         # (round 2 follow-up: the bar is max-w-6xl = 1104px of content, but its items summed to
@@ -1117,7 +1134,7 @@ async def main():
         await pg.set_viewport_size({"width": 1440, "height": 900})
         await pg.wait_for_timeout(200)
         check(len(f16p) == 3 and all(x["sameLine"] and x["ws"] == "nowrap" and x["h"] <= 40 for x in f16p),
-              "F-16 پ  در ۳۹۰px واحد قیمت طرح‌های Care به خط بعد نمی‌افتد (مبلغ و واحد در یک خط)",
+              "F-16 پ  در ۳۹۰px سطر اطلاعاتِ مقدار/هزینهٔ اعلام‌نشدهٔ سه گزینه نمی‌شکند",
               " · ".join(f"«{x['txt']}» h={x['h']}px" for x in f16p))
 
         # F-17: Persian text must not be rendered with a mono stack (it has no Persian glyphs
@@ -1214,7 +1231,7 @@ async def main():
               "D-04  هالهٔ گوشهٔ کارت‌ها فعال است (عیب‌یاب، Care Pro)",
               f"عیب‌یاب={halo['diag']} ({halo['diagPos']}) · Pro={halo['pro']} ({halo['proPos']})")
 
-        # D-09 — قاعدهٔ نقطهٔ وضعیت: آفلاین ⇒ همهٔ نقطه‌های حضور کهربایی و بی‌پالس؛ آنلاین ⇒ سبز و پالس‌دار
+        # D-09 — the legacy local flag still controls indicator styling; this is not evidence of actual availability.
         dots = await pg.evaluate("""() => {
             const keep = REMOTE_SUPPORT.manualOverride;
             const snap = id => { const el = document.getElementById(id); return el ? el.className : ''; };
@@ -1229,13 +1246,13 @@ async def main():
         off_ok = all(('amber' in c) and ('animate-pulse' not in c) for c in dots["off"])
         on_ok  = all(('emerald' in c) and ('animate-pulse' in c) for c in dots["on"])
         check(off_ok and on_ok,
-              "D-09  نقطهٔ وضعیت: آفلاین=کهرباییِ ثابت · آنلاین=سبزِ پالس‌دار (هدر، پنل ریموت، منوی موبایل)",
+              "D-09  سبک نشانگر از پرچم محلی تبعیت می‌کند (کهربایی/سبز)؛ متن وضعیت ادعای دسترسی نمی‌کند",
               f"offline={[('amber' in c, 'pulse' in c) for c in dots['off']]} · online={[('emerald' in c, 'pulse' in c) for c in dots['on']]}")
-        # و در سطح منبع: هیچ نقطهٔ کهربایی/خاکستری نباید پالس بزند
-        src_dots = open("/home/user/پشتیبان_رایانه.html", encoding="utf-8").read()
+        # Source-level guard: static amber/gray indicators must not carry a pulse class.
+        src_dots = SOURCE_HTML.read_text(encoding="utf-8")
         bad_dots = [c for c in re.findall(r'class="([^"]*animate-(?:pulse|ping)[^"]*)"', src_dots)
                     if any(t in c for t in ("amber", "neutral", "gray", "slate", "zinc"))]
-        check(not bad_dots, "D-09  هیچ نشانگر «در صف/خاموش» پالس نمی‌زند (قاعده در کل صفحه)",
+        check(not bad_dots, "D-09  نشانگرهای ثابت کهربایی/خاکستری پالس ندارند (قاعدهٔ سراسری)", 
               f"offenders={len(bad_dots)}")
 
 
@@ -1331,15 +1348,15 @@ async def main():
               "S3-01  صحنهٔ هیرو: تصویر جاسازی‌شدهٔ رمزگشایی‌شده + ۲ چیپ + ۲ پنل زنده + عناصر شناور",
               f"src={scene['src']}… nat={scene['nat']}px · کادر {scene['w']}×{scene['h']} · چیپ={scene['chips']} پنل={scene['floats']} شناور={scene['drift']}")
 
-        # S3-02 — ساعت تهران زنده (پاکت زمانی به‌روز می‌شود)
+        # S3-02 — the local-clock widget updates over time and uses Persian digits.
         t1 = await pg.evaluate("() => (document.getElementById('alClock') || {}).textContent || ''")
         await pg.wait_for_timeout(1500)
         t2 = await pg.evaluate("() => (document.getElementById('alClock') || {}).textContent || ''")
         check(bool(t1) and bool(t2) and t1 != t2 and bool(re.search(r"[۰-۹]", t1)) and bool(re.search(r"[۰-۹]", t2)),
-              "S3-02  ساعت تهران زنده است (هر ثانیه به‌روز می‌شود، ارقام فارسی)",
+              "S3-02  ساعت نمایشی به‌روز می‌شود و از رقم‌های فارسی استفاده می‌کند",
               f"«{t1}» → «{t2}»")
 
-        # S3-03 — پنل زنده دقیقاً از وضعیت واقعی حضور تغذیه می‌شود
+        # S3-03 — exercise the legacy local flag while ensuring the displayed status stays neutral.
         live = await pg.evaluate("""() => {
             const d = document.getElementById('alLiveDot'), t = document.getElementById('alLiveText');
             const keep = REMOTE_SUPPORT.manualOverride;
@@ -1350,10 +1367,12 @@ async def main():
             REMOTE_SUPPORT.manualOverride = keep;      renderPresence();
             return { off, on };
         }""")
-        check(live["off"]["st"] == "queue" and "pulse" not in live["off"]["cls"] and "صف" in live["off"]["tx"]
-              and live["on"]["st"] == "online" and "pulse" in live["on"]["cls"] and "آنلاین" in live["on"]["tx"],
-              "S3-03  پنل زندهٔ هیرو آینهٔ همان وضعیت واقعی است (آنلاین=سبزِ پالس‌دار · صف=کهرباییِ ثابت)",
-              f"آفلاین: {live['off']['st']} «{live['off']['tx'][:34]}» · آنلاین: {live['on']['st']} «{live['on']['tx'][:34]}»")
+        check(live["off"]["st"] == "queue" and "amber" in live["off"]["cls"]
+              and "pulse" not in live["off"]["cls"] and "اعلام نشده" in live["off"]["tx"]
+              and live["on"]["st"] == "online" and "emerald" in live["on"]["cls"]
+              and "pulse" in live["on"]["cls"] and "اعلام نشده" in live["on"]["tx"],
+              "S3-03  پرچم داخلی سبک نقطه را عوض می‌کند، اما متن وضعیت در هر دو حالت خنثی می‌ماند",
+              f"off: {live['off']['st']} «{live['off']['tx'][:34]}» · local-on: {live['on']['st']} «{live['on']['tx'][:34]}»")
 
         # S3-04 — شمارندهٔ اعداد: مقدار میانی دیده می‌شود و مقدار نهایی درست می‌نشیند
         await pg.reload(wait_until="load"); await pg.wait_for_timeout(120)
@@ -1425,7 +1444,7 @@ async def main():
               f"جابه‌جایی={[round(m, 1) for m in mags]} · پس از خروج={rested}")
 
         # S3-08 — نگهبان: هیچ جای‌گذار باقی‌مانده و هیچ تصویر بیرونی در منبع
-        src3 = open("/home/user/پشتیبان_رایانه.html", encoding="utf-8").read()
+        src3 = SOURCE_HTML.read_text(encoding="utf-8")
         placeholders = re.findall(r"(?<![A-Za-z_])(__[A-Z]+__)", src3)
         data_imgs = src3.count("data:image/webp;base64,")
         http_imgs = len(re.findall(r'<img[^>]+src="https?://', src3))
@@ -1439,12 +1458,13 @@ async def main():
         chooser = await pg.evaluate("""() => ({
             desktop: [...document.querySelectorAll('#themeModeMenu [data-theme-mode]')].map(e => e.dataset.themeMode),
             mobile: [...document.querySelectorAll('#mobileThemeControl [data-theme-mode]')].map(e => e.dataset.themeMode),
-            trigger: !!document.querySelector('#themeToggleBtn[aria-controls="themeModeMenu"][aria-haspopup="true"]'),
+            trigger: !!document.querySelector('#themeToggleBtn[aria-controls="themeModeMenu"][aria-haspopup="dialog"]'),
+            popupRole: document.querySelector('#themeModeMenu')?.getAttribute('role') === 'dialog',
             mobileGroup: document.querySelector('#mobileThemeControl')?.getAttribute('role') === 'group',
             pressed: [...document.querySelectorAll('[data-theme-mode="auto"]')].every(e => e.getAttribute('aria-pressed') === 'true')
         })""")
         check(chooser["desktop"] == ["auto", "light", "dark"] and chooser["mobile"] == ["auto", "light", "dark"]
-              and chooser["trigger"] and chooser["mobileGroup"] and chooser["pressed"],
+              and chooser["trigger"] and chooser["popupRole"] and chooser["mobileGroup"] and chooser["pressed"],
               "S4-01  تم‌گزین هدر/موبایل سه انتخاب روشن/تیره/خودکار دارد و حالت انتخاب‌شدهٔ ARIA را همگام می‌کند",
               f"desktop={chooser['desktop']} mobile={chooser['mobile']} aria={chooser['pressed']}")
 
@@ -1492,11 +1512,16 @@ async def main():
         await pg.evaluate("setThemeMode('light')")
         await pg.wait_for_timeout(700)  # laisser se terminer la double-RAF de transition de thème
         manual_light = await pg.evaluate("({mode:localStorage.getItem('poshtiban_theme'),dark:document.documentElement.classList.contains('dark'),selected:document.querySelector('#mobileThemeControl [data-theme-mode=light]').getAttribute('aria-pressed')})")
+        reopened = await pg.context.new_page()
+        await reopened.goto(FILE, wait_until="load"); await reopened.wait_for_timeout(250)
+        reopened_light = await reopened.evaluate("({mode:localStorage.getItem('poshtiban_theme'),dark:document.documentElement.classList.contains('dark')})")
+        await reopened.close()
         await pg.evaluate("setThemeMode('auto')")
         check(persisted_dark["mode"] == "dark" and persisted_dark["dark"] and persisted_dark["selected"] == "true"
-              and manual_light["mode"] == "light" and not manual_light["dark"] and manual_light["selected"] == "true",
-              "S4-03  تم دستی بر ساعت غالب است و انتخاب روشن/تیره پس از refresh در localStorage باقی می‌ماند",
-              f"پس از refresh تیره={persisted_dark} · دستی روشن={manual_light}")
+              and manual_light["mode"] == "light" and not manual_light["dark"] and manual_light["selected"] == "true"
+              and reopened_light["mode"] == "light" and not reopened_light["dark"],
+              "S4-03  تم دستی بر ساعت غالب است و انتخاب روشن/تیره پس از refresh و بازکردن دوبارهٔ صفحه باقی می‌ماند",
+              f"پس از refresh تیره={persisted_dark} · دستی روشن={manual_light} · صفحهٔ بازشدهٔ دوباره={reopened_light}")
 
         # S4-04 — نور واحد آبی/بنفش و کارت شیشه‌ای؛ لبه‌های خاکستری در سکشن‌ها حذف شده‌اند.
         await pg.evaluate("setThemeMode('light')")
@@ -1534,21 +1559,107 @@ async def main():
               f"گذار={transition} · پاک‌شده={cleared} · کاهش حرکت={reduced}")
         await pg.evaluate("setThemeMode('auto')")
 
+        # S4-06 — when geolocation is denied, theme selection uses the browser-local daytime threshold; manual mode still wins.
+        local_ctx = await b.new_context(timezone_id="Europe/Amsterdam", viewport={"width": 390, "height": 844},
+                                        reduced_motion="reduce")
+        local_pg = await local_ctx.new_page()
+        await local_pg.add_init_script("""Object.defineProperty(Navigator.prototype, 'geolocation', {
+          configurable: true, value: { getCurrentPosition(ok, fail) { fail({code: 1}); } }
+        });""")
+        await local_pg.goto(FILE, wait_until="load")
+        await local_pg.wait_for_function("themeGeoState === 'denied'")
+        fallback = await local_pg.evaluate("""() => {
+            const NativeDate = Date, noon = new NativeDate(2026, 5, 21, 12);
+            const rise = solarEventLocalMinutes(noon, 52.3676, 4.9041, true);
+            const set = solarEventLocalMinutes(noon, 52.3676, 4.9041, false);
+            const at = (hour, minute) => {
+              const stamp = new NativeDate(2026, 5, 21, hour, minute).valueOf();
+              window.Date = class extends NativeDate {
+                constructor(...args) { return args.length ? new NativeDate(...args) : new NativeDate(stamp); }
+                static now() { return stamp; }
+              };
+              applyThemePreference(false);
+              return {time: `${hour}:${String(minute).padStart(2, '0')}`,
+                      dark: document.documentElement.classList.contains('dark')};
+            };
+            const edges = [[6,59],[7,0],[18,59],[19,0]].map(([h,m]) => at(h,m));
+            const manualStamp = new NativeDate(2026, 5, 21, 12).valueOf();
+            window.Date = class extends NativeDate {
+              constructor(...args) { return args.length ? new NativeDate(...args) : new NativeDate(manualStamp); }
+              static now() { return manualStamp; }
+            };
+            setThemeMode('dark'); applyThemePreference(false);
+            const manualDark = document.documentElement.classList.contains('dark');
+            window.Date = NativeDate;
+            return {offset: noon.getTimezoneOffset(), rise: rise.minutes, set: set.minutes, edges,
+                    manualDark, mode: getThemeMode(), geo: themeGeoState, coords: themeGeoCoords};
+        }""")
+        await local_ctx.close()
+        check(fallback["offset"] == -120 and 240 <= fallback["rise"] <= 360 and 1260 <= fallback["set"] <= 1380
+              and [x["dark"] for x in fallback["edges"]] == [True, False, False, True]
+              and fallback["manualDark"] and fallback["mode"] == "dark"
+              and fallback["geo"] == "denied" and fallback["coords"] is None,
+              "S4-06  رد مکان‌یابی، آستانهٔ روزانهٔ تم را به ساعت مرورگر ۰۷–۱۹ می‌سپارد؛ انتخاب دستی اولویت دارد",
+              f"UTC offset={fallback['offset']} · sunrise/sunset={fallback['rise']}/{fallback['set']}m · edges={fallback['edges']} · denied={fallback['geo']} · manual={fallback['manualDark']}")
+
+        # S4-07 — only outer section seams are removed; calendar, FAQ and control boundaries remain.
+        await pg.evaluate("setThemeMode('light'); openBookingModal(); goToBookingStep(2)")
+        calendar_divider = await pg.evaluate("""() => {
+            const e = document.getElementById('calDaysGrid').previousElementSibling, s = getComputedStyle(e);
+            return {width:s.borderBottomWidth, style:s.borderBottomStyle, color:s.borderBottomColor};
+        }""")
+        await pg.evaluate("closeBookingModal(); (() => {const b=document.querySelector('#faq button'); if(b.getAttribute('aria-expanded')!=='true') toggleFaq(b);})()")
+        input = pg.locator("#aiProblemInput")
+        await input.focus(); await pg.keyboard.press("Tab"); await pg.keyboard.press("Shift+Tab")
+        light_boundary = await pg.evaluate("""() => {
+            const css=e=>getComputedStyle(e), input=document.getElementById('aiProblemInput');
+            return {section:css(document.getElementById('faq')).borderTopWidth,
+              faq:[css(document.getElementById('faqAnswer1')).borderTopWidth,css(document.getElementById('faqAnswer1')).borderTopStyle],
+              input:[css(input).borderTopWidth,css(input).borderTopStyle],
+              outline:[css(input).outlineWidth,css(input).outlineStyle,css(input).outlineColor],
+              focusVisible:input.matches(':focus-visible'),
+              drop:[css(document.getElementById('dropZoneArea')).borderTopWidth,css(document.getElementById('dropZoneArea')).borderTopStyle]};
+        }""")
+        await pg.evaluate("setThemeMode('dark'); document.getElementById('aiProblemInput').blur()")
+        await input.focus(); await pg.keyboard.press("Tab"); await pg.keyboard.press("Shift+Tab")
+        dark_boundary = await pg.evaluate("""() => {
+            const css=e=>getComputedStyle(e), input=document.getElementById('aiProblemInput');
+            return {section:css(document.getElementById('faq')).borderTopWidth,
+              faq:[css(document.getElementById('faqAnswer1')).borderTopWidth,css(document.getElementById('faqAnswer1')).borderTopStyle],
+              input:[css(input).borderTopWidth,css(input).borderTopStyle],
+              outline:[css(input).outlineWidth,css(input).outlineStyle,css(input).outlineColor],
+              focusVisible:input.matches(':focus-visible'),
+              drop:[css(document.getElementById('dropZoneArea')).borderTopWidth,css(document.getElementById('dropZoneArea')).borderTopStyle]};
+        }""")
+        preserved = (calendar_divider["width"] == "1px" and calendar_divider["style"] == "solid"
+                     and all(v["section"] == "0px" and v["faq"] == ["1px", "solid"]
+                             and v["input"] == ["1px", "solid"] and v["focusVisible"]
+                             and v["outline"][:2] == ["2px", "solid"]
+                             and v["drop"] == ["2px", "dashed"]
+                             for v in (light_boundary, dark_boundary))
+                     and "0, 113, 227" in light_boundary["outline"][2]
+                     and "77, 163, 255" in dark_boundary["outline"][2])
+        check(preserved,
+              "S4-07  مرز سکشن حذف است؛ خط تقویم/FAQ، فوکوس صفحه‌کلید و کادر dashed بارگذاری در هر دو تم حفظ‌اند",
+              f"calendar={calendar_divider} · light={light_boundary} · dark={dark_boundary}")
+
         await pg.emulate_media(reduced_motion="reduce")
 
 
         await b.close()
 
-        # ---------- wording guard: no latin/numeric 24/7 in the product voice ----------
-        src_page = open("/home/user/پشتیبان_رایانه.html", encoding="utf-8").read()
+        # ---------- wording guard: reject specific around-the-clock claims, keep neutral disclosures ----------
+        src_page = SOURCE_HTML.read_text(encoding="utf-8")
         leftovers = re.findall(r"۲۴/۷|24/7", src_page)
-        check(not leftovers, "LANG-01  هیچ «۲۴/۷» یا «24/7» در متن سایت نمانده (به‌جای آن: شبانه‌روزی)",
+        check(not leftovers, "LANG-01  ادعای مشخص «۲۴/۷» یا «24/7» در متن سایت نیست",
               f"occurrences={len(leftovers)}")
-        check(src_page.count("شبانه‌روزی") >= 10, "LANG-01  عبارت «شبانه‌روزی» در جای درست به‌کار رفته",
-              f"{src_page.count('شبانه‌روزی')} بار · تست ۲۴ ساعتهٔ استرس‌تست حفظ شده: {'تست پایداری حداقل ۲۴ ساعته' in src_page}")
+        neutral_status_copy = all(term in src_page for term in (
+            "زمان پذیرش حضوری اعلام نشده", "زمان پاسخ‌گویی اعلام نشده", "پوشش خدمات مشخص نشده"))
+        check(neutral_status_copy, "LANG-01  متن، ساعت پذیرش/پاسخ‌گویی/پوشش را تأییدنشده اعلام می‌کند",
+              f"neutralStatusCopy={neutral_status_copy} · تست ۲۴ ساعتهٔ داخلی حفظ شده: {'تست پایداری حداقل ۲۴ ساعته' in src_page}")
 
         # ---------- F-14 / F-15: wording + letter-spacing (static/style) ----------
-        src = open("/home/user/پشتیبان_رایانه.html", encoding="utf-8").read()
+        src = SOURCE_HTML.read_text(encoding="utf-8")
         check("شیفت عصر" not in src, "F-14  «شیفت عصر» → «بعدازظهر»")
         check("خدمت انتخابی" not in src, "F-14  الگوی «N خدمت» بدون «انتخابی»")
     # ---------- report (grouped by package) ----------
@@ -1559,7 +1670,7 @@ async def main():
                   "R3-11", "R3-12", "R3-13", "R3-14", "R3-15"},
            "P3": {"F-11", "F-12", "F-15", "F-16", "F-17"},
            "GUARD": {"F-02", "D-01", "D-02", "D-03", "D-04", "D-05", "D-08", "D-09", "D-10",
-                   "S3-02", "S3-03", "S3-05", "S3-08", "S4-01", "S4-02", "S4-03", "S4-04", "S4-05"},
+                   "S3-02", "S3-03", "S3-05", "S3-08", "S4-01", "S4-02", "S4-03", "S4-04", "S4-05", "S4-06", "S4-07"},
            "P2": {"F-05", "F-06", "F-07", "F-08", "F-09", "F-10", "F-13"}}
     NAME = {"P1": "بستهٔ ۱ · درست‌کارکرد", "P2": "بستهٔ ۲ · دسترس‌پذیری",
             "P3": "بستهٔ ۳ · موبایل", "POS": "ریموت‌محوری (سیاست جدید)",

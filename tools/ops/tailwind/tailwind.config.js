@@ -1,6 +1,9 @@
+const path = require('path');
+
 module.exports = {
   darkMode: 'class',
-  content: ['/home/user/پشتیبان_رایانه.html', 'tokens.txt'],
+  // collect_tokens.py extracts markup/JS classes and excludes inline CSS/comments.
+  content: [path.resolve(__dirname, 'tokens.txt')],
   theme: {
     extend: {
       colors: {

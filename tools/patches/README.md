@@ -29,12 +29,19 @@
 | ۱۸ | `patch_design_step3a_img.py` | `DESIGN-STEP3A-IMG` | اصلاح جاافتادگی: جای‌گذار `__HERO__` در پچ ۳A جایگزین نشده بود → base64 تصویر هیرو واقعاً جاسازی شد |
 | ۱۹ | `patch_design_step3b.py` | `DESIGN-STEP3B` | «زنده‌شدن» بخش ب: چهار باند تصویری (ریموت، ذخیره‌سازی، گلوگاه، پرسش‌ها) + شمارندهٔ عدد گلوگاه با هر تغییر انتخاب‌ها |
 | ۲۰ | `patch_design_step3c.py` | `DESIGN-STEP3C` | اصلاح خوانایی RTL باندها: سایهٔ تصویر از سمت راست تیره می‌شود (سمت پنل متن) + سایهٔ متن |
+| ۲۱ | `patch_design_step4.py` | `DESIGN-STEP4` | تم سه‌حالته؛ خودکار بر اساس طلوع/غروب محلی با fallback ساعت ۰۷–۱۹؛ حذف اولیهٔ خطوط سکشن؛ نور و شیشه |
+| ۲۲ | `patch_design_step4b.py` | `DESIGN-STEP4B` | هم‌جهت‌سازی هاله‌های AI و Care Pro با آبی/بنفش هدر |
+| ۲۳ | `patch_design_step4c.py` | `DESIGN-STEP4C` | محدودکردن حذف border به سطوح شیشه‌ای/لبه‌های سکشن؛ حفظ خطوط درونی تقویم، FAQ و فرم |
+| ۲۴ | `patch_design_step4d.py` | `DESIGN-STEP4D` | یکپارچه‌سازی نهایی CSS بدون override تکراری؛ حذف کلاس‌های خط در مرز سکشن‌ها؛ نقش دسترس‌پذیر dialog و retry خطای موقت مکان‌یابی |
 | — | `recon_package3.py` | — | ابزار کاوش (غیرمخرب): وضعیت عناصر بستهٔ ۳ را گزارش می‌دهد، چیزی را تغییر نمی‌دهد |
+
+**یادداشت Step 4:** پچ نهایی `step4d` قواعد 4A–4C را در یک بلوک CSS واحد ادغام کرد؛ بنابراین نشانگرهای CSSِ 4A–4C عمداً از HTML نهایی حذف و با `DESIGN-STEP4D` جایگزین شده‌اند. این تاریخچهٔ جدول نشان‌دهندهٔ ترتیب اجراست، نه این‌که همهٔ نشانگرهای میانی باید در فایل نهایی بمانند.
 
 ## اگر خواستید مطمئن شوید همهٔ پچ‌ها اعمال شده‌اند
 
 ```bash
 cd /home/user
-grep -c "DESIGN-STEP1\|DESIGN-STEP2\|DESIGN-STEP3B\|DESIGN-STEP3A-IMG" پشتیبان_رایانه.html   # باید ≥ ۴ باشد
-python3 tools/audit.py                                                                                     # PASS 102 · FAIL 0
+grep -c "DESIGN-STEP1\|DESIGN-STEP2\|DESIGN-STEP3B\|DESIGN-STEP3A-IMG\|DESIGN-STEP4D" پشتیبان_رایانه.html   # باید ≥ ۵ باشد
+python3 tools/ops/assemble_offline.py                                                                    # ساخت تک‌فایلی از منبع
+python3 tools/audit.py                                                                                   # آخرین ممیزی: PASS 109 · FAIL 0 · INFO 1
 ```

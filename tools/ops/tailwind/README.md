@@ -1,31 +1,24 @@
-# Rebuilding the frozen Tailwind CSS
+# Rebuilding the frozen Tailwind stylesheet
 
-`assets/tailwind-frozen.css` is what the offline bundle inlines. Regenerate it whenever a
-**new Tailwind class** appears in `پشتیبان_رایانه.html` (otherwise `tools/ops/assemble_offline.py` exits 1
-and lists the classes without a rule).
+`assets/tailwind-frozen.css` is the stylesheet inlined into the generated offline page. The editable source of truth is `پشتیبان_رایانه.html`; do not edit `پیش‌نمایش_آفلاین.html` by hand.
+
+The optional generator is pinned to Tailwind CSS 3.4.17 in this directory's `package-lock.json`. It writes `out.css` for review and **does not replace** `assets/tailwind-frozen.css` automatically. A fresh output differs from the currently frozen stylesheet, so review the rule-level comparison and run the browser audit before accepting any replacement.
 
 ```bash
-# 1) one-time: local generator (no network needed at runtime)
-cd tools/ops/tailwind && npm init -y && npm i -D tailwindcss@3.4.17
+cd tools/ops/tailwind
+npm ci
+./build_css.sh
 
-# 2) collect every class token used by the page (including JS template strings)
-python3 - <<'PY'
-import io, re
-h = io.open('/home/user/پشتیبان_رایانه.html', encoding='utf-8').read()
-t = set()
-for m in re.finditer(r'class="([^"]*)"', h): t.update(m.group(1).split())
-for m in re.finditer(r"classList\.(?:add|remove|toggle|contains)\(\s*['\"]([^'\"]+)['\"]", h): t.update(m.group(1).split())
-for m in re.finditer(r'\.className\s*=\s*[\'"`]([^\'"`]+)[\'"`]', h): t.update(m.group(1).split())
-for m in re.finditer(r'const\s+\w*[Cc]lass\s*=\s*"([^"]*)"', h): t.update(m.group(1).split())
-io.open('tokens.txt', 'w', encoding='utf-8').write("\n".join(sorted(x for x in t if x)))
-PY
+# Review rule-level changes before accepting them.
+python3 compare_css.py
 
-# 3) build + install
-node node_modules/.bin/tailwindcss -c tailwind.config.js -i in.css -o out.css --minify
-cp out.css /home/user/assets/tailwind-frozen.css
-
-# 4) verify coverage
-cd /home/user && python3 tools/ops/assemble_offline.py
+# If the diff is expected, copy it into the frozen asset:
+cp out.css ../../../assets/tailwind-frozen.css
+cd ../../..
+python3 tools/ops/assemble_offline.py
+python3 tools/audit.py
 ```
 
-`tailwind.config.js` here points `content` at the page + `tokens.txt` (written next to it, not committed).
+`collect_tokens.py` derives the temporary `tokens.txt` from literal class attributes and common `classList`/`className` assignments in the source, excluding inline CSS and HTML comments. Both `tokens.txt` and `out.css` are build artifacts and are ignored by Git. If the generated CSS differs, inspect the diff rather than assuming the current stylesheet should be replaced.
+
+This nested npm package is a private build tool, not a separately licensed distributable. The generated Tailwind stylesheet carries Tailwind's upstream MIT notice; see `THIRD_PARTY_NOTICES.md`.

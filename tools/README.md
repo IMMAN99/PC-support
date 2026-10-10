@@ -1,99 +1,35 @@
-# tools/ — نقشهٔ ابزارها
+# Development tools
 
-همه‌چیز از ریشهٔ ورک‌اسپیس اجرا می‌شود (`cd /home/user`) و مسیرها مطلق‌اند.
+The maintained tools are portable and resolve project files relative to their own location. Run commands from the repository root unless a command says otherwise.
 
-```
-tools/
-├── audit.py                    ← بررسی رگرسیون (PASS/FAIL) — بعد از هر تغییر
-├── verify_package2.py          ← آزمون رفتاری دسترس‌پذیری (فوکوس، درگ‌ودراپ، آکاردئون)
-├── check_review.py             ← سلامت تختهٔ بازبینی (فیلترها، خطای JS، منبع بیرونی)
-├── measure_launcher_idle.py    ← اندازه‌گیری هم‌پوشانی دکمهٔ شناور با متن در حالت سکون
-├── ops/                        ← ساخت و اجرا
-│   ├── assemble_offline.py     ← بیلد تک‌فایلی + تست پوشش CSS
-│   ├── preview_server.py       ← سرور پیش‌نمایش روی :8899
-│   └── tailwind/               ← کیت بازسازی CSS منجمد (README جدا دارد)
-├── shots/                      ← عکس‌برداری و سنجش
-│   ├── states.py               ← مودال‌ها، دراور، حالت شب، موبایل (پوشه‌های dark/ و mobile/ را
-│   │                              فقط وقتی لازم باشد می‌سازد؛ شواهد ماندنی در screenshots/states/ است)
-│   ├── shots.py                ← عکس سکشنی با تگ
-│   ├── shots_header.py         ← برش نوار هدر در هر تیر بریک‌پوینت
-│   ├── shots_package3.py       ← شواهد بستهٔ ۳ (دکمهٔ شناور، پیل هدر)
-│   ├── shots_credits_rules.py  ← قواعد قفل‌شدهٔ اعتبار (بسته‌ها، سقف، فاز جلسه)
-│   ├── shots_credits_final.py  ← پنج تصمیم اعتبار (انقضا، اعتراض، کم‌موجودی، قطعی)
-│   ├── shots_f16.py            ← آیکون‌های SVG + الآن‌رپ قیمت
-│   ├── shots_design1.py        ← شواهد جلای طراحی (پرتو، درز، هاور، موبایل) → screenshots/states/d1-*
-│   └── probe_header.py         ← سنجش سرریز هدر در فهرست عرض‌ها
-└── patches/                    ← پچ‌های یک‌بارمصرفِ اجراشده (فقط سابقه) + README
-```
-
-## دستورهای روزمره
+## Build and preview
 
 ```bash
-python3 tools/ops/assemble_offline.py     # بعد از هر ویرایش پشتیبان_رایانه.html
-python3 tools/audit.py                    # گزارش PASS/FAIL  (زمان تقریبی: ~۳۰ ثانیه)
-python3 tools/verify_package2.py          # آزمون رفتاری دسترس‌پذیری
-python3 tools/check_review.py             # سلامت تختهٔ بازبینی
-python3 tools/ops/preview_server.py       # پیش‌نمایش زنده روی :8899
-#   یا ساده‌تر از ریشهٔ ورک‌اسپیس:  bash run-preview.sh
+python3 tools/ops/assemble_offline.py
+python3 tools/ops/preview_server.py
 ```
 
-عکس‌برداری نیاز به Playwright دارد. در سندباکس تازه:
+The assembler creates the ignored, generated `پیش‌نمایش_آفلاین.html` from `پشتیبان_رایانه.html` and the frozen CSS/font assets. The preview server serves only that single file; it defaults to `127.0.0.1:8899` and does not expose the workspace directory. `./run-preview.sh` is a shortcut to start the server after building.
+
+To expose the preview through a sandbox proxy, opt in explicitly:
 
 ```bash
-pip install playwright && python3 -m playwright install chromium
-sudo python3 -m playwright install-deps chromium
+PREVIEW_HOST=0.0.0.0 PORT=8899 python3 tools/ops/preview_server.py
 ```
 
-## قواعد
+## Automated browser audit
 
-* **`tools/patches/` را دوباره اجرا نکنید.** هر کدام نشانگر خودش را در `پشتیبان_رایانه.html` چک می‌کند و در صورت تکرار خطا می‌دهد؛ ولی حذف‌کردنشان هم بی‌خطر است — فایل نهایی حاصل کارشان را دارد.
-* هر تغییر تازه در سایت باید یا یک بررسی در `tools/audit.py` بگیرد یا دلیل صریحی داشته باشد که چرا آزمون ندارد.
-* مسیرها مطلق (`/home/user/...`) هستند؛ ابزارها را از ریشهٔ ورک‌اسپیس اجرا کنید.
-
-## یادداشت‌های آزمون (بعد از گام‌های ۱ تا ۳ — ۲۰۲۶-۱۰-۰۷)
-
-شش نکتهٔ ظریف که در آزمون‌ها ثابت شده و نباید دوباره اشتباه شود:
-
-1. **`tools/audit.py` عمداً در حالت «کاهش حرکت» اجرا می‌شود** تا هندسهٔ صفحه (کنتراست تقویم،
-   سرریز هدر، تاچ‌تارگت‌ها) در وضعیت پایدار سنجیده شود — نه وسط انیمیشن. استثناها:
-   • صفحهٔ **موبایل** با حرکت کامل اجرا می‌شود، چون منطق «کنار‌رفتن دکمهٔ شناور» در حالت
-     کاهش حرکت خودش را خاموش می‌کند و آزمون‌های F-11 بی‌معنا می‌شوند؛
-   • بررسی‌های **D-02/D-03** مدیا را موقتاً خودشان عوض می‌کنند تا هر دو حالت را بسنجند.
-2. **`tools/verify_package2.py` با حرکت کامل اجرا می‌شود** — آزمون آکاردئون FAQ باید انیمیشن
-   ارتفاع را ببیند، و خودِ سایت در حالت کاهش حرکت انیمیشن را مطابق دسترس‌پذیری رد می‌کند.
-3. **`R3-11 ب` دیگر به تاریخ ثابت وابسته نیست** — انتظارِ برچسب انقضا از زمان واقعیِ همان «لاتِ
-   شارژ» در JS ساخته می‌شود، پس اجرای آزمون در هر روزی معتبر است (قبلاً با عوض‌شدن روز،
-   شکست کاذب می‌داد).
-4. **سلکتور چندخطی در CSS = سلکتور فرزندی، نه مرکب.** در گام ۲ سلکتور D-10 روی سه خط شکسته
-   شده بود؛ هر خط جدید یک ترکیب‌کنندهٔ «فرزند» است، پس قاعده روی `<span>` داخل دکمه می‌نشست نه روی
-   خود دکمه (`patch_design_step2b`). هر سلکتور مرکب باید در **یک خط** نوشته شود.
-5. **در کرومیوم تازه، `CSSStyleRule.cssRules` یک فهرست خالیِ *truthy* است** (پشتیبانی از CSS
-   nesting). پیمایش استایل‌شیت نباید `if (r.cssRules) { recurse; continue; }` بنویسد — اول خودِ
-   قاعده (`r.selectorText`) بررسی شود و بازگشت فقط با `r.cssRules.length` انجام شود؛ وگرنه هیچ
-   قاعده‌ای پیدا نمی‌شود (نشانه‌اش: شمارش پوشش = ‎−۱‎).
-
-6. **جای‌گذار base64 را قبل از درج، واقعاً جایگزین کنید.** در پچ «۳A» مقدار `data_uri('hero-bench')`
-   حساب شده بود ولی رشتهٔ `src="__HERO__"` در قالب جایگزین نشد → کادر مشکی در هیرو. حالا بررسی
-   `S3-08` نگهبان است: هیچ `__…__` در منبع نمی‌ماند و تعداد تصاویر جاسازی‌شده شمرده می‌شود.
-
-## محیط مرورگر (هر فراخوانی از نو آماده می‌شود)
-
-سندباکس پکیج‌های pip و کتابخانه‌های سیستمی (`libnspr4`) را بین فراخوانی‌ها نگه نمی‌دارد.
-پس هر بار که آزمون/عکس‌برداری می‌خواهید، اول این را اجرا کنید:
+Install the pinned development requirements and Chromium as described in the root `README.md`, then run:
 
 ```bash
-bash tools/ops/pw_setup.sh && python3 tools/audit.py
+python3 tools/audit.py
 ```
 
-## نکات ابزارهای عکس‌برداری
+The audit opens the generated offline page in Chromium. It is a regression check, not a production deployment or security certification.
 
-* `python3 tools/shots/shots_design2.py` برای ثبتِ «نوار تقریباً خالی» در `d2-bench-0.png`
-  شاترِ همان صفحهٔ عکس‌برداری را کند می‌کند (`transition-duration: 6s` فقط در روند عکس‌برداری).
-  هندسه/منحنی عوض نمی‌شود و مقدار واقعی `scaleX` هم چاپ می‌شود؛ آزمون D-08 مرجع اصلی است.
-* برای انتخاب «دکمهٔ اصلی هیرو» از `#overview a[href="#ai-diagnostic"]` استفاده کنید؛
-  `a[href="#ai-diagnostic"]` چند مورد دیگر (لینک ناوبری هدر و منوی موبایل) را هم می‌گیرد.
-* `python3 tools/shots/shots_design3.py` برای قاب میانیِ شمارنده، چند نمونهٔ سریع می‌گیرد و اولین
-  قابی را نگه می‌دارد که عددِ «میانی» را نشان می‌دهد (عدد نهایی شاهد نیست؛ `S3-04` مرجع است).
-* تصاویر سایت از `assets/img/src/*.png` (خام) با `python3 tools/ops/make_images.py` به
-  `assets/img/*.webp` تبدیل می‌شوند؛ پچ‌های تصویر همان‌ها را base64 می‌کنند. عکس تازه؟ اسکریپت را
-  دوباره اجرا کنید و یک پچ کوچکِ جای‌گذاری بسازید.
+## Asset and CSS maintenance
+
+- `tools/ops/make_images.py` converts the PNG sources in `assets/img/src/` to WebP files. It requires Pillow. Updating the embedded images in the HTML remains a separate, reviewed step.
+- `tools/ops/tailwind/` contains the optional Tailwind 3.4.17 generator. Its README explains how to build to a reviewable `out.css` without overwriting the committed frozen stylesheet automatically.
+
+Historical one-off patches, screenshots, review boards, uploaded references, and test reports are local workspace material and are excluded from the proposed repository by `.gitignore`.

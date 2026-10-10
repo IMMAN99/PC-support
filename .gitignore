@@ -1,0 +1,67 @@
+# OS, editor, and local environment files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.env
+.env.*
+!.env.example
+secrets/
+.cache/
+.local/
+.npm/
+.mypy_cache/
+.ruff_cache/
+.tox/
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+*.mobileprovision
+
+# Python and browser-test artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+playwright-report/
+test-results/
+
+# Node build/install artifacts
+**/node_modules/
+npm-debug.log*
+
+# Generated offline bundle (rebuild from the Persian source HTML)
+/پیش‌نمایش_آفلاین.html
+
+# Local-only working material: preserve locally, do not publish by default
+/uploads/
+/docs/
+/screenshots/
+/reports/
+/Final_Implementation_Audit.md
+/گزارش_ممیزی_نهایی.md
+/tools/patches/
+/tools/shots/
+/tools/check_review.py
+/tools/measure_launcher_idle.py
+/tools/verify_package2.py
+
+# Optional Tailwind build artifacts
+/tools/ops/tailwind/tokens.txt
+/tools/ops/tailwind/out.css
+
+# Local databases, logs, temporary files, and archives
+*.sqlite
+*.sqlite3
+*.db
+*.log
+*.tmp
+*.bak
+*.orig
