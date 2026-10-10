@@ -1,0 +1,3533 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>پشتیبان پی‌سی | مرکز تخصصی عیب‌یابی، ارتقا و نگهداری رایانه</title>
+  
+  <!-- OpenGraph & Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="پشتیبان پی‌سی | مرکز تخصصی عیب‌یابی، ارتقا و نگهداری رایانه">
+  <meta property="og:description" content="مرکز فوق تخصصی عیب‌یابی سخت‌افزاری و نرم‌افزاری، ارتقای پرسرعت SSD، سرویس دوره‌ای و پشتیبانی ریموت فوری مجهز به هوش مصنوعی در تهران">
+  <meta property="og:site_name" content="پشتیبان پی‌سی">
+  <meta property="og:locale" content="fa_IR">
+  <meta property="og:url" content="https://poshtibanpc.ir">
+  <meta property="og:image" content="https://placehold.co/1200x630/1d1d1f/0071e3?text=Poshtiban+PC">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="پشتیبان پی‌سی | مرکز تخصصی عیب‌یابی و ارتقای رایانه">
+  <meta name="twitter:description" content="تحلیل هوشمند خطاهای صفحه آبی، تست گلوگاه قطعات و ارتقای پرسرعت SSD">
+  <meta name="twitter:image" content="https://placehold.co/1200x630/1d1d1f/0071e3?text=Poshtiban+PC">
+
+  <!-- Inline SVG Favicon to eliminate 404 console errors -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230071e3'%3E%3Crect x='2' y='3' width='20' height='14' rx='2' ry='2' fill='none' stroke='%230071e3' stroke-width='2'/%3E%3Cline x1='8' y1='21' x2='16' y2='21' stroke='%230071e3' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='12' y1='17' x2='12' y2='21' stroke='%230071e3' stroke-width='2'/%3E%3C/svg%3E">
+
+  <!-- Schema.org JSON-LD Structured Data for LocalBusiness & FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ComputerRepairStore",
+        "@id": "https://poshtibanpc.ir/#store",
+        "name": "مرکز تخصصی پشتیبان پی‌سی تهران",
+        "description": "مرکز فوق تخصصی عیب‌یابی سخت‌افزاری و نرم‌افزاری، ارتقای پرسرعت SSD و سرویس دوره‌ای رایانه‌ها مجهز به هوش مصنوعی",
+        "telephone": "+98-21-88880000",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "بلوار میرداماد، مجتمع کامپیوتر پایتخت، طبقه ۲، واحد ۲۰۴",
+          "addressLocality": "تهران",
+          "addressRegion": "تهران",
+          "postalCode": "19697",
+          "addressCountry": "IR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 35.7594,
+          "longitude": 51.4116
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+            "opens": "09:30",
+            "closes": "20:30"
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "412",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "آیا حین ارتقا به SSD اطلاعات هارد قدیمی من حفظ می‌شود؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "بله کاملاً. با دستگاه کلونر سخت‌افزاری، کلیه نرم‌افزارها، فایل‌ها و تنظیمات ویندوز بدون نیاز به نصب مجدد به اس‌اس‌دی جدید انتقال می‌یابند."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "مدت زمان عیب‌یابی و تحویل سیستم‌ها در کارگاه چقدر است؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ارتقای SSD، نصب ویندوز و سرویس حرارتی فن در همان روز (۲ الی ۴ ساعت) انجام و تحویل داده می‌شوند."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#0071e3',
+              blueHover: '#0077ed',
+              dark: '#1d1d1f',
+              gray: '#86868b',
+              lightGray: '#f5f5f7',
+              border: '#d2d2d7',
+              canvas: '#fbfbfd',
+              darkCanvas: '#000000',
+              darkCard: '#161617'
+            }
+          },
+          fontFamily: {
+            sans: ['Vazirmatn', 'system-ui', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Font: Vazirmatn -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Brand Styling, iOS Auto-Zoom Fix, Scroll Prevention & Print Media Styles -->
+  <style>
+    html, body {
+      font-family: 'Vazirmatn', system-ui, BlinkMacSystemFont, sans-serif;
+      font-feature-settings: "ss01";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: clip; /* Fix 320px horizontal overflow */
+    }
+
+    /* iOS Safari Auto-Zoom Fix: Prevent zoom on touch */
+    @media (max-width: 640px) {
+      input, textarea, select {
+        font-size: 16px !important;
+      }
+    }
+
+    .frosted-glass {
+      background: rgba(255, 255, 255, 0.80);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+    }
+    .dark .frosted-glass {
+      background: rgba(22, 22, 23, 0.80);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+    }
+    .frosted-glass-scrolled {
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.07);
+    }
+    .dark .frosted-glass-scrolled {
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.50);
+    }
+    /* Explicit line-height fix for Hero headline to prevent Tailwind md:text-7xl (line-height: 1) from collapsing dots */
+    .hero-headline {
+      line-height: 1.45 !important;
+    }
+    .hero-headline > span:last-child {
+      display: block;
+      margin-top: 1.15rem !important;
+    }
+    @media (min-width: 768px) {
+      .hero-headline > span:last-child {
+        margin-top: 1.45rem !important;
+      }
+    }
+
+    /* --- Interactive Persian Calendar Grid & Element Styles --- */
+    .cal-grid-7, .grid-cols-7 {
+      display: grid !important;
+      grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+    }
+    .cal-day-cell {
+      width: 100%;
+      height: 2.25rem;
+      border-radius: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+    .cal-day-cell:hover:not(.selected) {
+      background-color: rgba(0, 113, 227, 0.12) !important;
+      color: #0071e3 !important;
+    }
+    .cal-day-cell.selected {
+      background-color: #0071e3 !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+      box-shadow: 0 4px 12px rgba(0, 113, 227, 0.35) !important;
+    }
+    .cal-day-cell-off {
+      height: 2.25rem;
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: rgba(239, 68, 68, 0.5) !important;
+      background-color: rgba(0, 0, 0, 0.02);
+      text-decoration: line-through;
+      text-decoration-color: rgba(239, 68, 68, 0.5);
+      cursor: not-allowed !important;
+      user-select: none;
+    }
+    .dark .cal-day-cell-off {
+      color: rgba(248, 113, 113, 0.5) !important;
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+    .cal-day-cell-disabled {
+      height: 2.25rem;
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: rgba(134, 134, 139, 0.35) !important;
+      cursor: not-allowed !important;
+      user-select: none;
+    }
+
+    /* --- Intake Checklist Text Legibility in Dark/Light Modes --- */
+    .intake-checklist-label {
+      color: #2c2c2e !important;
+      transition: color 0.15s ease;
+    }
+    .dark .intake-checklist-label {
+      color: #f5f5f7 !important;
+    }
+    .intake-checklist-label strong {
+      color: #000000 !important;
+    }
+    .dark .intake-checklist-label strong {
+      color: #ffffff !important;
+    }
+
+    /* --- Modern Glassy Disabled State vs Vibrant Blue Active State for Booking Submit --- */
+    .book-submit-btn-disabled {
+      background: rgba(255, 255, 255, 0.08) !important;
+      backdrop-filter: blur(16px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      color: rgba(255, 255, 255, 0.4) !important;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+      cursor: not-allowed !important;
+      opacity: 1 !important;
+    }
+    :root:not(.dark) .book-submit-btn-disabled {
+      background: rgba(0, 0, 0, 0.04) !important;
+      border: 1px solid rgba(0, 0, 0, 0.10) !important;
+      color: rgba(0, 0, 0, 0.35) !important;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8) !important;
+    }
+    .book-submit-btn-active {
+      background: #0071e3 !important;
+      color: #ffffff !important;
+      border: 1px solid #0071e3 !important;
+      box-shadow: 0 4px 16px rgba(0, 113, 227, 0.45) !important;
+      cursor: pointer !important;
+      opacity: 1 !important;
+    }
+    .book-submit-btn-active:hover {
+      background: #0077ed !important;
+      box-shadow: 0 6px 20px rgba(0, 113, 227, 0.55) !important;
+    }
+
+    /* --- Calendar Navigation RTL Chevrons with Prominent Disabled Styles --- */
+    .cal-nav-btn {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      color: #1d1d1f;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+    }
+    .dark .cal-nav-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+    }
+    .cal-nav-btn:hover:not(:disabled) {
+      background: #0071e3 !important;
+      color: #ffffff !important;
+      border-color: #0071e3 !important;
+    }
+    .cal-nav-btn:disabled {
+      opacity: 0.15 !important;
+      cursor: not-allowed !important;
+      pointer-events: none !important;
+      background: transparent !important;
+      border-color: rgba(255, 255, 255, 0.05) !important;
+      color: rgba(255, 255, 255, 0.2) !important;
+      box-shadow: none !important;
+    }
+    :root:not(.dark) .cal-nav-btn:disabled {
+      opacity: 0.2 !important;
+      border-color: rgba(0, 0, 0, 0.05) !important;
+      color: rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .modal-glass-blur {
+      background: rgba(0, 0, 0, 0.58);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .ai-gradient-text {
+      background: linear-gradient(135deg, #0071e3 0%, #a855f7 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .ai-glow {
+      box-shadow: 0 0 25px rgba(168, 85, 247, 0.25);
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Sleek Modern Sleek Scrollbar */
+    .poshtiban-scrollbar::-webkit-scrollbar {
+      width: 5px;
+    }
+    .poshtiban-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .poshtiban-scrollbar::-webkit-scrollbar-thumb {
+      background-color: rgba(140, 140, 145, 0.35);
+      border-radius: 9999px;
+    }
+    .poshtiban-scrollbar::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(140, 140, 145, 0.6);
+    }
+    .poshtiban-scrollbar {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(140, 140, 145, 0.35) transparent;
+    }
+  </style>
+</head>
+<body class="bg-brand-canvas dark:bg-brand-darkCanvas text-brand-dark dark:text-white transition-colors duration-300 selection:bg-brand-blue selection:text-white min-h-screen pt-12">
+
+  <!-- Modern Frosted Header -->
+  <header id="mainHeader" class="fixed top-0 left-0 right-0 z-40 w-full frosted-glass border-b border-black/[0.08] dark:border-white/[0.08] transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-3 sm:px-6 h-12 flex items-center justify-between gap-2 sm:gap-4">
+      
+      <!-- Brand Logo -->
+      <a href="#overview" class="flex items-center gap-1.5 sm:gap-2 group text-brand-dark dark:text-white shrink-0 whitespace-nowrap">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-brand-blue transition-transform group-hover:scale-105 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+        </svg>
+        <span class="font-bold text-xs sm:text-sm tracking-tight whitespace-nowrap">پشتیبان پی‌سی</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-8 text-[12px] text-brand-dark/80 dark:text-white/80 font-medium shrink-0">
+        <a href="#overview" class="hover:text-brand-blue transition-colors whitespace-nowrap">نگاه کلی</a>
+        <a href="#ai-diagnostic" class="ai-gradient-text font-bold hover:opacity-80 transition-opacity flex items-center gap-1.5 whitespace-nowrap">
+          <span>✦</span><span>عیب‌یاب هوشمند</span>
+        </a>
+        <a href="#speed-booster" class="hover:text-brand-blue transition-colors whitespace-nowrap">تست سرعت SSD</a>
+        <a href="#bottleneck" class="hover:text-brand-blue transition-colors whitespace-nowrap">تحلیل گلوگاه</a>
+        <a href="#plans" class="hover:text-brand-blue transition-colors whitespace-nowrap">طرح‌های Care</a>
+        <a href="#faq" class="hover:text-brand-blue transition-colors whitespace-nowrap">پرسش‌ها</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <!-- Live Status Badge -->
+        <div id="liveWorkStatusBadge" class="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shrink-0 whitespace-nowrap transition-colors">
+          <span id="shopHoursStatusDot" class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+          <span id="shopHoursStatusText" class="whitespace-nowrap">پذیرش حضوری باز است</span>
+        </div>
+
+        <!-- AI Assistant Direct Trigger -->
+        <button onclick="toggleAiDrawer(true)" class="hidden 2xl:flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-semibold bg-gradient-to-r from-purple-500/10 to-blue-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 hover:border-purple-500/40 transition shrink-0 whitespace-nowrap">
+          <span>✦ مشاور فنی</span>
+        </button>
+
+        <!-- Theme Switcher -->
+        <button id="themeToggleBtn" onclick="toggleTheme()" aria-label="تغییر تم" class="w-7 h-7 rounded-full flex items-center justify-center text-brand-dark/70 dark:text-white/70 hover:bg-black/5 dark:hover:bg-white/10 transition shrink-0">
+          <span id="themeToggleIcon" class="text-xs">🌙</span>
+        </button>
+
+        <!-- Tracking Modal Trigger (Hidden on ultra-small mobile to prevent 320px overflow) -->
+        <button onclick="openTrackingModal()" class="hidden sm:inline-flex text-[11px] font-semibold px-2.5 sm:px-3 py-1 rounded-full text-brand-blue hover:bg-brand-blue/10 transition shrink-0 whitespace-nowrap">
+          پیگیری
+        </button>
+
+        <!-- Booking CTA -->
+        <button onclick="openBookingModal()" class="text-[11px] font-semibold px-2.5 sm:px-3.5 py-1 rounded-full bg-brand-blue hover:bg-brand-blueHover text-white shadow-sm transition shrink-0 whitespace-nowrap">
+          رزرو نوبت
+        </button>
+
+        <!-- Mobile Drawer Toggle -->
+        <button onclick="toggleMobileMenu()" aria-label="منوی موبایل" class="lg:hidden p-1.5 text-brand-dark dark:text-white shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobileDrawer" class="lg:hidden frosted-glass border-t border-black/[0.06] dark:border-white/[0.08] px-6 py-4 space-y-3 text-xs font-medium text-brand-dark dark:text-white hidden">
+    <div class="flex items-center justify-between pb-3 border-b border-black/[0.06] dark:border-white/[0.08]">
+      <span class="text-neutral-500 dark:text-neutral-400">حالت نمایش:</span>
+      <button onclick="toggleTheme()" class="px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 font-semibold text-xs">
+        <span id="drawerThemeText">تغییر به تم تیره 🌙</span>
+      </button>
+    </div>
+    <a href="#overview" onclick="toggleMobileMenu()" class="block py-1.5 hover:text-brand-blue">نگاه کلی به خدمات</a>
+    <a href="#ai-diagnostic" onclick="toggleMobileMenu()" class="block py-1.5 ai-gradient-text font-bold">✦ عیب‌یاب هوشمند سیستم</a>
+    <a href="#speed-booster" onclick="toggleMobileMenu()" class="block py-1.5 hover:text-brand-blue">تست سرعت ارتقای SSD</a>
+    <a href="#bottleneck" onclick="toggleMobileMenu()" class="block py-1.5 hover:text-brand-blue">تحلیل گلوگاه سخت‌افزاری (Bottleneck)</a>
+    <a href="#plans" onclick="toggleMobileMenu()" class="block py-1.5 hover:text-brand-blue">اشتراک‌های مراقبت دوره‌ای Care</a>
+    <a href="#faq" onclick="toggleMobileMenu()" class="block py-1.5 hover:text-brand-blue">پرسش‌های متداول مراجعین</a>
+    
+    <div class="pt-3 border-t border-black/[0.06] dark:border-white/[0.08] grid grid-cols-2 gap-2">
+      <button onclick="openRemoteModal(); toggleMobileMenu();" class="py-2 text-center rounded-xl bg-black/5 dark:bg-white/10 font-bold">
+        درخواست ریموت فوری
+      </button>
+      <button onclick="toggleAiDrawer(true); toggleMobileMenu();" class="py-2 text-center rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 font-bold">
+        ✦ مشاور هوشمند
+      </button>
+      <button onclick="openTrackingModal(); toggleMobileMenu();" class="col-span-2 py-2 text-center rounded-xl bg-black/5 dark:bg-white/10 font-bold">
+        پیگیری وضعیت دستگاه
+      </button>
+      <button onclick="openBookingModal(); toggleMobileMenu();" class="col-span-2 py-2.5 text-center rounded-xl bg-brand-blue text-white font-bold">
+        رزرو نوبت پذیرش
+      </button>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="overview" class="pt-24 pb-16 sm:pt-32 sm:pb-24 px-4 sm:px-6 max-w-6xl mx-auto text-center scroll-mt-20">
+    <div class="inline-flex items-center gap-2 mb-6 p-1.5 pr-3.5 pl-2 rounded-full bg-brand-lightGray dark:bg-brand-darkCard border border-black/[0.08] dark:border-white/[0.08] shadow-sm">
+      <span class="text-[11px] font-bold ai-gradient-text">مجهز به موتور هوش مصنوعی آنبرد و ابری</span>
+      <span class="px-2 py-0.5 rounded-full bg-brand-blue text-white text-[9px] font-bold">نسخه جدید</span>
+    </div>
+    
+    <h1 class="hero-headline text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-brand-dark dark:text-white max-w-4xl mx-auto md:leading-[1.45]">
+      <span class="inline-block">تکنولوژی نو.</span>
+      <span class="block mt-3.5 sm:mt-4 md:mt-5 text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-indigo-500 to-purple-600">
+        استانداردهای فوق‌العاده.
+      </span>
+    </h1>
+
+    <p class="mt-6 text-base sm:text-xl text-brand-gray max-w-2xl mx-auto font-normal leading-relaxed">
+      مرکز تخصصی عیب‌یابی رایانه‌ها، ارتقای پرسرعت و بهینه‌سازی حرارتی. ایرادات سیستم و خطاهای صفحه آبی را در چند ثانیه به صورت هوشمند تحلیل کنید.
+    </p>
+
+    <!-- Hero Action Buttons -->
+    <div class="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-3">
+      <a href="#ai-diagnostic" class="px-6 py-3 rounded-full bg-brand-blue hover:bg-brand-blueHover text-white text-xs sm:text-sm font-semibold shadow-lg shadow-brand-blue/20 transition transform active:scale-95 flex items-center gap-2">
+        <span>عیب‌یابی هوشمند سیستم</span>
+        <span class="text-xs">✦</span>
+      </a>
+      <button onclick="toggleAiDrawer(true)" class="px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs sm:text-sm font-semibold shadow-lg shadow-purple-500/20 transition transform active:scale-95 flex items-center gap-2">
+        <span>گفتگو با مشاور فنی</span>
+        <span>💬</span>
+      </button>
+      <button onclick="openRemoteModal()" class="px-5 py-3 rounded-full bg-brand-lightGray dark:bg-brand-darkCard hover:bg-neutral-200 dark:hover:bg-neutral-800 text-brand-dark dark:text-white text-xs sm:text-sm font-semibold transition border border-black/[0.08] dark:border-white/[0.08]">
+        درخواست ریموت فوری
+      </button>
+    </div>
+
+    <!-- Bento Grid Showcase -->
+    <div class="mt-16 sm:mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 text-right">
+      
+      <!-- Card 1 -->
+      <div class="bg-white dark:bg-brand-darkCard rounded-[28px] p-7 border border-black/[0.08] dark:border-white/[0.08] shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <span class="text-xs text-purple-600 dark:text-purple-400 font-bold">هوش مصنوعی آنبرد و ابری</span>
+          <h2 class="text-xl font-bold mt-1 text-brand-dark dark:text-white">تحلیل هوشمند و فوری</h2>
+          <p class="text-xs text-brand-gray mt-2 leading-relaxed">
+            از توصیف مشکل تا آپلود تصویر صفحه آبی و لاگ‌های خطا؛ موتور هوشمند ریشه نقص فنی را همراه با چک‌لیست قبل از تحویل مشخص می‌کند.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.06] text-xs font-semibold text-purple-600 dark:text-purple-400 flex items-center gap-1">
+          <a href="#ai-diagnostic" class="hover:underline">تست آنلاین عیب‌یاب هوشمند ←</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white dark:bg-brand-darkCard rounded-[28px] p-7 border border-black/[0.08] dark:border-white/[0.08] shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="w-10 h-10 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <span class="text-xs text-brand-gray font-medium">ضمانت رسمی قطعات</span>
+          <h2 class="text-xl font-bold mt-1 text-brand-dark dark:text-white">قطعات اورجینال با گارانتی</h2>
+          <p class="text-xs text-brand-gray mt-2 leading-relaxed">
+            استفاده از اس‌اس‌دی‌ها و رم‌های برند معتبر (Samsung، Crucial و Kingston) همراه با کارت گارانتی شرکتی و خمیرهای کربنی Grizzly.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.06] text-xs font-semibold text-brand-blue flex items-center gap-1">
+          <button onclick="openBookingModal('ssd')" class="hover:underline">رزرو خدمات و تعویض قطعات اورجینال ←</button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white dark:bg-brand-darkCard rounded-[28px] p-7 border border-black/[0.08] dark:border-white/[0.08] shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="w-10 h-10 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+            </svg>
+          </div>
+          <span class="text-xs text-brand-gray font-medium">شفافیت کامل</span>
+          <h2 class="text-xl font-bold mt-1 text-brand-dark dark:text-white">رهگیری زنده تعمیرات</h2>
+          <p class="text-xs text-brand-gray mt-2 leading-relaxed">
+            با کد پیگیری اختصاصی، مراحل تست فنی اولیه، تعویض قطعه، استرس‌تست دما و زمان تحویل دستگاه خود را بلادرنگ بررسی فرمایید.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-black/[0.06] dark:border-white/[0.06] text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+          <button onclick="openTrackingModal()" class="hover:underline">پیگیری آنلاین وضعیت دستگاه ←</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AI Diagnostic Hub -->
+  <section id="ai-diagnostic" class="py-20 bg-brand-lightGray dark:bg-[#111112] border-y border-black/[0.08] dark:border-white/[0.08] transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 text-xs font-bold mb-3 border border-purple-500/20">
+          <span>✦ موتور تحلیل فنی هوشمند</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-dark dark:text-white">عیب‌یاب فوق‌هوشمند رایانه</h2>
+        <p class="text-xs sm:text-sm text-brand-gray mt-2">ایراد سیستم را بنویسید یا عکس صفحه آبی و خطای آن را بارگذاری کنید تا ریشه نقص و راهکار ایمن مشخص گردد.</p>
+      </div>
+
+      <!-- Mode Tabs: AI Free-Text / Visual Inspector / Standard Symptoms -->
+      <div class="flex justify-center gap-2 mb-8 flex-wrap">
+        <button id="aiTabPromptBtn" onclick="switchDiagMode('ai-text')" class="px-4 py-2 rounded-full text-xs font-bold transition bg-white dark:bg-brand-darkCard text-brand-blue shadow-sm border border-black/[0.08] dark:border-white/[0.08] flex items-center gap-1.5">
+          <span>✦ شرح مشکل به هوش مصنوعی</span>
+        </button>
+        <button id="aiTabVisionBtn" onclick="switchDiagMode('ai-vision')" class="px-4 py-2 rounded-full text-xs font-medium text-brand-gray hover:text-brand-dark dark:hover:text-white transition flex items-center gap-1.5">
+          <span>📸 تحلیل تصویر ارور / BSOD</span>
+        </button>
+        <button id="aiTabStandardBtn" onclick="switchDiagMode('standard')" class="px-4 py-2 rounded-full text-xs font-medium text-brand-gray hover:text-brand-dark dark:hover:text-white transition flex items-center gap-1.5">
+          <span>⚙️ نشانه‌های متداول پیش‌فرض</span>
+        </button>
+      </div>
+
+      <!-- MODE 1: Free Text Diagnostic -->
+      <div id="aiTextDiagnosticCard" class="bg-white dark:bg-brand-darkCard rounded-[28px] p-6 sm:p-8 border border-black/[0.08] dark:border-white/[0.08] shadow-sm mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-purple-500 animate-ping"></span>
+            <h3 class="text-sm sm:text-base font-bold text-brand-dark dark:text-white">شرح اشکال به زبان ساده:</h3>
+          </div>
+          <span class="text-[11px] text-purple-600 dark:text-purple-400 font-medium">پاسخ‌دهی هوشمند بدون معطلی</span>
+        </div>
+
+        <div class="relative">
+          <textarea id="aiProblemInput" rows="3" placeholder="مثال: لپ‌تاپ لنوو دارم که بعد از ۱۰ دقیقه بازی فن با صدای زیاد کار میکنه و صفحه خاموش میشه یا ویندوز خطای CRITICAL_PROCESS_DIED میده..." class="w-full bg-brand-lightGray dark:bg-[#1a1a1c] border border-black/[0.08] dark:border-white/[0.08] rounded-2xl p-4 text-xs text-brand-dark dark:text-white focus:outline-none focus:border-brand-blue resize-none"></textarea>
+        </div>
+
+        <!-- Prompt suggestions pills -->
+        <div class="mt-3 flex flex-wrap gap-2 text-[11px]">
+          <span class="text-brand-gray self-center">پیشنهادات سریع:</span>
+          <button onclick="setAiPromptSnippet('سیستم روشن میشه ولی تصویر نمیده و فن‌ها با دور بالا کار میکنن')" class="px-3 py-1 rounded-full bg-black/5 dark:bg-white/5 hover:bg-brand-blue/10 hover:text-brand-blue text-brand-gray transition">تصویر ندادن و دور بالای فن</button>
+          <button onclick="setAiPromptSnippet('ویندوز موقع بالا اومدن صفحه آبی با کد CRITICAL_PROCESS_DIED میده')" class="px-3 py-1 rounded-full bg-black/5 dark:bg-white/5 hover:bg-brand-blue/10 hover:text-brand-blue text-brand-gray transition">صفحه آبی CRITICAL_PROCESS</button>
+          <button onclick="setAiPromptSnippet('هارد دیسکم صدای تیک‌تیک میده و تسک‌منیجر مصرف ۱۰۰٪ دیسک رو نشون میده')" class="px-3 py-1 rounded-full bg-black/5 dark:bg-white/5 hover:bg-brand-blue/10 hover:text-brand-blue text-brand-gray transition">صدای تق‌تق هارد دیسک</button>
+        </div>
+
+        <div class="mt-5 flex items-center justify-between pt-4 border-t border-black/[0.06] dark:border-white/[0.06]">
+          <span class="text-[11px] text-brand-gray">شامل تحلیل علت، ریسک قطعه و اقدامات احتیاطی</span>
+          <button id="aiAnalyzeBtn" onclick="runAiTextDiagnosis()" class="px-6 py-2.5 rounded-full bg-gradient-to-r from-brand-blue to-purple-600 hover:opacity-90 text-white text-xs font-bold transition flex items-center gap-2 shadow-md shadow-brand-blue/20">
+            <span id="aiBtnSpinner" class="hidden w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+            <span id="aiBtnText">تحلیل تخصصی با هوش مصنوعی ✦</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- MODE 2: Vision Multimodal Inspector (Equipped with Canvas-based downsampler) -->
+      <div id="aiVisionDiagnosticCard" class="hidden bg-white dark:bg-brand-darkCard rounded-[28px] p-6 sm:p-8 border border-black/[0.08] dark:border-white/[0.08] shadow-sm mb-6">
+        <div class="text-center max-w-md mx-auto mb-6">
+          <span class="text-xs font-bold text-purple-600 dark:text-purple-400">تحلیل تصویری هوشمند</span>
+          <h3 class="text-base font-bold mt-1 text-brand-dark dark:text-white">تصویر ارور، صفحه آبی یا قطعه معیوب را بارگذاری کنید</h3>
+          <p class="text-xs text-brand-gray mt-1">سیستم هوشمند با فشرده‌سازی خودکار و بررسی کدهای استاپ‌کد، منشأ نقص را مشخص می‌کند.</p>
+        </div>
+
+        <div id="dropZoneArea" onclick="document.getElementById('aiImageFileInput').click()" class="border-2 border-dashed border-black/10 dark:border-white/10 hover:border-purple-500/50 rounded-2xl p-6 text-center cursor-pointer transition bg-brand-lightGray/50 dark:bg-[#1a1a1c]/50">
+          <input type="file" id="aiImageFileInput" accept="image/*" class="hidden" onchange="handleImageSelected(event)">
+          
+          <div id="dropZonePlaceholder" class="space-y-2">
+            <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-500 flex items-center justify-center mx-auto text-xl">
+              📷
+            </div>
+            <p class="text-xs font-bold text-brand-dark dark:text-white">برای انتخاب یا رها کردن تصویر کلیک کنید</p>
+            <p class="text-[11px] text-brand-gray">عکس با گوشی از صفحه مانیتور یا اسکرین‌شات ارور ویندوز (JPG, PNG)</p>
+          </div>
+
+          <div id="dropZonePreview" class="hidden">
+            <img id="imagePreviewElement" src="" alt="پیش‌نمایش تصویر خطا" class="max-h-56 mx-auto rounded-xl shadow-md border border-black/10 dark:border-white/10 object-contain">
+            <p id="imageFileNameText" class="text-xs text-brand-gray mt-2 font-mono"></p>
+            <button type="button" onclick="event.stopPropagation(); resetImageSelection();" class="mt-2 text-[11px] text-rose-500 hover:underline">
+              ✕ حذف و انتخاب عکس دیگر
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <label class="block text-xs font-medium text-brand-gray mb-1.5">توضیح تکمیلی درباره عکس (اختیاری):</label>
+          <input type="text" id="aiVisionNotes" placeholder="مثال: ارور موقع بازی پیش اومد و استاپ‌کد WHEA UNCORRECTABLE ERROR نشون داد" class="w-full bg-brand-lightGray dark:bg-[#1a1a1c] border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-4 py-2.5 text-xs text-brand-dark dark:text-white focus:outline-none focus:border-brand-blue">
+        </div>
+
+        <div class="mt-5 flex items-center justify-end pt-4 border-t border-black/[0.06] dark:border-white/[0.06]">
+          <button id="aiVisionSubmitBtn" onclick="runAiVisionDiagnosis()" class="px-6 py-2.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:opacity-90 text-white text-xs font-bold transition flex items-center gap-2 shadow-md shadow-purple-500/20">
+            <span id="aiVisionSpinner" class="hidden w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+            <span id="aiVisionBtnText">تحلیل تصویر با هوش مصنوعی 📸</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- MODE 3: Standard Symptom Chooser -->
+      <div id="standardSymptomsCard" class="hidden mb-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <label class="cursor-pointer bg-white dark:bg-brand-darkCard p-4 rounded-2xl border border-black/[0.06] dark:border-white/[0.06] flex items-start gap-3 hover:border-brand-blue transition">
+            <input type="radio" name="diagSymptom" value="thermal" checked onchange="updateDiagnosticReport()" class="mt-1 accent-brand-blue">
+            <div>
+              <h3 class="text-xs font-bold text-brand-dark dark:text-white">داغ شدن شدید و دور بالای فن</h3>
+              <p class="text-[11px] text-brand-gray mt-0.5">سیستم پس از مدتی داغ می‌کند، فن با صدای زیاد کار می‌کند یا خاموش می‌شود.</p>
+            </div>
+          </label>
+          <label class="cursor-pointer bg-white dark:bg-brand-darkCard p-4 rounded-2xl border border-black/[0.06] dark:border-white/[0.06] flex items-start gap-3 hover:border-brand-blue transition">
+            <input type="radio" name="diagSymptom" value="display" onchange="updateDiagnosticReport()" class="mt-1 accent-brand-blue">
+            <div>
+              <h3 class="text-xs font-bold text-brand-dark dark:text-white">تصویر ندادن یا ریستارت ناگهانی</h3>
+              <p class="text-[11px] text-brand-gray mt-0.5">چراغ‌ها روشن می‌شوند اما مانیتور خاموش می‌ماند یا بوق مکرر رم شنیده می‌شود.</p>
+            </div>
+          </label>
+          <label class="cursor-pointer bg-white dark:bg-brand-darkCard p-4 rounded-2xl border border-black/[0.06] dark:border-white/[0.06] flex items-start gap-3 hover:border-brand-blue transition">
+            <input type="radio" name="diagSymptom" value="slow" onchange="updateDiagnosticReport()" class="mt-1 accent-brand-blue">
+            <div>
+              <h3 class="text-xs font-bold text-brand-dark dark:text-white">کندی شدید لود ویندوز و برنامه‌ها</h3>
+              <p class="text-[11px] text-brand-gray mt-0.5">بالا آمدن سیستم چند دقیقه طول می‌کشد و Task Manager استفاده ۱۰۰٪ دیسک نشان می‌دهد.</p>
+            </div>
+          </label>
+          <label class="cursor-pointer bg-white dark:bg-brand-darkCard p-4 rounded-2xl border border-black/[0.06] dark:border-white/[0.06] flex items-start gap-3 hover:border-brand-blue transition">
+            <input type="radio" name="diagSymptom" value="bsod" onchange="updateDiagnosticReport()" class="mt-1 accent-brand-blue">
+            <div>
+              <h3 class="text-xs font-bold text-brand-dark dark:text-white">صفحه آبی مرگ (Blue Screen) و کرش مداوم</h3>
+              <p class="text-[11px] text-brand-gray mt-0.5">خطاهای مکرر توقف ویندوز حین بازی یا اجرای برنامه‌های روزمره.</p>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Live Diagnosis Output Card -->
+      <div id="diagReportCard" class="hidden bg-white dark:bg-brand-darkCard rounded-[28px] p-6 sm:p-8 border border-black/[0.08] dark:border-white/[0.08] shadow-sm relative overflow-hidden">
+        
+        <!-- Live AI Badge indicator -->
+        <div id="aiGeneratedBadge" class="hidden mb-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-purple-500/10 to-blue-500/10 text-purple-600 dark:text-purple-400 text-[11px] font-bold border border-purple-500/20">
+          <span class="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
+          <span>تحلیل اختصاصی تولیدشده توسط هوش مصنوعی</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div class="flex-1">
+            <span id="diagBadgeUrgency" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-500 mb-2 inline-block">
+              نیاز به بررسی حرارتی
+            </span>
+            <h3 id="diagReportTitle" class="text-base sm:text-lg font-bold text-brand-dark dark:text-white">
+              خشک شدن خمیر سیلیکون و گرفتگی هیت‌سینک
+            </h3>
+            <div id="diagReportDesc" class="text-xs text-brand-gray mt-2 leading-relaxed whitespace-pre-line">
+              بالا رفتن حرارت پردازنده باعث ایجاد پدیده Thermal Throttling شده و دستگاه برای جلوگیری از سوختگی راندمان را کاهش می‌دهد.
+            </div>
+          </div>
+          
+          <div class="flex flex-wrap sm:flex-col items-stretch gap-2 shrink-0 self-start sm:self-center">
+            <button onclick="bookDiagnosedIssue()" class="px-6 py-3 bg-brand-blue hover:bg-brand-blueHover text-white rounded-full text-xs font-bold transition shadow-sm flex items-center justify-center gap-2">
+              <span>رزرو نوبت برای این ایراد</span>
+              <span>←</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SSD Speed Booster Section -->
+  <section id="speed-booster" class="py-20 max-w-5xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-xl mx-auto mb-12">
+      <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">مقایسه عملکرد ذخیره‌سازی</span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold mt-1 text-brand-dark dark:text-white">سرعت سیستم شما بعد از ارتقا</h2>
+      <p class="text-xs sm:text-sm text-brand-gray mt-2">تفاوت سرعت هارد قدیمی مکانیکی با حافظه‌های فوق‌سریع جامد.</p>
+    </div>
+
+    <!-- SSD Comparison Controls -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-[28px] p-6 sm:p-8 border border-black/[0.08] dark:border-white/[0.08] shadow-sm">
+      <div class="flex justify-center mb-8">
+        <div class="inline-flex p-1 rounded-full bg-brand-lightGray dark:bg-neutral-800 border border-black/[0.06] dark:border-white/[0.06]">
+          <button onclick="setStorageBenchmark('hdd')" id="benchBtnHdd" class="px-4 py-1.5 rounded-full text-xs font-bold transition text-brand-gray hover:text-brand-dark dark:hover:text-white">
+            هارد مکانیکی (HDD)
+          </button>
+          <button onclick="setStorageBenchmark('sata')" id="benchBtnSata" class="px-4 py-1.5 rounded-full text-xs font-bold transition text-brand-gray hover:text-brand-dark dark:hover:text-white">
+            اس‌اس‌دی ساتا (SATA SSD)
+          </button>
+          <button onclick="setStorageBenchmark('nvme')" id="benchBtnNvme" class="px-4 py-1.5 rounded-full text-xs font-bold transition bg-white dark:bg-brand-dark text-brand-blue shadow-sm">
+            فوق‌سریع (NVMe Gen4)
+          </button>
+        </div>
+      </div>
+
+      <!-- Speed Meters Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+        
+        <div class="p-5 rounded-2xl bg-brand-lightGray dark:bg-[#1c1c1e] border border-black/[0.04] dark:border-white/[0.04]">
+          <span class="text-[11px] text-brand-gray font-medium">زمان بوت ویندوز ۱۱</span>
+          <div class="text-3xl font-black mt-2 text-brand-dark dark:text-white font-mono" id="benchBootTime">
+            ۷ ثانیه
+          </div>
+          <div class="w-full bg-black/10 dark:bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden">
+            <div id="benchBootBar" class="h-full bg-emerald-500 rounded-full transition-all duration-500" style="width: 92%"></div>
+          </div>
+          <span id="benchBootDiff" class="text-[10px] text-emerald-500 font-bold block mt-2">تا ۸ برابر سریع‌تر از هارد دیسک</span>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-brand-lightGray dark:bg-[#1c1c1e] border border-black/[0.04] dark:border-white/[0.04]">
+          <span class="text-[11px] text-brand-gray font-medium">اجرای فتوشاپ و پریمیر</span>
+          <div class="text-3xl font-black mt-2 text-brand-dark dark:text-white font-mono" id="benchAppTime">
+            ۲.۴ ثانیه
+          </div>
+          <div class="w-full bg-black/10 dark:bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden">
+            <div id="benchAppBar" class="h-full bg-brand-blue rounded-full transition-all duration-500" style="width: 90%"></div>
+          </div>
+          <span id="benchAppDiff" class="text-[10px] text-brand-blue font-bold block mt-2">لود فوری بدون فریز و معطلی</span>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-brand-lightGray dark:bg-[#1c1c1e] border border-black/[0.04] dark:border-white/[0.04]">
+          <span class="text-[11px] text-brand-gray font-medium">سرعت خواندن متوالی</span>
+          <div class="text-3xl font-black mt-2 text-brand-dark dark:text-white font-mono" id="benchReadSpeed">
+            ۵,۰۰۰ MB/s
+          </div>
+          <div class="w-full bg-black/10 dark:bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden">
+            <div id="benchReadBar" class="h-full bg-purple-500 rounded-full transition-all duration-500" style="width: 95%"></div>
+          </div>
+          <span id="benchReadDiff" class="text-[10px] text-purple-500 font-bold block mt-2">۵۰ برابر پهنای باند هارد قدیمی</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottleneck Simulator Section -->
+  <section id="bottleneck" class="py-20 bg-brand-lightGray dark:bg-[#111112] border-y border-black/[0.08] dark:border-white/[0.08] transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">تحلیل سخت‌افزاری</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold mt-1 text-brand-dark dark:text-white">تست گلوگاه و بازدهی قطعات</h2>
+        <p class="text-xs sm:text-sm text-brand-gray mt-2">مشخصات کنونی سیستم را انتخاب کنید تا عامل کندی اصلی مشخص شود.</p>
+      </div>
+
+      <div class="bg-white dark:bg-brand-darkCard rounded-[28px] p-6 sm:p-8 border border-black/[0.08] dark:border-white/[0.08] shadow-sm">
+        
+        <!-- Selectors: Modern Frosted Glass Custom Dropdowns -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          
+          <!-- CPU Dropdown -->
+          <div class="relative" id="customDropCpuContainer">
+            <label class="block text-xs font-bold text-brand-dark dark:text-white mb-2">نوع پردازنده (CPU):</label>
+            <input type="hidden" id="simCpu" value="mid">
+            <button type="button" onclick="toggleCustomDropdown('cpu')" id="simCpu-trigger" aria-haspopup="listbox" aria-expanded="false" class="w-full flex items-center justify-between bg-brand-lightGray dark:bg-[#1c1c1e] hover:bg-black/5 dark:hover:bg-white/5 border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-3.5 py-2.5 text-xs text-brand-dark dark:text-white font-medium transition focus:outline-none focus:ring-2 focus:ring-brand-blue/40 shadow-sm">
+              <span id="simCpu-label">نسل ۸ تا ۱۱ اینتل / AMD Ryzen 3000</span>
+              <svg id="simCpu-arrow" class="w-4 h-4 text-brand-gray transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="simCpu-menu" class="hidden absolute left-0 right-0 top-full mt-1.5 z-40 bg-white/95 dark:bg-[#1c1c1e]/95 backdrop-blur-xl border border-black/[0.08] dark:border-white/[0.1] rounded-2xl shadow-xl p-1.5 space-y-1 transition-all">
+              <button type="button" onclick="selectCustomDropdownOption('cpu', 'old', 'نسل ۴ تا ۷ اینتل / قدیمی')" class="simCpu-opt w-full text-right px-3 py-2 rounded-xl text-xs text-brand-dark dark:text-white hover:bg-brand-blue/10 hover:text-brand-blue transition flex items-center justify-between" data-value="old">
+                <span>نسل ۴ تا ۷ اینتل / قدیمی</span>
+                <span class="check-icon hidden text-brand-blue font-bold">✓</span>
+              </button>
+              <button type="button" onclick="selectCustomDropdownOption('cpu', 'mid', 'نسل ۸ تا ۱۱ اینتل / AMD Ryzen 3000')" class="simCpu-opt w-full text-right px-3 py-2 rounded-xl text-xs text-brand-dark dark:text-white bg-brand-blue/10 text-brand-blue font-bold transition flex items-center justify-between" data-value="mid">
+                <span>نسل ۸ تا ۱۱ اینتل / AMD Ryzen 3000</span>
+                <span class="check-icon text-brand-blue font-bold">✓</span>
+              </button>
+              <button type="button" onclick="selectCustomDropdownOption('cpu', 'new', 'نسل ۱۲ به بعد / Ryzen 5000+')" class="simCpu-opt w-full text-right px-3 py-2 rounded-xl text-xs text-brand-dark dark:text-white hover:bg-brand-blue/10 hover:text-brand-blue transition flex items-center justify-between" data-value="new">
+                <span>نسل ۱۲ به بعد / Ryzen 5000+</span>
+                <span class="check-icon hidden text-brand-blue font-bold">✓</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- RAM Dropdown -->
+          <div class="relative" id="customDropRamContainer">
+            <label class="block text-xs font-bold text-brand-dark dark:text-white mb-2">حافظه رم (RAM):</label>
+            <input type="hidden" id="simRam" value="8">
+            <button type="button" onclick="toggleCustomDropdown('ram')" id="simRam-trigger" aria-haspopup="listbox" aria-expanded="false" class="w-full flex items-center justify-between bg-brand-lightGray dark:bg-[#1c1c1e] hover:bg-black/5 dark:hover:bg-white/5 border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-3.5 py-2.5 text-xs text-brand-dark dark:text-white font-medium transition focus:outline-none focus:ring-2 focus:ring-brand-blue/40 shadow-sm">
+              <span id="simRam-label">۸ گیگابایت (معمولی)</span>
+              <svg id="simRam-arrow" class="w-4 h-4 text-brand-gray transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="simRam-menu" class="hidden absolute left-0 right-0 top-full mt-1.5 z-40 bg-white/95 dark:bg-[#1c1c1e]/95 backdrop-blur-xl border border-black/[0.08] dark:border-white/[0.1] rounded-2xl shadow-xl p-1.5 space-y-1 transition-all">
+              <button type="button" onclick="selectCustomDropdownOption('ram', '4', '۴ گیگابایت (محدود)')" class="simRam-opt w-full text-right px-3 py-2 rounded-xl text-xs text-brand-dark dark:text-white hover:bg-brand-blue/10 hover:text-brand-blue transition flex items-center justify-between" data-value="4">
+                <span>۴ گیگابایت (محدود)</span>
+                <span class="check-icon hidden text-brand-blue font-bold">✓</span>
+              </button>
+              <button type="button" onclick="selectCustomDropdownOption('ram', '8', '۸ گیگابایت (معمولی)')" class="simRam-opt w-full text-right px-3 py-2 rounded-xl text-xs text-brand-dark dark:text-white bg-brand-blue/10 text-brand-blue font-bold transition flex items-center justify-between" data-value="8">
+                <span>۸ گیگابایت (معمولی)</span>
+                <span class="check-icon text-brand-blue font-bold">✓</span>
+              </button>
+              <button type="button" onclick="selectCustomDropdownOption('ram', '16', '۱۶ گیگابایت یا بیشتر (ایده‌آل)')" class="simRam-opt w-full text-right px-3 py-2 rounded-xl text-xs text-brand-dark dark:text-white hover:bg-brand-blue/10 hover:text-brand-blue transition flex items-center justify-between" data-value="16">
+                <span>۱۶ گیگابایت یا بیشتر (ایده‌آل)</span>
+                <span class="check-icon hidden text-brand-blue font-bold">✓</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Storage Dropdown -->
+          <div class="relative" id="customDropStorageContainer">
+            <label class="block text-xs font-bold text-brand-dark dark:text-white mb-2">فضای ذخیره‌سازی:</label>
+            <input type="hidden" id="simStorage" value="hdd">
+            <button type="button" onclick="toggleCustomDropdown('storage')" id="simStorage-trigger" aria-haspopup="listbox" aria-expanded="false" class="w-full flex items-center justify-between bg-brand-lightGray dark:bg-[#1c1c1e] hover:bg-black/5 dark:hover:bg-white/5 border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-3.5 py-2.5 text-xs text-brand-dark dark:text-white font-medium transition focus:outline-none focus:ring-2 focus:ring-brand-blue/40 shadow-sm">
+              <span id="simStorage-label">هارد دیسک مکانیکی معمولی (HDD)</span>
+              <svg id="simStorage-arrow" class="w-4 h-4 text-brand-gray transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="simStorage-menu" class="hidden absolute left-0 right-0 top-full mt-1.5 z-40 bg-white/95 dark:bg-[#1c1c1e]/95 backdrop-blur-xl border border-black/[0.08] dark:border-white/[0.1] rounded-2xl shadow-xl p-1.5 space-y-1 transition-all">
+              <button type="button" onclick="selectCustomDropdownOption('storage', 'hdd', 'هارد دیسک مکانیکی معمولی (HDD)')" class="simStorage-opt w-full text-right px-3 py-2 rounded-xl text-xs text-brand-dark dark:text-white bg-brand-blue/10 text-brand-blue font-bold transition flex items-center justify-between" data-value="hdd">
+                <span>هارد دیسک مکانیکی معمولی (HDD)</span>
+                <span class="check-icon text-brand-blue font-bold">✓</span>
+              </button>
+              <button type="button" onclick="selectCustomDropdownOption('storage', 'sata', 'حافظه اس‌اس‌دی ساتا (SATA SSD)')" class="simStorage-opt w-full text-right px-3 py-2 rounded-xl text-xs text-brand-dark dark:text-white hover:bg-brand-blue/10 hover:text-brand-blue transition flex items-center justify-between" data-value="sata">
+                <span>حافظه اس‌اس‌دی ساتا (SATA SSD)</span>
+                <span class="check-icon hidden text-brand-blue font-bold">✓</span>
+              </button>
+              <button type="button" onclick="selectCustomDropdownOption('storage', 'nvme', 'اس‌اس‌دی فوق‌سریع NVMe M.2')" class="simStorage-opt w-full text-right px-3 py-2 rounded-xl text-xs text-brand-dark dark:text-white hover:bg-brand-blue/10 hover:text-brand-blue transition flex items-center justify-between" data-value="nvme">
+                <span>اس‌اس‌دی فوق‌سریع NVMe M.2</span>
+                <span class="check-icon hidden text-brand-blue font-bold">✓</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Simulator Gauge Display -->
+        <div class="bg-brand-lightGray dark:bg-[#161617] rounded-2xl p-6 border border-black/[0.06] dark:border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div class="flex items-center gap-4">
+            <div class="text-3xl sm:text-4xl font-black tracking-tight text-amber-500" id="simScoreVal">
+              ۴۵٪
+            </div>
+            <div>
+              <span id="simStatusPill" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-500 mb-1 inline-block">گلوگاه شناسایی شد</span>
+              <h3 id="simBottleneckTitle" class="text-sm font-bold text-brand-dark dark:text-white">هارد مکانیکی مانع سرعت سیستم شماست</h3>
+              <p id="simBottleneckDesc" class="text-xs text-brand-gray mt-0.5">پردازنده و رم در انتظار واکشی کند فایل‌ها معطل می‌شوند.</p>
+            </div>
+          </div>
+          <div class="shrink-0 flex flex-col items-center sm:items-end gap-2 border-t sm:border-t-0 sm:border-r border-black/[0.06] dark:border-white/[0.08] pt-4 sm:pt-0 sm:pr-6">
+            <div>
+              <span class="text-[11px] text-brand-gray block text-center sm:text-left">راندمان پس از ارتقا:</span>
+              <b id="simUpgradeProjectedScore" class="text-xl font-black text-brand-blue">۸۸٪ (+۴۳٪ جهش)</b>
+            </div>
+            <button onclick="askAiAboutBottleneck()" class="mt-1 px-3 py-1 rounded-full bg-purple-500/10 hover:bg-purple-500/20 text-purple-600 dark:text-purple-400 text-[11px] font-bold transition flex items-center gap-1 border border-purple-500/20">
+              <span>✦ مشاوره ارتقا با هوش مصنوعی</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Care Plans Section -->
+  <section id="plans" class="py-20 max-w-5xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-xl mx-auto mb-12">
+      <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">پلن‌های دوره‌ای نگهداری</span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold mt-1 text-brand-dark dark:text-white">اشتراک مراقبت Poshtiban Care</h2>
+      <p class="text-xs sm:text-sm text-brand-gray mt-2">خیال آسوده از پایداری، امنیت و سلامت سیستم‌های خانگی و شرکتی.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Plan 1 -->
+      <div class="bg-white dark:bg-brand-darkCard rounded-[28px] p-6 sm:p-8 border border-black/[0.08] dark:border-white/[0.08] shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-bold text-brand-gray">Care شخصی</span>
+          <h3 class="text-xl font-bold mt-1 text-brand-dark dark:text-white">تک کاربر خانگی</h3>
+          <p class="text-xs text-brand-gray mt-2">مناسب سیستم‌های دانشجویی و اداری روزمره.</p>
+          <div class="mt-6 font-mono text-2xl font-black text-brand-dark dark:text-white">
+            ۲۹۰,۰۰۰ <span class="text-xs font-normal text-brand-gray">تومان / ماهانه</span>
+          </div>
+          <ul class="mt-6 space-y-2.5 text-xs text-brand-gray">
+            <li class="flex items-center gap-2">✓ ۲ نوبت پشتیبانی ریموت فوری ماهانه</li>
+            <li class="flex items-center gap-2">✓ پاکسازی بدافزارها و بهینه‌سازی استارتاپ</li>
+            <li class="flex items-center gap-2">✓ ۱۰٪ تخفیف روی خرید قطعات ارتقا</li>
+          </ul>
+        </div>
+        <button onclick="openBookingModal('ssd')" class="mt-8 w-full py-2.5 rounded-full bg-brand-lightGray dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-brand-dark dark:text-white text-xs font-bold transition">
+          انتخاب طرح
+        </button>
+      </div>
+
+      <!-- Plan 2 (Popular) -->
+      <div class="bg-white dark:bg-brand-darkCard rounded-[28px] p-6 sm:p-8 border-2 border-brand-blue shadow-lg relative flex flex-col justify-between">
+        <span class="absolute -top-3 right-6 bg-brand-blue text-white text-[10px] font-bold px-3 py-0.5 rounded-full">
+          پیشنهاد ویژه کاربران حرفه‌ای
+        </span>
+        <div>
+          <span class="text-xs font-bold text-brand-blue">Care Pro</span>
+          <h3 class="text-xl font-bold mt-1 text-brand-dark dark:text-white">گیمینگ و مهندسی</h3>
+          <p class="text-xs text-brand-gray mt-2">مناسب سیستم‌های رندرینگ، ترید و تدوین سنگین.</p>
+          <div class="mt-6 font-mono text-2xl font-black text-brand-dark dark:text-white">
+            ۵۹۰,۰۰۰ <span class="text-xs font-normal text-brand-gray">تومان / ماهانه</span>
+          </div>
+          <ul class="mt-6 space-y-2.5 text-xs text-brand-gray">
+            <li class="flex items-center gap-2">✓ پشتیبانی ریموت نامحدود بدون صف</li>
+            <li class="flex items-center gap-2">✓ سرویس دوره‌ای سالانه خمیر سیلیکون رایگان</li>
+            <li class="flex items-center gap-2">✓ تست مداوم سلامت هارد و مانیتورینگ حرارتی</li>
+            <li class="flex items-center gap-2">✓ اولویت اول در پذیرش حضوری کارگاه</li>
+          </ul>
+        </div>
+        <button onclick="openBookingModal('thermal')" class="mt-8 w-full py-2.5 rounded-full bg-brand-blue hover:bg-brand-blueHover text-white text-xs font-bold transition shadow-sm">
+          فعال‌سازی اشتراک Pro
+        </button>
+      </div>
+
+      <!-- Plan 3 -->
+      <div class="bg-white dark:bg-brand-darkCard rounded-[28px] p-6 sm:p-8 border border-black/[0.08] dark:border-white/[0.08] shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-bold text-brand-gray">Care Business</span>
+          <h3 class="text-xl font-bold mt-1 text-brand-dark dark:text-white">شرکت‌ها و دفاتر کار</h3>
+          <p class="text-xs text-brand-gray mt-2">پوشش ۵ تا ۵۰ دستگاه به همراه شبکه داخلی و بکاپ سرور.</p>
+          <div class="mt-6 font-mono text-2xl font-black text-brand-dark dark:text-white">
+            قرارداد SLA <span class="text-xs font-normal text-brand-gray">ماهانه اختصاصی</span>
+          </div>
+          <ul class="mt-6 space-y-2.5 text-xs text-brand-gray">
+            <li class="flex items-center gap-2">✓ اعزام کارشناس حضوری در تهران</li>
+            <li class="flex items-center gap-2">✓ مانیتورینگ بکاپ خودکار شبکه و اسناد</li>
+            <li class="flex items-center gap-2">✓ عقد قرارداد رسمی و گزارش فنی دوره‌ای</li>
+          </ul>
+        </div>
+        <button onclick="openBookingModal('mobo')" class="mt-8 w-full py-2.5 rounded-full bg-brand-lightGray dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-brand-dark dark:text-white text-xs font-bold transition">
+          درخواست مشاوره سازمانی
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ Section with Generous Padding -->
+  <section id="faq" class="py-20 bg-brand-lightGray dark:bg-[#111112] border-t border-black/[0.08] dark:border-white/[0.08] transition-colors">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">پاسخ شفاف</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold mt-1 text-brand-dark dark:text-white">پرسش‌های متداول مراجعین</h2>
+        <p class="text-xs sm:text-sm text-brand-gray mt-2">هر آنچه پیش از تحویل سیستم یا درخواست تعمیرات لازم است بدانید.</p>
+      </div>
+
+      <div class="space-y-4">
+        
+        <!-- FAQ Item 1 -->
+        <div class="bg-white dark:bg-brand-darkCard rounded-2xl border border-black/[0.08] dark:border-white/[0.08] overflow-hidden transition">
+          <button onclick="toggleFaq(this)" class="w-full text-right p-6 flex items-center justify-between text-xs sm:text-sm font-bold text-brand-dark dark:text-white">
+            <span>آیا حین ارتقا به SSD، اطلاعات هارد قدیمی من حفظ می‌شود؟</span>
+            <span class="faq-icon text-brand-gray transform transition-transform duration-300">▼</span>
+          </button>
+          <div class="faq-answer px-6 pt-6 pb-6 text-xs text-brand-gray leading-8 hidden border-t border-black/[0.04] dark:border-white/[0.04]">
+            بله کاملاً. ما با استفاده از دستگاه‌های کلونر سخت‌افزاری و نرم‌افزارهای تخصصی، کل سیستم‌عامل، نرم‌افزارها و اطلاعات درایوهای شما را سکتور به سکتور به اس‌اس‌دی جدید منتقل می‌کنیم؛ بنابراین بعد از تحویل دستگاه، تمامی برنامه‌ها و چیدمان ویندوز دقیقاً مثل سابق در دسترس خواهند بود با این تفاوت که سرعت لود چندین برابر خواهد شد. همچنین در صورت سلامت هارد قدیمی، آن را درون باکس اکسترنال USB3 قرار داده و به عنوان حافظه جانبی به شما تحویل می‌دهیم.
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="bg-white dark:bg-brand-darkCard rounded-2xl border border-black/[0.08] dark:border-white/[0.08] overflow-hidden transition">
+          <button onclick="toggleFaq(this)" class="w-full text-right p-6 flex items-center justify-between text-xs sm:text-sm font-bold text-brand-dark dark:text-white">
+            <span>مدت زمان تست و تحویل سیستم‌ها در کارگاه مرکزی چقدر است؟</span>
+            <span class="faq-icon text-brand-gray transform transition-transform duration-300">▼</span>
+          </button>
+          <div class="faq-answer px-6 pt-6 pb-6 text-xs text-brand-gray leading-8 hidden border-t border-black/[0.04] dark:border-white/[0.04]">
+            خدمات فوری نظیر تعویض هارد، ارتقای رم، نصب ویندوز اورجینال و سرویس حرارتی فن در همان روز کاری (معمولاً بین ۲ تا ۴ ساعت) انجام و تحویل می‌گردند. در موارد تخصصی برد نظیر مدار تغذیه، چیپست گرافیک یا تعویض سوکت مادربرد، سیستم نیازمند تست پایداری حداقل ۲۴ ساعته تحت استرس‌تست نرم‌افزاری است تا سلامت کامل آن تضمین گردد.
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="bg-white dark:bg-brand-darkCard rounded-2xl border border-black/[0.08] dark:border-white/[0.08] overflow-hidden transition">
+          <button onclick="toggleFaq(this)" class="w-full text-right p-6 flex items-center justify-between text-xs sm:text-sm font-bold text-brand-dark dark:text-white">
+            <span>دستیار هوش مصنوعی چقدر در تشخیص عیوب دقیق است؟</span>
+            <span class="faq-icon text-brand-gray transform transition-transform duration-300">▼</span>
+          </button>
+          <div class="faq-answer px-6 pt-6 pb-6 text-xs text-brand-gray leading-8 hidden border-t border-black/[0.04] dark:border-white/[0.04]">
+            موتور هوشمند بر روی الگوهای شناخته‌شده خطاهای ویندوز، استاپ‌کدهای صفحه آبی و رفتارهای حرارتی پردازنده‌ها آموزش دیده است. این ابزار به شما دید واضحی از منشأ مشکل و اقدامات احتیاطی پیش از آسیب دیدن سایر قطعات می‌دهد؛ سپس کارشناسان ما در کارگاه مرکزی با تجهیزات فیزیکی نتیجه را دقیقاً اعتبارسنجی می‌کنند.
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="bg-white dark:bg-brand-darkCard rounded-2xl border border-black/[0.08] dark:border-white/[0.08] overflow-hidden transition">
+          <button onclick="toggleFaq(this)" class="w-full text-right p-6 flex items-center justify-between text-xs sm:text-sm font-bold text-brand-dark dark:text-white">
+            <span>گارانتی قطعات و اجرت تعویض به چه صورت اعمال می‌شود؟</span>
+            <span class="faq-icon text-brand-gray transform transition-transform duration-300">▼</span>
+          </button>
+          <div class="faq-answer px-6 pt-6 pb-6 text-xs text-brand-gray leading-8 hidden border-t border-black/[0.04] dark:border-white/[0.04]">
+            کلیه قطعات سخت‌افزاری از قبیل ماژول‌های رم، پاور و حافظه‌های SSD با گارانتی ۱۲ الی ۲۴ ماهه شرکت‌های معتبر واردکننده و هولوگرام اصالت ارائه می‌شوند. علاوه بر گارانتی قطعه، اجرت خدمات فنی نیز دارای ۳۰ روز مهلت تست رسمی در فاکتور ممهور کارگاه می‌باشد.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Official Trust Badges & Iranian Messengers Section -->
+  <section class="py-12 bg-white dark:bg-brand-darkCard border-t border-black/[0.08] dark:border-white/[0.08] transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mb-10">
+        <div class="p-4 rounded-2xl bg-brand-lightGray dark:bg-black/20 border border-black/[0.06] dark:border-white/[0.06]">
+          <span class="text-xl block mb-1">🏛️</span>
+          <b class="text-xs text-brand-dark dark:text-white block">عضو اتحادیه فناوران رایانه</b>
+          <span class="text-[10px] text-brand-gray block mt-0.5">کد صنف: ۷۲۲۰ پایتخت</span>
+        </div>
+        <div class="p-4 rounded-2xl bg-brand-lightGray dark:bg-black/20 border border-black/[0.06] dark:border-white/[0.06]">
+          <span class="text-xl block mb-1">🛡️</span>
+          <b class="text-xs text-brand-dark dark:text-white block">نظام صنفی رایانه‌ای (نصر)</b>
+          <span class="text-[10px] text-brand-gray block mt-0.5">مجوز رسمی خدمات سخت‌افزاری</span>
+        </div>
+        <div class="p-4 rounded-2xl bg-brand-lightGray dark:bg-black/20 border border-black/[0.06] dark:border-white/[0.06]">
+          <span class="text-xl block mb-1">🔒</span>
+          <b class="text-xs text-brand-dark dark:text-white block">تعهد کتبی محرمانگی داده‌ها</b>
+          <span class="text-[10px] text-brand-gray block mt-0.5">حفظ کامل امنیت اطلاعات هارد</span>
+        </div>
+        <div class="p-4 rounded-2xl bg-brand-lightGray dark:bg-black/20 border border-black/[0.06] dark:border-white/[0.06]">
+          <span class="text-xl block mb-1">✓</span>
+          <b class="text-xs text-brand-dark dark:text-white block">۳۰ روز مهلت تست فنی</b>
+          <span class="text-[10px] text-brand-gray block mt-0.5">با برگه ضمانت کتبی کارگاه</span>
+        </div>
+      </div>
+
+      <!-- Domestic & Global Messengers Direct Channels -->
+      <div class="flex flex-wrap items-center justify-center gap-2.5 text-xs">
+        <span class="text-brand-gray font-medium text-[11px] ml-2">ارتباط مستقیم در پیام‌رسان‌ها:</span>
+        <a href="https://ble.ir" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 font-bold transition flex items-center gap-1.5">
+          <span>پیام در بله</span>
+          <span>💬</span>
+        </a>
+        <a href="https://eitaa.com" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-full bg-orange-500/10 text-orange-600 dark:text-orange-400 hover:bg-orange-500/20 font-bold transition flex items-center gap-1.5">
+          <span>پیام در ایتا</span>
+          <span>💬</span>
+        </a>
+        <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400 hover:bg-sky-500/20 font-bold transition flex items-center gap-1.5">
+          <span>تلگرام پشتیبانی</span>
+          <span>✈️</span>
+        </a>
+        <a href="https://wa.me" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-full bg-green-500/10 text-green-600 dark:text-green-400 hover:bg-green-500/20 font-bold transition flex items-center gap-1.5">
+          <span>واتساپ کارگاه</span>
+          <span>🟢</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer with Overflow-Safe Flex-Wrap -->
+  <footer class="bg-white dark:bg-brand-darkCanvas border-t border-black/[0.08] dark:border-white/[0.08] py-10 px-4 sm:px-6 transition-colors">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-brand-gray">
+      <div class="flex items-center gap-2.5 text-center sm:text-right">
+        <svg class="w-5 h-5 text-brand-blue shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+        </svg>
+        <span class="font-bold text-brand-dark dark:text-white">پشتیبان پی‌سی پایتخت</span>
+        <span>•</span>
+        <span>نشانی: میرداماد، مجتمع کامپیوتر پایتخت، ط ۲، واحد ۲۰۴</span>
+      </div>
+
+      <!-- Wrap-enabled links to strictly avoid 320px overflow -->
+      <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px]">
+        <a href="#overview" class="hover:text-brand-dark dark:hover:text-white transition">نگاه کلی</a>
+        <a href="#ai-diagnostic" class="hover:text-brand-dark dark:hover:text-white transition">عیب‌یاب هوشمند</a>
+        <a href="#speed-booster" class="hover:text-brand-dark dark:hover:text-white transition">تست سرعت</a>
+        <a href="#bottleneck" class="hover:text-brand-dark dark:hover:text-white transition">تحلیل گلوگاه</a>
+        <a href="#plans" class="hover:text-brand-dark dark:hover:text-white transition">طرح‌های Care</a>
+        <button onclick="openTrackingModal()" class="hover:text-brand-dark dark:hover:text-white transition">پیگیری دستگاه</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating AI Assistant Widget (Placed on RIGHT side) -->
+  <div class="fixed bottom-6 right-6 z-40">
+    <button onclick="toggleAiDrawer()" id="aiFloatingLauncherBtn" class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-brand-dark dark:bg-white text-white dark:text-brand-dark shadow-2xl hover:scale-105 active:scale-95 transition-transform duration-200 border border-white/20 dark:border-black/20 ai-glow">
+      <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+      <span class="text-xs font-bold">مشاور فنی هوشمند</span>
+      <span class="text-xs">✦</span>
+    </button>
+  </div>
+
+  <!-- AI Chat Drawer (Slides from the RIGHT side) -->
+  <div id="aiChatDrawer" class="fixed inset-y-0 right-0 max-w-md w-full z-50 frosted-glass border-l border-black/[0.1] dark:border-white/[0.1] shadow-2xl translate-x-full transition-transform duration-300 flex flex-col justify-between hidden">
+    
+    <!-- Drawer Header -->
+    <div class="p-4 sm:p-5 border-b border-black/[0.08] dark:border-white/[0.08] flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-purple-600 to-blue-500 flex items-center justify-center text-white text-xs font-bold shadow-sm">
+          ✦
+        </div>
+        <div>
+          <h3 class="text-xs sm:text-sm font-bold text-brand-dark dark:text-white">مشاور هوشمند پشتیبان پی‌سی</h3>
+          <span class="text-[10px] text-purple-600 dark:text-purple-400 font-medium">موتور تخصصی تحلیل سخت‌افزار</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <button onclick="openAiSettingsModal()" title="تنظیمات کلید هوش مصنوعی" class="w-7 h-7 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center text-xs hover:opacity-75 transition">
+          ⚙️
+        </button>
+        <button onclick="toggleAiDrawer(false)" aria-label="بستن" class="w-7 h-7 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center text-xs hover:opacity-75 transition">
+          ✕
+        </button>
+      </div>
+    </div>
+
+    <!-- Drawer Chat History -->
+    <div id="aiChatHistoryContainer" class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-3.5 text-xs poshtiban-scrollbar">
+      
+      <!-- Welcome Message -->
+      <div class="p-3.5 rounded-2xl bg-brand-lightGray dark:bg-[#1a1a1c] border border-black/[0.06] dark:border-white/[0.06] text-brand-dark dark:text-white leading-relaxed">
+        <div class="flex items-center gap-1.5 text-purple-600 dark:text-purple-400 font-bold mb-1 text-[11px]">
+          <span>✦ مشاور هوشمند فنی:</span>
+        </div>
+        سلام! من مشاور فنی هوشمند پشتیبان پی‌سی هستم. هر سؤالی درباره ارتقا، کندی سیستم، خطاهای ویندوز، قیمت خدمات یا انتخاب قطعات سازگار دارید بفرمایید تا راهنمایی‌تان کنم.
+      </div>
+
+    </div>
+
+    <!-- Drawer Suggestions Chips -->
+    <div class="px-4 py-2 flex gap-1.5 overflow-x-auto hide-scrollbar border-t border-black/[0.04] dark:border-white/[0.04]">
+      <button onclick="sendQuickAiQuery('برای بازی سنگین چقدر رم و گرافیک لازمه؟')" class="whitespace-nowrap px-2.5 py-1 rounded-full bg-black/5 dark:bg-white/5 hover:bg-brand-blue/10 text-[10px] text-brand-gray hover:text-brand-blue transition">
+        سیستم مورد نیاز بازی‌ها
+      </button>
+      <button onclick="sendQuickAiQuery('آیا ویندوز ۱۱ روی پردازنده نسل ۷ اینتل نصب میشه؟')" class="whitespace-nowrap px-2.5 py-1 rounded-full bg-black/5 dark:bg-white/5 hover:bg-brand-blue/10 text-[10px] text-brand-gray hover:text-brand-blue transition">
+        سازگاری ویندوز ۱۱
+      </button>
+      <button onclick="sendQuickAiQuery('هر چند وقت یکبار باید خمیر سیلیکون تعویض بشه؟')" class="whitespace-nowrap px-2.5 py-1 rounded-full bg-black/5 dark:bg-white/5 hover:bg-brand-blue/10 text-[10px] text-brand-gray hover:text-brand-blue transition">
+        زمان تعویض خمیر سیلیکون
+      </button>
+    </div>
+
+    <!-- Drawer Input Form -->
+    <div class="p-4 border-t border-black/[0.08] dark:border-white/[0.08] bg-white/50 dark:bg-black/50">
+      <form onsubmit="handleAiChatSubmit(event)" class="flex gap-2">
+        <input type="text" id="aiChatDrawerInput" placeholder="سؤال فنی خود را بنویسید..." class="flex-1 bg-brand-lightGray dark:bg-[#1a1a1c] border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-3.5 py-2 text-xs text-brand-dark dark:text-white focus:outline-none focus:border-brand-blue">
+        <button type="submit" id="aiChatDrawerSendBtn" class="px-3.5 py-2 bg-brand-blue hover:bg-brand-blueHover text-white rounded-xl text-xs font-bold transition flex items-center justify-center">
+          <span>ارسال</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="fixed inset-0 modal-glass-blur hidden z-50 place-items-center p-4 overflow-y-auto">
+    <div class="bg-white dark:bg-[#1c1c1e] text-brand-dark dark:text-white rounded-[28px] max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-auto border border-black/[0.08] dark:border-white/[0.08]">
+      
+      <button onclick="closeBookingModal()" aria-label="بستن" class="absolute left-6 top-6 w-8 h-8 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center hover:opacity-75 transition">
+        ✕
+      </button>
+
+      <!-- Step 1: Multi-Service Selection -->
+      <div id="bookingStep1">
+        <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">مرحله ۱ از ۳</span>
+        <h3 class="text-xl font-bold mt-1 text-brand-dark dark:text-white">انتخاب خدمات مورد نیاز</h3>
+        <p class="text-xs text-brand-gray mt-1">می‌توانید یک یا چند سرویس همزمان را انتخاب فرمایید:</p>
+
+        <!-- Services list with custom sleek scrollbar -->
+        <div class="mt-6 space-y-2.5 max-h-64 overflow-y-auto pl-2 pr-1 poshtiban-scrollbar">
+          
+          <div id="serviceCard_ssd" onclick="toggleBookingService('ssd')" class="booking-service-card cursor-pointer p-3.5 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] flex items-center justify-between hover:border-brand-blue transition">
+            <div class="flex items-center gap-3">
+              <span class="check-box w-5 h-5 rounded-lg border border-black/20 dark:border-white/20 flex items-center justify-center text-xs font-bold transition-all"></span>
+              <div>
+                <b class="text-xs block text-brand-dark dark:text-white">ارتقای SSD + کلون سکتوری ویندوز</b>
+                <span class="text-[11px] text-brand-gray">انتقال کامل فایل‌ها و نرم‌افزارها بدون نصب مجدد</span>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-brand-blue">۲۵۰,۰۰۰ تومان</span>
+          </div>
+
+          <div id="serviceCard_thermal" onclick="toggleBookingService('thermal')" class="booking-service-card cursor-pointer p-3.5 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] flex items-center justify-between hover:border-brand-blue transition">
+            <div class="flex items-center gap-3">
+              <span class="check-box w-5 h-5 rounded-lg border border-black/20 dark:border-white/20 flex items-center justify-center text-xs font-bold transition-all"></span>
+              <div>
+                <b class="text-xs block text-brand-dark dark:text-white">سرویس دوره‌ای فن و خمیر سیلیکون</b>
+                <span class="text-[11px] text-brand-gray">استفاده از خمیر کربنی مرغوب Thermal Grizzly</span>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-brand-blue">۱۸۰,۰۰۰ تومان</span>
+          </div>
+
+          <div id="serviceCard_ram" onclick="toggleBookingService('ram')" class="booking-service-card cursor-pointer p-3.5 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] flex items-center justify-between hover:border-brand-blue transition">
+            <div class="flex items-center gap-3">
+              <span class="check-box w-5 h-5 rounded-lg border border-black/20 dark:border-white/20 flex items-center justify-center text-xs font-bold transition-all"></span>
+              <div>
+                <b class="text-xs block text-brand-dark dark:text-white">ارتقای ماژول حافظه رم (RAM)</b>
+                <span class="text-[11px] text-brand-gray">افزایش پهنای باند و رفع فریز نرم‌افزارها</span>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-brand-blue">۱۲۰,۰۰۰ تومان</span>
+          </div>
+
+          <div id="serviceCard_mobo" onclick="toggleBookingService('mobo')" class="booking-service-card cursor-pointer p-3.5 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] flex items-center justify-between hover:border-brand-blue transition">
+            <div class="flex items-center gap-3">
+              <span class="check-box w-5 h-5 rounded-lg border border-black/20 dark:border-white/20 flex items-center justify-center text-xs font-bold transition-all"></span>
+              <div>
+                <b class="text-xs block text-brand-dark dark:text-white">عیب‌یابی تخصصی مادربرد و مدار تغذیه</b>
+                <span class="text-[11px] text-brand-gray">تست اسیلوسکوپ و بررسی قطعات SMD</span>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-brand-blue">۳۰۰,۰۰۰ تومان</span>
+          </div>
+
+        </div>
+
+        <!-- Live Selection Counter -->
+        <div class="mt-4 pt-3 border-t border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between text-xs">
+          <span class="text-brand-gray">خدمات انتخاب شده: <b id="bookSelectedCountText" class="text-brand-blue">۱ خدمت انتخابی</b></span>
+          <span class="text-brand-gray">جمع برآورد اجرت: <b id="bookSelectedTotalText" class="text-brand-dark dark:text-white font-mono font-bold">۲۵۰,۰۰۰ تومان</b></span>
+        </div>
+
+        <button onclick="goToBookingStep(2)" class="mt-6 w-full py-3 bg-brand-blue hover:bg-brand-blueHover text-white rounded-full text-xs font-bold transition shadow-sm">
+          ادامه: انتخاب روز و ساعت حضور ←
+        </button>
+      </div>
+
+      <!-- Step 2: Date & Slot Selection (Calendar-based, Sat-Wed, max 2 months ahead) -->
+      <div id="bookingStep2" class="hidden">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">مرحله ۲ از ۳</span>
+        </div>
+        <h3 class="text-xl font-bold mt-1 text-brand-dark dark:text-white">انتخاب روز و ساعت تحویل دستگاه</h3>
+        <p class="text-xs text-brand-gray mt-1">پذیرش در روزهای کاری (شنبه تا چهارشنبه) به صورت حضوری یا با پیک مشتری:</p>
+
+        <!-- Interactive Persian Calendar Card -->
+        <div class="mt-4 p-4 rounded-3xl bg-brand-lightGray dark:bg-[#161617] border border-black/[0.06] dark:border-white/[0.06]">
+          <!-- Calendar Header: Month/Year & Navigation Controls (Persian RTL Order) -->
+          <div class="flex items-center justify-between mb-3 px-1">
+            <div class="flex items-center gap-2">
+              <span id="calCurrentMonthYear" class="text-sm font-bold text-brand-dark dark:text-white"></span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-brand-blue/10 text-brand-blue font-semibold">پذیرش تا ۲ ماه آینده</span>
+            </div>
+            <!-- In Persian RTL: Next Month (ماه بعد) is forward to the LEFT ‹, Previous Month (ماه قبل) is backward to the RIGHT › -->
+            <div class="flex items-center gap-1.5">
+              <button type="button" id="calPrevMonthBtn" onclick="changeCalMonth(-1)" class="cal-nav-btn w-8 h-8 rounded-full flex items-center justify-center transition" aria-label="ماه قبل" title="ماه قبل">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+              <button type="button" id="calNextMonthBtn" onclick="changeCalMonth(1)" class="cal-nav-btn w-8 h-8 rounded-full flex items-center justify-center transition" aria-label="ماه بعد" title="ماه بعد">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Weekday Headers (Saturday to Friday) -->
+          <div class="grid grid-cols-7 gap-1 text-center text-[11px] font-bold pb-2 border-b border-black/[0.06] dark:border-white/[0.06]">
+            <span class="text-brand-dark dark:text-white/90">ش</span>
+            <span class="text-brand-dark dark:text-white/90">ی</span>
+            <span class="text-brand-dark dark:text-white/90">د</span>
+            <span class="text-brand-dark dark:text-white/90">س</span>
+            <span class="text-brand-dark dark:text-white/90">چ</span>
+            <span class="text-rose-500/70 dark:text-rose-400/70" title="تعطیل هفتگی کارگاه">پ</span>
+            <span class="text-rose-500/70 dark:text-rose-400/70" title="تعطیل هفتگی کارگاه">ج</span>
+          </div>
+
+          <!-- Calendar Days Grid (dynamically populated) -->
+          <div id="calDaysGrid" class="grid grid-cols-7 gap-1.5 pt-2 text-center text-xs"></div>
+        </div>
+
+        <!-- Selected Date Indicator Badge -->
+        <div class="mt-3 px-3.5 py-2.5 rounded-2xl bg-brand-blue/5 dark:bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-between text-xs">
+          <div class="flex items-center gap-2">
+            <span class="text-base">📅</span>
+            <span class="text-brand-gray">تاریخ انتخابی:</span>
+            <strong id="calSelectedDateBadge" class="text-brand-blue font-bold">شنبه، ۱۱ مهر ۱۴۰۵</strong>
+          </div>
+          <span id="calTodayTag" class="text-[10px] bg-brand-blue text-white px-2 py-0.5 rounded-full font-medium">امروز</span>
+        </div>
+
+        <!-- Time Slots (Only slots up to 17:00 as workshop closes for intake at 5pm) -->
+        <div class="mt-3.5 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <button type="button" onclick="selectBookingTime(this, '۱۰:۰۰ الی ۱۳:۰۰')" class="book-time-btn p-3 rounded-2xl border border-brand-blue bg-brand-blue/10 text-brand-blue text-xs font-semibold flex items-center justify-center gap-2 transition">
+            <span class="text-base leading-none" style="font-family:  'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;">☀️</span>
+            <span>۱۰:۰۰ الی ۱۳:۰۰ (شیفت صبح)</span>
+          </button>
+          <button type="button" onclick="selectBookingTime(this, '۱۴:۰۰ الی ۱۷:۰۰')" class="book-time-btn p-3 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] text-xs font-semibold text-brand-dark dark:text-white hover:border-brand-blue flex items-center justify-center gap-2 transition">
+            <span class="text-base leading-none" style="font-family:  'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;">🌙</span>
+            <span>۱۴:۰۰ الی ۱۷:۰۰ (شیفت عصر)</span>
+          </button>
+        </div>
+
+        <!-- Intake Info Note -->
+        <div class="mt-3 p-3 rounded-2xl bg-black/5 dark:bg-white/5 text-[11px] text-brand-gray flex items-center gap-2.5">
+          <svg class="w-4 h-4 shrink-0 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9" stroke-width="2"></circle>
+            <path stroke-linecap="round" stroke-width="2" d="M12 8h.01M12 12v4"></path>
+          </svg>
+          <span>پذیرش دستگاه صرفاً در روزهای کاری (شنبه تا چهارشنبه) تا ساعت ۱۷:۰۰ انجام می‌شود. تحویل به صورت حضوری یا ارسال توسط پیک/پست مشتری امکان‌پذیر است.</span>
+        </div>
+
+        <div class="mt-5 flex gap-3">
+          <button type="button" onclick="goToBookingStep(1)" class="w-1/3 py-3 bg-black/5 dark:bg-white/10 text-brand-dark dark:text-white rounded-full text-xs font-bold transition">
+            → بازگشت
+          </button>
+          <button type="button" onclick="goToBookingStep(3)" class="w-2/3 py-3 bg-brand-blue hover:bg-brand-blueHover text-white rounded-full text-xs font-bold transition">
+            ادامه: مشخصات تماس ←
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Contact & Confirm -->
+      <div id="bookingStep3" class="hidden">
+        <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">مرحله ۳ از ۳</span>
+        <h3 class="text-xl font-bold mt-1 text-brand-dark dark:text-white">مشخصات تحویل‌دهنده</h3>
+
+        <form onsubmit="confirmBooking(event)" class="mt-6 space-y-4">
+          <div>
+            <label class="block text-xs font-medium text-brand-gray mb-1">نام و نام‌خانوادگی:</label>
+            <input type="text" id="bookNameInput" required placeholder="مثال: علیرضا شمس" class="w-full bg-brand-lightGray dark:bg-[#161617] border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-3 py-2.5 text-xs text-brand-dark dark:text-white focus:outline-none focus:border-brand-blue">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-brand-gray mb-1">شماره موبایل جهت پیامک کد پیگیری:</label>
+            <input type="tel" id="bookPhoneInput" required placeholder="۰۹۱۲XXXXXXX" dir="ltr" class="w-full bg-brand-lightGray dark:bg-[#161617] border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-3 py-2.5 text-xs text-brand-dark dark:text-white text-right focus:outline-none focus:border-brand-blue">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-brand-gray mb-1">مدل دستگاه یا شرح ایراد:</label>
+            <input type="text" id="bookModelInput" placeholder="مثال: لپ‌تاپ ایسوس K513 یا کیس گیمینگ" class="w-full bg-brand-lightGray dark:bg-[#161617] border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-3 py-2.5 text-xs text-brand-dark dark:text-white focus:outline-none focus:border-brand-blue">
+          </div>
+
+          <div class="p-3 rounded-2xl bg-brand-lightGray dark:bg-[#161617] border border-black/[0.06] dark:border-white/[0.06] text-xs space-y-1">
+            <div class="flex justify-between">
+              <span class="text-brand-gray">زمان انتخابی:</span>
+              <span id="bookSummaryTime" class="font-bold text-brand-dark dark:text-white">شنبه - ۱۰:۰۰ الی ۱۳:۰۰</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-brand-gray">تعداد خدمات:</span>
+              <span id="bookSummaryServiceCount" class="font-bold text-brand-blue">۱ مورد</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-brand-gray">جمع برآورد:</span>
+              <span id="bookSummaryPriceText" class="font-mono font-bold text-brand-dark dark:text-white">۲۵۰,۰۰۰ تومان</span>
+            </div>
+          </div>
+
+          <!-- Pre-Intake Workshop Protocol & Confirmation (Ensures real-life procedure safety) -->
+          <div class="p-3.5 rounded-2xl bg-amber-500/10 dark:bg-amber-500/15 border border-amber-500/25 text-xs space-y-2.5">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1.5 font-bold text-amber-600 dark:text-amber-400 text-[11px]">
+                <span>⚠️</span>
+                <span>تاییدیه ضروری قبل از مراجعه حضوری / تحویل به پیک:</span>
+              </div>
+              <span id="intakeCheckCountText" class="text-[10px] text-amber-600 dark:text-amber-400 font-bold">۰ از ۳ تایید شد</span>
+            </div>
+            
+            <div class="space-y-2 text-[11px]">
+              <label class="intake-checklist-label flex items-start gap-2.5 cursor-pointer select-none">
+                <input type="checkbox" id="checkIntakeCharger" onchange="updateIntakeCheckboxesState()" class="mt-0.5 w-4 h-4 rounded text-brand-blue accent-brand-blue shrink-0">
+                <span><strong>همراه داشتن شارژر اصلی:</strong> آداپتور شارژر فابریک دستگاه را جهت تست‌های ولتاژ و بار پردازشی تحویل خواهم داد.</span>
+              </label>
+
+              <label class="intake-checklist-label flex items-start gap-2.5 cursor-pointer select-none">
+                <input type="checkbox" id="checkIntakeBackup" onchange="updateIntakeCheckboxesState()" class="mt-0.5 w-4 h-4 rounded text-brand-blue accent-brand-blue shrink-0">
+                <span><strong>پشتیبان‌گیری از اطلاعات حیاتی:</strong> از اسناد شخصی و فایل‌های دسکتاپ خود نسخه پشتیبان دارم (یا در صورت عدم بوت، هارد فاقد اطلاعات غیرقابل‌جایگزین است).</span>
+              </label>
+
+              <label class="intake-checklist-label flex items-start gap-2.5 cursor-pointer select-none">
+                <input type="checkbox" id="checkIntakePassword" onchange="updateIntakeCheckboxesState()" class="mt-0.5 w-4 h-4 rounded text-brand-blue accent-brand-blue shrink-0">
+                <span><strong>رمز عبور ویندوز / اکانت مهمان:</strong> پین یا رمز دستگاه را جهت اجرای تست‌های کنترل کیفیت نهایی در اختیار کارگاه می‌گذارم.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="flex gap-3 pt-2">
+            <button type="button" onclick="goToBookingStep(2)" class="w-1/3 py-3 bg-black/5 dark:bg-white/10 text-brand-dark dark:text-white rounded-full text-xs font-bold transition">
+              → بازگشت
+            </button>
+            <button type="submit" id="bookSubmitBtn" disabled class="w-2/3 py-3 rounded-full text-xs font-bold transition-all book-submit-btn-disabled">
+              ثبت قطعی و دریافت نوبت ✓
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 4: Success Confirmation -->
+      <div id="bookingStep4" class="hidden text-center py-4">
+        <div class="w-14 h-14 rounded-full bg-emerald-500/10 text-emerald-500 mx-auto flex items-center justify-center text-2xl font-black mb-4">
+          ✓
+        </div>
+        <h3 class="text-xl font-bold text-brand-dark dark:text-white">نوبت با موفقیت ثبت گردید</h3>
+        <p class="text-xs text-brand-gray mt-1">مشخصات نوبت به شماره شما پیامک شد و در کارگاه مرکزی رزرو گردید.</p>
+
+        <div class="my-6 p-4 rounded-2xl bg-brand-lightGray dark:bg-[#161617] border border-black/[0.08] dark:border-white/[0.08] inline-block w-full text-right text-xs space-y-2">
+          <div class="flex justify-between items-center pb-2 border-b border-black/[0.06] dark:border-white/[0.06]">
+            <span class="text-brand-gray">کد پیگیری اختصاصی:</span>
+            <b id="bookSuccessCode" class="font-mono text-brand-blue text-sm font-black">PC-1405-834</b>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-brand-gray">نام مراجع:</span>
+            <span id="bookSuccessName" class="font-bold text-brand-dark dark:text-white">علیرضا شمس</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-brand-gray">خدمات انتخاب‌شده:</span>
+            <span id="bookSuccessServicesCount" class="font-bold text-brand-blue">۱ خدمت</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-brand-gray">زمان تحویل انتخابی:</span>
+            <span id="bookSuccessTime" class="font-bold text-brand-dark dark:text-white"></span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-brand-gray">نشانی کارگاه مرکزی:</span>
+            <span class="text-brand-gray">میرداماد، مجتمع پایتخت، ط ۲، واحد ۲۰۴</span>
+          </div>
+        </div>
+
+        <!-- Intake Checklist Reminder on Receipt -->
+        <div class="mb-6 p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-right space-y-1.5 text-emerald-800 dark:text-emerald-300">
+          <div class="font-bold flex items-center gap-1.5 text-[11px]">
+            <span>✓</span>
+            <span>اقلام همراه ضروری هنگام تحویل حضوری یا تحویل به پیک:</span>
+          </div>
+          <ul class="text-[11px] text-brand-gray dark:text-white/80 list-disc list-inside space-y-0.5 mr-1">
+            <li>دستگاه به همراه <strong>آداپتور شارژر فابریک</strong></li>
+            <li>یادداشت کتبی <strong>رمز عبور ویندوز</strong> همراه دستگاه</li>
+          </ul>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-2">
+          <button onclick="openTrackingModalWithCode(document.getElementById('bookSuccessCode').textContent)" class="w-full sm:w-1/2 py-3 bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/15 text-brand-dark dark:text-white rounded-full text-xs font-bold transition">
+            رهگیری نوبت
+          </button>
+          <button onclick="closeBookingModal()" class="w-full sm:w-1/2 py-3 bg-brand-blue text-white rounded-full text-xs font-bold transition">
+            بستن
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Dynamic Tracking Modal -->
+  <div id="trackingModal" class="fixed inset-0 modal-glass-blur hidden z-50 place-items-center p-4 overflow-y-auto">
+    <div class="bg-white dark:bg-[#1c1c1e] text-brand-dark dark:text-white rounded-[28px] max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-auto border border-black/[0.08] dark:border-white/[0.08]">
+      
+      <button onclick="closeTrackingModal()" aria-label="بستن" class="absolute left-6 top-6 w-8 h-8 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center hover:opacity-75 transition">
+        ✕
+      </button>
+
+      <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">میز کاربری مراجعین</span>
+      <h3 class="text-xl font-bold mt-1 text-brand-dark dark:text-white">رهگیری وضعیت تعمیر دستگاه</h3>
+      <p class="text-xs text-brand-gray mt-1">شماره قبض یا کد پیگیری خود را وارد فرمایید:</p>
+
+      <!-- Search Input -->
+      <div class="mt-6 flex gap-2">
+        <input type="text" id="trackingSearchInput" value="PC-1405-912" placeholder="مثال: PC-1405-912" dir="ltr" class="flex-1 bg-brand-lightGray dark:bg-[#161617] border border-black/[0.08] dark:border-white/[0.08] rounded-2xl px-4 py-2.5 text-xs text-brand-dark dark:text-white font-mono focus:outline-none focus:border-brand-blue">
+        <button onclick="searchTrackingTicket()" class="px-5 py-2.5 bg-brand-blue hover:bg-brand-blueHover text-white rounded-2xl text-xs font-bold transition">
+          بررسی وضعیت
+        </button>
+      </div>
+
+      <!-- Quick sample pills -->
+      <div class="mt-2.5 flex items-center gap-1.5 text-[11px] text-brand-gray">
+        <span>نمونه‌ها:</span>
+        <button onclick="setTrackingDemo('PC-1405-912')" class="font-mono text-brand-blue hover:underline">PC-1405-912</button>
+        <span>•</span>
+        <button onclick="setTrackingDemo('BK-1405-408')" class="font-mono text-brand-blue hover:underline">BK-1405-408</button>
+        <span>•</span>
+        <button onclick="setTrackingDemo('QC-1405-215')" class="font-mono text-brand-blue hover:underline">QC-1405-215</button>
+      </div>
+
+      <!-- Ticket Details Card -->
+      <div id="trackingResultCard" class="mt-6 p-5 rounded-2xl bg-brand-lightGray dark:bg-[#161617] border border-black/[0.06] dark:border-white/[0.06] text-xs space-y-3.5">
+        <div class="flex items-center justify-between pb-3 border-b border-black/[0.06] dark:border-white/[0.06]">
+          <div>
+            <span class="text-[10px] text-brand-gray block">دستگاه پذیرش‌شده:</span>
+            <b id="trackDeviceTitle" class="text-brand-dark dark:text-white">لپ‌تاپ Asus Vivobook Pro 15</b>
+          </div>
+          <span id="trackStatusBadge" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-brand-blue/10 text-brand-blue">
+            در حال تعویض قطعه و تست
+          </span>
+        </div>
+
+        <!-- 4-Step Progress Stepper -->
+        <div class="py-2">
+          <div class="flex items-center justify-between text-[10px] sm:text-[11px] font-bold mb-2">
+            <span id="stepLabel1" class="text-emerald-500">۱. ثبت و پذیرش</span>
+            <span id="stepLabel2" class="text-emerald-500">۲. تست اولیه</span>
+            <span id="stepLabel3" class="text-brand-blue">۳. تعویض و تعمیر</span>
+            <span id="stepLabel4" class="text-brand-gray">۴. آماده تحویل</span>
+          </div>
+          <div class="w-full bg-black/10 dark:bg-white/10 h-2 rounded-full overflow-hidden">
+            <div id="trackProgressBar" class="h-full bg-brand-blue rounded-full transition-all duration-500" style="width: 75%"></div>
+          </div>
+        </div>
+
+        <div class="text-[11px] text-brand-gray leading-relaxed pt-2">
+          <b>گزارش مهندس ناظر:</b> <span id="trackTechnicianNotes">تست سلامت هارد قدیمی انجام شد. اس‌اس‌دی ۱ ترابایت نصب و انتقال سکتوری ویندوز بدون نقص خاتمه یافت. سیستم در حال تست پایداری دماست.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Remote Intake Modal -->
+  <div id="remoteModal" class="fixed inset-0 modal-glass-blur hidden z-50 place-items-center p-4 overflow-y-auto">
+    <div class="bg-white dark:bg-[#1c1c1e] text-brand-dark dark:text-white rounded-[28px] max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-auto border border-black/[0.08] dark:border-white/[0.08]">
+      
+      <button onclick="closeRemoteModal()" aria-label="بستن" class="absolute left-6 top-6 w-8 h-8 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center hover:opacity-75 transition">
+        ✕
+      </button>
+
+      <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">اتصال ایمن نرم‌افزاری</span>
+      <h3 class="text-xl font-bold mt-1 text-brand-dark dark:text-white">درخواست پشتیبانی ریموت فوری</h3>
+      <p class="text-xs text-brand-gray mt-1">حل مشکلات نرم‌افزاری، نصب درایورها و ارورهای ویندوز بدون خروج از منزل.</p>
+
+      <form onsubmit="handleRemoteSubmit(event)" class="mt-6 space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-neutral-800 dark:text-neutral-200 mb-1.5">نام و نام‌خانوادگی:</label>
+          <input type="text" required placeholder="مثال: سارا محمدی" class="w-full bg-neutral-100 dark:bg-[#252528] border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-4 py-2.5 text-xs text-brand-dark dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-brand-blue transition">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-neutral-800 dark:text-neutral-200 mb-1.5">شماره تماس مستقیم:</label>
+          <input type="tel" required placeholder="۰۹۱۲XXXXXXX" dir="ltr" class="w-full bg-neutral-100 dark:bg-[#252528] border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-4 py-2.5 text-xs text-brand-dark dark:text-white text-right placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-brand-blue transition">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-neutral-800 dark:text-neutral-200 mb-1.5">نرم‌افزار ریموت شما:</label>
+          <div class="relative">
+            <select class="w-full appearance-none bg-neutral-100 dark:bg-[#252528] border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-4 py-2.5 pl-10 text-xs text-brand-dark dark:text-white font-medium focus:outline-none focus:border-brand-blue cursor-pointer transition">
+              <option class="bg-white dark:bg-[#1c1c1e] text-brand-dark dark:text-white">نرم‌افزار داخلی درسان‌دسک (DorsanDesk)</option>
+              <option class="bg-white dark:bg-[#1c1c1e] text-brand-dark dark:text-white">انی‌دسک (AnyDesk)</option>
+              <option class="bg-white dark:bg-[#1c1c1e] text-brand-dark dark:text-white">راست‌دسک (RustDesk)</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center px-3.5 text-neutral-400">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-neutral-800 dark:text-neutral-200 mb-1.5">شرح کوتاه اشکال یا ارور:</label>
+          <input type="text" placeholder="مثال: پرینتر وصل نمی‌شود یا خطای لایسنس نرم‌افزار" class="w-full bg-neutral-100 dark:bg-[#252528] border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-4 py-2.5 text-xs text-brand-dark dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-brand-blue transition">
+        </div>
+
+        <button type="submit" class="w-full py-3 bg-brand-blue hover:bg-brand-blueHover text-white rounded-full text-xs font-bold transition shadow-sm mt-2">
+          برقراری ارتباط با کارشناس کشیک
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- AI Custom API Key Settings Modal (aiSettingsModal) -->
+  <div id="aiSettingsModal" class="fixed inset-0 modal-glass-blur hidden z-50 place-items-center p-4 overflow-y-auto">
+    <div class="bg-white dark:bg-[#1c1c1e] text-brand-dark dark:text-white rounded-[28px] max-w-md w-full p-6 sm:p-7 shadow-2xl relative my-auto border border-black/[0.08] dark:border-white/[0.08]">
+      
+      <button onclick="closeAiSettingsModal()" aria-label="بستن" class="absolute left-6 top-6 w-8 h-8 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center hover:opacity-75 transition">
+        ✕
+      </button>
+
+      <span class="text-xs font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">تنظیمات پیشرفته کارشناسان</span>
+      <h3 class="text-lg font-bold mt-1 text-brand-dark dark:text-white">کلید اختصاصی API هوش مصنوعی</h3>
+      <p class="text-xs text-brand-gray mt-1 leading-relaxed">
+        سیستم به طور پیش‌فرض دارای موتور تحلیل آنبرد محلی است. در صورت تمایل می‌توانید کلید اختصاصی گوگل خود را برای استفاده نامحدود وارد نمایید.
+      </p>
+
+      <div class="mt-5 space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-neutral-800 dark:text-neutral-200 mb-1">کلید Gemini API (اختیاری):</label>
+          <input type="password" id="userCustomApiKeyInput" placeholder="AIzaSy..." dir="ltr" class="w-full bg-neutral-100 dark:bg-[#252528] border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-3.5 py-2.5 text-xs text-brand-dark dark:text-white font-mono focus:outline-none focus:border-brand-blue transition">
+        </div>
+
+        <div id="apiKeyStatusBadge" class="p-2.5 rounded-xl bg-black/5 dark:bg-white/5 border border-black/[0.04] dark:border-white/[0.04] text-[11px] text-brand-gray flex items-center justify-between">
+          <span>وضعیت فعلی:</span>
+          <b id="apiKeyStatusText" class="text-emerald-500">موتور آنبرد هوشمند فعال</b>
+        </div>
+      </div>
+
+      <div class="mt-6 flex gap-2">
+        <button onclick="clearCustomApiKey()" class="w-1/3 py-2.5 bg-black/5 dark:bg-white/10 hover:bg-black/10 text-brand-dark dark:text-white rounded-full text-xs font-bold transition">
+          حذف کلید
+        </button>
+        <button onclick="saveCustomApiKey()" class="w-2/3 py-2.5 bg-brand-blue hover:bg-brand-blueHover text-white rounded-full text-xs font-bold transition">
+          ذخیره تنظیمات ✓
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toastBox" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-2.5 rounded-full frosted-glass border border-black/10 dark:border-white/10 text-xs font-semibold text-brand-dark dark:text-white shadow-xl opacity-0 pointer-events-none transition-all duration-300">
+    پیام سامانه
+  </div>
+
+  <script>
+    /* Selected Diagnostics & Vision State */
+    let selectedDiagDeviceType = "لپ‌تاپ";
+    let selectedVisionBase64 = null;
+    let selectedVisionMimeType = null;
+    let latestAiRecommendedService = "thermal";
+
+    /* Gemini API Client with Fail-Fast Local Switching */
+    const apiKey = "";
+    const GEMINI_MODEL = "gemini-3-flash-preview";
+
+    function getEffectiveApiKey() {
+      try {
+        const storedKey = localStorage.getItem("poshtiban_custom_api_key");
+        if (storedKey && storedKey.trim().length > 5) {
+          return storedKey.trim();
+        }
+      } catch (e) {}
+      return apiKey;
+    }
+
+    async function callGeminiApi(payload, maxRetries = 1) {
+      const currentKey = getEffectiveApiKey();
+      if (!currentKey || currentKey.trim() === "" || !navigator.onLine) {
+        throw new Error("AUTH_NO_KEY");
+      }
+      let delay = 1000;
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${currentKey}`;
+
+      for (let attempt = 0; attempt <= maxRetries; attempt++) {
+        try {
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          if (!response.ok) {
+            // Immediate throw for Auth/Permission/Geo errors (400, 401, 403, 404): DO NOT wait 15 seconds!
+            if (response.status === 400 || response.status === 401 || response.status === 403 || response.status === 404) {
+              throw new Error(`AUTH_HTTP_${response.status}`);
+            }
+            if ((response.status === 429 || response.status >= 500) && attempt < maxRetries) {
+              await new Promise(res => setTimeout(res, delay));
+              delay *= 2;
+              continue;
+            }
+            throw new Error(`HTTP_${response.status}`);
+          }
+
+          const result = await response.json();
+          const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (!text) throw new Error("Empty model response");
+          return text;
+        } catch (err) {
+          // If auth or geo error, stop retrying immediately so local engine delivers instant results
+          if (err.message && err.message.startsWith('AUTH_HTTP_')) {
+            throw err;
+          }
+          if (attempt < maxRetries) {
+            await new Promise(res => setTimeout(res, 600));
+          } else {
+            throw err;
+          }
+        }
+      }
+    }
+
+    /* Native Web Audio API Sound Generator */
+    function playHapticSound(type = 'click') {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        if (type === 'click') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(800, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.03);
+          gain.gain.setValueAtTime(0.05, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.03);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.03);
+        } else if (type === 'success') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(440, ctx.currentTime);
+          osc.frequency.setValueAtTime(880, ctx.currentTime + 0.08);
+          gain.gain.setValueAtTime(0.06, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.2);
+        }
+      } catch (e) {}
+    }
+
+    function showToast(msg) {
+      playHapticSound('click');
+      const toast = document.getElementById("toastBox");
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.remove("opacity-0", "pointer-events-none");
+      setTimeout(() => {
+        toast.classList.add("opacity-0", "pointer-events-none");
+      }, 3200);
+    }
+
+    /* Scroll Locking Helper */
+    function lockBodyScroll() {
+      document.body.style.overflow = 'hidden';
+    }
+
+    function unlockBodyScroll() {
+      const anyModalOpen = 
+        !document.getElementById('bookingModal')?.classList.contains('hidden') ||
+        !document.getElementById('trackingModal')?.classList.contains('hidden') ||
+        !document.getElementById('remoteModal')?.classList.contains('hidden') ||
+        !document.getElementById('aiSettingsModal')?.classList.contains('hidden') ||
+        !document.getElementById('mobileDrawer')?.classList.contains('hidden') ||
+        !document.getElementById('aiChatDrawer')?.classList.contains('hidden');
+      
+      if (!anyModalOpen) {
+        document.body.style.overflow = '';
+      }
+    }
+
+    /* Helper: Format Markdown to HTML */
+    function formatMarkdownToHtml(markdownText) {
+      if (!markdownText) return "";
+      let html = markdownText
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+      html = html.replace(/^### (.*$)/gim, '<h4 class="font-bold text-brand-dark dark:text-white mt-3 mb-1 text-sm">$1</h4>');
+      html = html.replace(/^## (.*$)/gim, '<h3 class="font-black text-brand-dark dark:text-white mt-3 mb-1 text-sm">$1</h3>');
+      html = html.replace(/\*\*(.*?)\*\*/gim, '<strong class="font-bold text-brand-dark dark:text-white">$1</strong>');
+      html = html.replace(/^\* (.*$)/gim, '<div class="flex items-start gap-1.5 my-1 mr-2"><span class="text-purple-500">•</span><span>$1</span></div>');
+      html = html.replace(/^- (.*$)/gim, '<div class="flex items-start gap-1.5 my-1 mr-2"><span class="text-brand-blue">•</span><span>$1</span></div>');
+
+      return html;
+    }
+
+    /**
+     * Local Intelligent Diagnostic & Knowledge Engine
+     * Operates seamlessly and instantly without external keys, VPNs, or network dependencies.
+     */
+    function runLocalIntelligentEngine(type, userQuery, notes = "") {
+      const q = (userQuery + " " + notes).toLowerCase();
+
+      if (type === 'vision') {
+        if (q.includes("critical") || q.includes("process") || q.includes("died")) {
+          return `### نتیجه تحلیل تصویری: خطای CRITICAL_PROCESS_DIED
+**ریشه نقص:** متوقف شدن ناگهانی یکی از پردازش‌های حیاتی کرنل ویندوز. این خطا در ۸۰٪ موارد ناشی از بدسکتور درایو سیستم‌عامل (SSD/HDD) یا آسیب‌دیدگی فایل‌های سیستمی است.
+**سطح ریسک سخت‌افزاری:** متوسط تا بالا (احتمال از دست رفتن فایل‌های ذخیره‌نشده).
+* عدم ریستارت‌های مکرر برای جلوگیری از آسیب دیدن سکتورها.
+* بررسی سلامت درایو با تست SMART در کارگاه.
+**خدمت پیشنهادی:** ارتقای SSD + کلون سکتوری ویندوز.`;
+        } else if (q.includes("whea") || q.includes("hardware") || q.includes("uncorrectable")) {
+          return `### نتیجه تحلیل تصویری: خطای سخت‌افزاری WHEA_UNCORRECTABLE_ERROR
+**ریشه نقص:** وقوع خطای ولتاژ یا کرش فیزیکی در پردازنده، مادربرد یا مدار تغذیه (VRM). معمولاً بر اثر نوسان ولتاژ یا داغ شدن بیش از ۹۰ درجه رخ می‌دهد.
+**سطح ریسک سخت‌افزاری:** بحرانی (خطر آسیب به چیپست اصلی).
+* قطع سریع برق و عدم تحمیل بار پردازشی.
+* تست ولتاژ خروجی آداپتور و پایداری خازن‌ها.
+**خدمت پیشنهادی:** عیب‌یابی تخصصی مادربرد و مدار تغذیه.`;
+        } else {
+          return `### نتیجه تحلیل تصویری ارور / قطعه
+**ریشه نقص:** بر اساس کد استاپ‌کد و تصویر مشاهده‌شده، اختلال بین درایورهای سخت‌افزاری و حافظه رم رخ داده است.
+**سطح ریسک سخت‌افزاری:** متوسط.
+* عدم دستکاری فیزیکی ماژول‌ها و سوکت‌ها.
+* بررسی سلامت رم با تستر تخصصی MemTest سخت‌افزاری.
+**خدمت پیشنهادی:** ارتقای ماژول حافظه رم (RAM).`;
+        }
+      }
+
+      if (q.includes("آب") || q.includes("چای") || q.includes("قهوه") || q.includes("مایع") || q.includes("خیس")) {
+        return `### نتیجه عیب‌یابی: نفوذ مایعات و خطر اتصال کوتاه در مدار
+**تحلیل فنی:** ورود مایع سبب ایجاد رسوبات اسیدی/قندی و اتصال بین پایه‌های قطعات SMD مادربرد گردیده است.
+**سطح ریسک سخت‌افزاری:** فوق بحرانی (خطر سوزاندن چیپست و نابودی مدار).
+* دستگاه را تحت هیچ شرایطی به شارژر نزنید و روشن نکنید.
+* از سشوار یا برنج استفاده ننمایید؛ شستشوی اولتراسونیک برد در کارگاه ضروری است.
+**خدمت پیشنهادی:** عیب‌یابی تخصصی مادربرد و مدار تغذیه.`;
+      } else if (q.includes("بو") || q.includes("سوخت") || q.includes("دود") || q.includes("جرقه")) {
+        return `### نتیجه عیب‌یابی: سوختن ماسفت‌های مدار تغذیه یا خرابی پاور
+**تحلیل فنی:** بوی سوختگی نشانه ترکیدن خازن‌های صافی یا اتصال کوتاه شدید در لاین‌های ولتاژ بالای مادربرد است.
+**سطح ریسک سخت‌افزاری:** فوق بحرانی (خطر سرایت ولتاژ مخرب به CPU و گرافیک).
+* سریعاً دوشاخه برق را قطع کرده و اتصال را جدا کنید.
+* دستگاه نیازمند بررسی تخصصی با اسیلوسکوپ و تستر پاور است.
+**خدمت پیشنهادی:** عیب‌یابی تخصصی مادربرد و مدار تغذیه.`;
+      } else if (q.includes("فن") || q.includes("داغ") || q.includes("حرارت") || q.includes("خاموش") || q.includes("گاز")) {
+        return `### نتیجه عیب‌یابی: پدیده Thermal Throttling و گرفتگی هیت‌سینک
+**تحلیل فنی:** خمیر سیلیکون پردازنده به مرور زمان خشک شده و منافذ خنک‌کننده فن دچار انسداد گردیده‌اند. پردازنده برای محافظت از خود کلاک کاری را کاهش داده و در نهایت خاموش می‌شود.
+**سطح ریسک سخت‌افزاری:** در صورت تداوم کارکرد، خطر دیسولدر شدن چیپ گرافیک یا سوختن CPU وجود دارد.
+* عدم کار با سیستم روی فرش یا سطوح پرزدار تا قبل از سرویس.
+* همراه داشتن شارژر اصلی دستگاه هنگام تحویل به پذیرش.
+**خدمت پیشنهادی:** سرویس دوره‌ای فن و تعویض خمیر سیلیکون.`;
+      } else if (q.includes("صفحه آبی") || q.includes("bsod") || q.includes("کرش") || q.includes("ریستارت") || q.includes("رم")) {
+        return `### نتیجه عیب‌یابی: خطای آدرس‌دهی حافظه رم یا تداخل درایور
+**تحلیل فنی:** بروز خطای صفحه آبی اغلب به دلیل ناپایداری اسلات‌های رم، نیم‌سوز شدن یکی از چیپ‌های حافظه یا مغایرت بایوس با درایور کارت گرافیک است.
+**سطح ریسک سخت‌افزاری:** متوسط (خطر آسیب به جدول پارتیشن ویندوز).
+* عکس‌برداری از کد خطا و عدم نصب نرم‌افزارهای دستکاری رجیستری.
+* بررسی سلامت ماژول‌ها روی تستر سخت‌افزاری.
+**خدمت پیشنهادی:** ارتقای ماژول حافظه رم (RAM).`;
+      } else if (q.includes("هارد") || q.includes("کندی") || q.includes("۱۰۰") || q.includes("تیک") || q.includes("دیسک")) {
+        return `### نتیجه عیب‌یابی: استهلاک مکانیکی هارد و گلوگاه شدید I/O
+**تحلیل فنی:** سرعت واکشی اطلاعات در هارد دیسک‌های مکانیکی قدیمی به زیر ۲۰ مگابایت بر ثانیه افت کرده که سبب پر شدن ۱۰۰٪ دیسک و فریز دائمی ویندوز می‌شود.
+**سطح ریسک سخت‌افزاری:** خطر آسیب به هد هارد و عدم خوانش اسناد شخصی.
+* از دیفرگمنت کردن یا ریکاوری غیرتخصصی خودداری فرمایید.
+* انتقال کامل سکتوری بدون حذف برنامه‌ها در کارگاه انجام می‌شود.
+**خدمت پیشنهادی:** ارتقای SSD + کلون سکتوری ویندوز.`;
+      } else if (q.includes("تصویر") || q.includes("روشن نمیشه") || q.includes("بوق") || q.includes("آب") || q.includes("شارژ")) {
+        return `### نتیجه عیب‌یابی: افت ولتاژ مدار تغذیه یا آسیب قطعات SMD مادربرد
+**تحلیل فنی:** مادربرد برق ورودی را به درستی بین چیپست‌ها توزیع نمی‌کند. این اختلال معمولاً به دلیل خرابی ماسفت‌ها، آی‌سی تغذیه یا نوسان شارژر است.
+**سطح ریسک سخت‌افزاری:** بحرانی (نیاز به توقف سریع استفاده).
+* دستگاه را مجدداً به برق متصل نکنید.
+* همراه داشتن شارژر فابریک جهت بررسی نوسان ولتاژ.
+**خدمت پیشنهادی:** عیب‌یابی تخصصی مادربرد و مدار تغذیه.`;
+      } else {
+        return `### نتیجه عیب‌یابی هوشمند سیستم
+**تحلیل فنی:** نشانه‌های ارسالی حاکی از اختلال در کارایی قطعات ذخیره‌سازی و پایداری نرم‌افزاری است. سیستم شما نیازمند بررسی تخصصی در کارگاه مرکزی با تجهیزات تشخیصی می‌باشد.
+**سطح ریسک سخت‌افزاری:** متوسط.
+* قبل از تحویل نسخه پشتیبان از فایل‌های حیاتی دسکتاپ تهیه فرمایید.
+* دستگاه همراه با شارژر یا کابل برق به کارگاه تحویل داده شود.
+**خدمت پیشنهادی:** سرویس دوره‌ای فن و تعویض خمیر سیلیکون.`;
+      }
+    }
+
+    /**
+     * AI Free-text Diagnosis via Gemini 3 Flash with instant graceful fallback
+     */
+    async function runAiTextDiagnosis() {
+      const inputEl = document.getElementById("aiProblemInput");
+      const userText = inputEl ? inputEl.value.trim() : "";
+
+      if (!userText) {
+        showToast("لطفاً شرح مشکل یا نشانه‌های سیستم را بنویسید.");
+        return;
+      }
+
+      playHapticSound('click');
+      const btnText = document.getElementById("aiBtnText");
+      const spinner = document.getElementById("aiBtnSpinner");
+      const btn = document.getElementById("aiAnalyzeBtn");
+
+      if (btn) btn.disabled = true;
+      if (btnText) btnText.textContent = "در حال تحلیل عمیق با هوش مصنوعی...";
+      if (spinner) spinner.classList.remove("hidden");
+
+      const systemPrompt = `شما یک مهندس ارشد و تکنسین فوق‌تخصصی عیب‌یابی رایانه و لپ‌تاپ در مرکز فنی «پشتیبان پی‌سی» هستید.
+وظیفه شما تحلیل نشانه ارسالی کاربر و ارائه یک گزارش تشخیصی دقیق، تخصصی، کاربردی و به زبان فارسی شیوا با ساختار مارک‌داون زیر است:
+
+### نتیجه عیب‌یابی: [عنوان فنی و دقیق مشکل، مثلاً خرابی سکتور هارد یا پدیده داغ شدن و ترمال تراتلینگ]
+**تحلیل فنی و ریشه نقص:** [توضیح کوتاه و موشکافانه در ۲ یا ۳ جمله درباره علت فیزیکی یا نرم‌افزاری خطا]
+**سطح ریسک سخت‌افزاری:** [یکی از سطوح: کم، متوسط، بالا، یا بحرانی همراه با توضیح علت ریسک]
+* [اقدام احتیاطی مهم شماره یک]
+* [اقدام احتیاطی مهم شماره دو]
+**خدمت پیشنهادی کارگاه:** [نام یکی از این خدمات دقیق: "ارتقای SSD + کلون سکتوری ویندوز" یا "سرویس دوره‌ای فن و تعویض خمیر سیلیکون" یا "ارتقای ماژول حافظه رم (RAM)" یا "عیب‌یابی تخصصی مادربرد و مدار تغذیه"]`;
+
+      const payload = {
+        contents: [
+          {
+            role: "user",
+            parts: [{ text: userText }]
+          }
+        ],
+        systemInstruction: {
+          parts: [{ text: systemPrompt }]
+        }
+      };
+
+      try {
+        const aiResponse = await callGeminiApi(payload);
+        playHapticSound('success');
+        renderAiDiagnosticOutput("تحلیل هوشمند بر اساس شرح مشکل شما", aiResponse, true);
+        showToast("تحلیل هوش مصنوعی با موفقیت آماده شد ✓");
+      } catch (err) {
+        const fallbackReport = runLocalIntelligentEngine('text', userText);
+        playHapticSound('success');
+        renderAiDiagnosticOutput("تحلیل هوشمند بر اساس شرح مشکل شما", fallbackReport, false);
+        showToast("عیب‌یابی هوشمند آماده شد ✓");
+      } finally {
+        if (btn) btn.disabled = false;
+        if (btnText) btnText.textContent = "تحلیل تخصصی با هوش مصنوعی ✦";
+        if (spinner) spinner.classList.add("hidden");
+      }
+    }
+
+    function setAiPromptSnippet(snippet) {
+      playHapticSound('click');
+      const inputEl = document.getElementById("aiProblemInput");
+      if (inputEl) {
+        inputEl.value = snippet;
+        inputEl.focus();
+      }
+    }
+
+    /**
+     * AI Vision Multimodal Implementation with Client-side Canvas Compression
+     * Downsamples 5-10MB mobile photos to lightweight 1200px JPEGs (~120KB) to prevent payload errors.
+     */
+    function handleImageSelected(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+
+      const fileNameText = document.getElementById("imageFileNameText");
+      if (fileNameText) fileNameText.textContent = "در حال فشرده‌سازی و پردازش تصویر...";
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const MAX_WIDTH = 1200;
+          const MAX_HEIGHT = 1200;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height = Math.round((height * MAX_WIDTH) / width);
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width = Math.round((width * MAX_HEIGHT) / height);
+              height = MAX_HEIGHT;
+            }
+          }
+
+          const canvas = document.createElement("canvas");
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Compress to JPEG with 0.82 quality
+          const compressedDataUrl = canvas.toDataURL("image/jpeg", 0.82);
+          selectedVisionBase64 = compressedDataUrl.split(',')[1];
+          selectedVisionMimeType = "image/jpeg";
+
+          const previewImg = document.getElementById("imagePreviewElement");
+          const placeholder = document.getElementById("dropZonePlaceholder");
+          const previewWrap = document.getElementById("dropZonePreview");
+
+          if (previewImg) previewImg.src = compressedDataUrl;
+          if (placeholder) placeholder.classList.add("hidden");
+          if (previewWrap) previewWrap.classList.remove("hidden");
+
+          const approxKb = Math.round((selectedVisionBase64.length * 3/4) / 1024);
+          if (fileNameText) fileNameText.textContent = `${file.name} (بهینه‌شده: ${approxKb} KB)`;
+
+          showToast("تصویر با وضوح بهینه بارگذاری شد ✓");
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function resetImageSelection() {
+      selectedVisionBase64 = null;
+      selectedVisionMimeType = null;
+      const fileInput = document.getElementById("aiImageFileInput");
+      if (fileInput) fileInput.value = "";
+      const placeholder = document.getElementById("dropZonePlaceholder");
+      const previewWrap = document.getElementById("dropZonePreview");
+      if (placeholder) placeholder.classList.remove("hidden");
+      if (previewWrap) previewWrap.classList.add("hidden");
+    }
+
+    async function runAiVisionDiagnosis() {
+      if (!selectedVisionBase64) {
+        showToast("لطفاً ابتدا تصویری از خطا یا صفحه آبی بارگذاری فرمایید.");
+        return;
+      }
+
+      playHapticSound('click');
+      const btnText = document.getElementById("aiVisionBtnText");
+      const spinner = document.getElementById("aiVisionSpinner");
+      const btn = document.getElementById("aiVisionSubmitBtn");
+      const userNotes = document.getElementById("aiVisionNotes")?.value || "";
+
+      if (btn) btn.disabled = true;
+      if (btnText) btnText.textContent = "در حال تحلیل تصویر با هوش مصنوعی...";
+      if (spinner) spinner.classList.remove("hidden");
+
+      const promptText = `شما مهندس سخت‌افزار و کارشناس دیباگ تخصصی کامپیوتر هستید. این عکس ارسالی کاربر از مانیتور، ارور، صفحه آبی (BSOD)، پیام بایوس یا قطعه رایانه است.
+${userNotes ? "توضیحات تکمیلی کاربر: " + userNotes : ""}
+تصویر را با دقت تحلیل کرده و گزارش فنی زیر را به زبان فارسی و با فرمت مارک‌داون تنظیم کنید:
+### نتیجه تحلیل تصویری: [نام دقیق استاپ‌کد یا نوع قطعه و ایراد مشاهده‌شده]
+**ریشه نقص و علت‌یابی:** [توضیح موشکافانه فنی از دلیل رخداد این ارور]
+**سطح ریسک سخت‌افزاری:** [کم، متوسط، بالا، یا بحرانی]
+* [دستورالعمل یا هشدار ضروری جهت جلوگیری از سوختن سایر قطعات]
+* [اقدام پیشنهادی پیش از تحویل به کارگاه]
+**خدمت پیشنهادی کارگاه:** [یکی از خدمات: "ارتقای SSD + کلون سکتوری ویندوز" یا "سرویس دوره‌ای فن و تعویض خمیر سیلیکون" یا "ارتقای ماژول حافظه رم (RAM)" یا "عیب‌یابی تخصصی مادربرد و مدار تغذیه"]`;
+
+      const payload = {
+        contents: [
+          {
+            role: "user",
+            parts: [
+              { text: promptText },
+              {
+                inlineData: {
+                  mimeType: selectedVisionMimeType || "image/jpeg",
+                  data: selectedVisionBase64
+                }
+              }
+            ]
+          }
+        ]
+      };
+
+      try {
+        const aiResponse = await callGeminiApi(payload);
+        playHapticSound('success');
+        renderAiDiagnosticOutput("نتیجه تحلیل تصویری خطای ویندوز / قطعه", aiResponse, true);
+        showToast("تحلیل تصویری هوش مصنوعی آماده شد ✓");
+      } catch (err) {
+        const fallbackReport = runLocalIntelligentEngine('vision', userNotes, "عکس بارگذاری شده");
+        playHapticSound('success');
+        renderAiDiagnosticOutput("نتیجه تحلیل تصویری خطای ویندوز / قطعه", fallbackReport, false);
+        showToast("تحلیل تصویری آماده شد ✓");
+      } finally {
+        if (btn) btn.disabled = false;
+        if (btnText) btnText.textContent = "تحلیل تصویر با هوش مصنوعی 📸";
+        if (spinner) spinner.classList.add("hidden");
+      }
+    }
+
+    function renderAiDiagnosticOutput(headline, aiRawText, isLiveAi = false) {
+      const reportTitle = document.getElementById("diagReportTitle");
+      const reportDesc = document.getElementById("diagReportDesc");
+      const badgeUrgency = document.getElementById("diagBadgeUrgency");
+      const aiBadge = document.getElementById("aiGeneratedBadge");
+      const checklistContainer = document.getElementById("checklistItemsContainer");
+
+      if (aiBadge) {
+        aiBadge.classList.remove("hidden");
+        aiBadge.innerHTML = `
+          <span class="w-1.5 h-1.5 rounded-full ${isLiveAi ? 'bg-purple-500 animate-pulse' : 'bg-blue-500'}"></span>
+          <span>${isLiveAi ? 'تحلیل زنده توسط مدل هوش مصنوعی' : 'تحلیل هوشمند موتور عیب‌یابی'}</span>
+        `;
+      }
+      if (reportTitle) reportTitle.textContent = headline;
+      if (reportDesc) reportDesc.innerHTML = formatMarkdownToHtml(aiRawText);
+
+      let urgencyText = "بررسی فنی اولویت‌دار";
+      let urgencyClass = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 mb-2 inline-block";
+
+      if (aiRawText.includes("بحرانی") || aiRawText.includes("سوختن") || aiRawText.includes("مادربرد")) {
+        urgencyText = "بحرانی - توقف فوری کارکرد";
+        urgencyClass = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-500/10 text-rose-500 mb-2 inline-block";
+        latestAiRecommendedService = "mobo";
+      } else if (aiRawText.includes("SSD") || aiRawText.includes("هارد")) {
+        urgencyText = "گلوگاه ذخیره‌سازی و خطر دیتا";
+        urgencyClass = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-500 mb-2 inline-block";
+        latestAiRecommendedService = "ssd";
+      } else if (aiRawText.includes("رم") || aiRawText.includes("RAM")) {
+        urgencyText = "ناپایداری ماژول حافظه";
+        urgencyClass = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-500 mb-2 inline-block";
+        latestAiRecommendedService = "ram";
+      } else {
+        urgencyText = "نیازمند سرویس دوره‌ای فن";
+        urgencyClass = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-500 mb-2 inline-block";
+        latestAiRecommendedService = "thermal";
+      }
+
+      if (badgeUrgency) {
+        badgeUrgency.textContent = urgencyText;
+        badgeUrgency.className = urgencyClass;
+      }
+
+      const reportCard = document.getElementById("diagReportCard");
+      if (reportCard) {
+        reportCard.classList.remove("hidden");
+        reportCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    function toggleChecklistItem(checkbox) {
+      playHapticSound('click');
+      const span = checkbox.nextElementSibling;
+      if (span) {
+        if (checkbox.checked) {
+          span.classList.add("line-through", "opacity-60");
+        } else {
+          span.classList.remove("line-through", "opacity-60");
+        }
+      }
+      updateChecklistProgress();
+    }
+
+    function updateChecklistProgress() {
+      const container = document.getElementById("checklistItemsContainer");
+      if (!container) return;
+      const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+      const checked = container.querySelectorAll('input[type="checkbox"]:checked');
+      const total = checkboxes.length;
+      const count = checked.length;
+
+      const progressText = document.getElementById("checklistProgressText");
+      const progressBar = document.getElementById("checklistProgressBar");
+
+      if (progressText) {
+        progressText.textContent = `${count.toLocaleString("fa-IR")} از ${total.toLocaleString("fa-IR")} اقدام`;
+      }
+      if (progressBar) {
+        const percent = total > 0 ? (count / total) * 100 : 0;
+        progressBar.style.width = `${percent}%`;
+      }
+    }
+
+    /**
+     * Floating AI Assistant Chat Drawer with Multi-Turn Conversation
+     */
+    let aiChatHistory = [];
+
+    function toggleAiDrawer(forceOpen) {
+      playHapticSound('click');
+      const drawer = document.getElementById("aiChatDrawer");
+      if (!drawer) return;
+
+      const isClosed = drawer.classList.contains("translate-x-full") || drawer.classList.contains("hidden");
+      const shouldOpen = forceOpen !== undefined ? forceOpen : isClosed;
+
+      if (shouldOpen) {
+        drawer.classList.remove("hidden");
+        lockBodyScroll();
+        setTimeout(() => drawer.classList.remove("translate-x-full"), 10);
+      } else {
+        drawer.classList.add("translate-x-full");
+        setTimeout(() => {
+          drawer.classList.add("hidden");
+          unlockBodyScroll();
+        }, 300);
+      }
+    }
+
+    function sendQuickAiQuery(query) {
+      const input = document.getElementById("aiChatDrawerInput");
+      if (input) {
+        input.value = query;
+        handleAiChatSubmit(new Event('submit'));
+      }
+    }
+
+    async function handleAiChatSubmit(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById("aiChatDrawerInput");
+      const userMsg = input ? input.value.trim() : "";
+      if (!userMsg) return;
+
+      playHapticSound('click');
+      input.value = "";
+
+      const historyContainer = document.getElementById("aiChatHistoryContainer");
+      if (!historyContainer) return;
+
+      // Render User bubble
+      const userBubble = document.createElement("div");
+      userBubble.className = "p-3 rounded-2xl bg-brand-blue text-white text-xs leading-relaxed max-w-[85%] self-end mr-auto shadow-sm";
+      userBubble.textContent = userMsg;
+      historyContainer.appendChild(userBubble);
+      historyContainer.scrollTop = historyContainer.scrollHeight;
+
+      // Track multi-turn history
+      aiChatHistory.push({
+        role: "user",
+        parts: [{ text: userMsg }]
+      });
+
+      if (aiChatHistory.length > 10) {
+        aiChatHistory = aiChatHistory.slice(aiChatHistory.length - 10);
+      }
+      // Ensure the first message in conversation history is always from user (Gemini API spec)
+      while (aiChatHistory.length > 0 && aiChatHistory[0].role !== "user") {
+        aiChatHistory.shift();
+      }
+
+      // Loading bubble
+      const loadingBubble = document.createElement("div");
+      loadingBubble.className = "p-3 rounded-2xl bg-brand-lightGray dark:bg-[#1a1a1c] text-brand-gray text-xs flex items-center gap-2 border border-black/[0.04] dark:border-white/[0.04]";
+      loadingBubble.innerHTML = `
+        <span class="w-2 h-2 rounded-full bg-purple-500 animate-ping"></span>
+        <span class="ai-gradient-text font-bold">هوش مصنوعی در حال بررسی و تدوین پاسخ...</span>
+      `;
+      historyContainer.appendChild(loadingBubble);
+      historyContainer.scrollTop = historyContainer.scrollHeight;
+
+      const drawerSystemPrompt = `شما مشاور فنی و کارشناس ارشد مرکز خدمات «پشتیبان پی‌سی» تهران هستید.
+پاسخ شما باید فارسی، شیوا، صمیمی، بسیار دقیق و راهگشا باشد.
+اگر کاربر درباره سازگاری قطعات (رم، گرافیک، سی‌پی‌یو، پاور)، رفع ارورهای ویندوز، علائم داغ شدن، نصب بازی، یا ارتقای لپ‌تاپ پرسید، به طور واضح با نام قطعات و راهکار راهنمایی کنید.
+پاسخ‌ها را خیلی طولانی نکنید (حدود ۲ الی ۴ پاراگراف مفید) و در صورت لزوم به خدمات پشتیبان پی‌سی (ارتقا SSD، تعویض خمیر سیلیکون، عیب‌یابی برد) و دکمه «رزرو نوبت» اشاره فرمایید.`;
+
+      const payload = {
+        contents: aiChatHistory,
+        systemInstruction: {
+          parts: [{ text: drawerSystemPrompt }]
+        }
+      };
+
+      try {
+        const replyText = await callGeminiApi(payload);
+        loadingBubble.remove();
+        playHapticSound('success');
+
+        aiChatHistory.push({
+          role: "model",
+          parts: [{ text: replyText }]
+        });
+
+        const aiBubble = document.createElement("div");
+        aiBubble.className = "p-3.5 rounded-2xl bg-brand-lightGray dark:bg-[#1a1a1c] border border-black/[0.06] dark:border-white/[0.06] text-brand-dark dark:text-white leading-relaxed";
+        aiBubble.innerHTML = `
+          <div class="flex items-center justify-between mb-1.5">
+            <div class="flex items-center gap-1.5 text-purple-600 dark:text-purple-400 font-bold text-[11px]">
+              <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+              <span>مشاور هوشمند فنی</span>
+            </div>
+            <span class="text-[9px] px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 font-mono font-medium">پاسخ زنده</span>
+          </div>
+          ${formatMarkdownToHtml(replyText)}
+          <div class="mt-3 pt-2 border-t border-black/[0.04] dark:border-white/[0.04] flex justify-between items-center">
+            <button onclick="openBookingModal(); toggleAiDrawer(false);" class="text-[10px] text-brand-blue font-bold hover:underline">
+              رزرو نوبت پذیرش حضوری ←
+            </button>
+          </div>
+        `;
+        historyContainer.appendChild(aiBubble);
+        historyContainer.scrollTop = historyContainer.scrollHeight;
+      } catch (err) {
+        loadingBubble.remove();
+        playHapticSound('success');
+
+        const fallbackReply = generateSmartHardwareAdvisorReply(userMsg);
+
+        aiChatHistory.push({
+          role: "model",
+          parts: [{ text: fallbackReply }]
+        });
+
+        const aiBubble = document.createElement("div");
+        aiBubble.className = "p-3.5 rounded-2xl bg-brand-lightGray dark:bg-[#1a1a1c] border border-black/[0.06] dark:border-white/[0.06] text-brand-dark dark:text-white leading-relaxed";
+        aiBubble.innerHTML = `
+          <div class="flex items-center gap-1.5 text-purple-600 dark:text-purple-400 font-bold mb-1.5 text-[11px]">
+            <span>✦ مشاور فنی هوشمند:</span>
+          </div>
+          ${formatMarkdownToHtml(fallbackReply)}
+          <div class="mt-3 pt-2 border-t border-black/[0.04] dark:border-white/[0.04] flex justify-between items-center">
+            <button onclick="openBookingModal(); toggleAiDrawer(false);" class="text-[10px] text-brand-blue font-bold hover:underline">
+              رزرو نوبت پذیرش حضوری ←
+            </button>
+          </div>
+        `;
+        historyContainer.appendChild(aiBubble);
+        historyContainer.scrollTop = historyContainer.scrollHeight;
+      }
+    }
+
+    /**
+     * Multi-Dimensional Local Hardware Expert System
+     * Formulates accurate, state-aware advice and handles emergency & abnormal scenarios gracefully.
+     */
+    function generateSmartHardwareAdvisorReply(userMsg) {
+      const m = (userMsg || "").toLowerCase();
+      
+      // Read current simulator state
+      const cpuVal = document.getElementById("simCpu")?.value || "mid";
+      const ramVal = document.getElementById("simRam")?.value || "8";
+      const storageVal = document.getElementById("simStorage")?.value || "hdd";
+      const cpuLabel = document.getElementById("simCpu-label")?.textContent.trim() || "";
+      const ramLabel = document.getElementById("simRam-label")?.textContent.trim() || "";
+      const storageLabel = document.getElementById("simStorage-label")?.textContent.trim() || "";
+
+      let score = 90;
+      if (storageVal === "hdd") score -= 45;
+      else if (storageVal === "sata") score -= 15;
+      if (ramVal === "4") score -= 30;
+      else if (ramVal === "8") score -= 10;
+      if (cpuVal === "old") score -= 20;
+      else if (cpuVal === "mid") score -= 5;
+      score = Math.max(25, Math.min(98, score));
+
+      // 1. Bottleneck & Hardware Simulator State Awareness
+      const isBottleneckQuery = m.includes("مشخصات سیستم من") || m.includes("گلوگاه") || m.includes("راندمان") || m.includes("تست گلوگاه") || (m.includes("سیستم") && (m.includes("بازی") || m.includes("گیمینگ")) && m.includes("ارتقا"));
+
+      if (isBottleneckQuery) {
+        if (score >= 85) {
+          return `سیستم شما بر اساس مشخصات انتخابی (${cpuLabel}، ${ramLabel} و ${storageLabel}) در بالاترین سطح توازن سخت‌افزاری (${score.toLocaleString("fa-IR")}٪) قرار دارد و هیچ‌گونه گلوگاه (Bottleneck) محسوسی در قطعات اصلی ندارد.
+
+**توصیه‌های حرفه‌ای جهت بهره‌برداری حداکثری:**
+۱. **فعال‌سازی XMP/DOCP:** حتماً در بایوس مادربرد اطمینان حاصل فرمایید پروفایل XMP روشن باشد تا رم روی فرکانس حداکثری و پهنای باند دوکاناله (Dual Channel) فعالیت کند.
+۲. **تعیین‌کننده فریم‌ریت گیمینگ (GPU):** با این مشخصات پردازنده و رم، عامل اصلی فریم‌ریت در بازی‌های سنگین، کارت گرافیک مستقل و توان پایدار منبع تغذیه (پاور) است.
+۳. **پایداری حرارتی:** پردازنده‌های نسل جدید در بوست‌های سنگین دمای بالایی تولید می‌کنند؛ سرویس دوره‌ای خمیر سیلیکون مرغوب و تهویه مناسب کیس از پدیده افت فرکانس حرارتی جلوگیری می‌کند.`;
+        } else if (storageVal === "hdd") {
+          return `بر اساس تحلیل مشخصات سیستم شما (${cpuLabel} و ${ramLabel})، گلوگاه اصلی و شدید سیستم **هارد دیسک مکانیکی (HDD)** است که راندمان را به ${score.toLocaleString("fa-IR")}٪ کاهش داده است.
+
+**راهکار و دستاورد ارتقا:**
+• ارتقا به اس‌اس‌دی (SATA یا NVMe) سرعت بوت ویندوز را از ۱.۵ دقیقه به کمتر از ۱۰ ثانیه می‌رساند و فریزهای ۱۰۰٪ دیسک را به صفر می‌رساند.
+• **انتقال بدون از دست رفتن داده:** در کارگاه پشتیبان پی‌سی، کل سیستم‌عامل، نرم‌افزارها و اطلاعات شخصی با کلون سکتوری دقیق روی SSD جدید منتقل می‌شود.`;
+        } else if (ramVal === "4") {
+          return `در کانفیگ کنونی شما، عامل اصلی گلوگاه و ایست‌های لحظه‌ای، **کمبود حافظه رم (۴ گیگابایت)** است که راندمان را روی ${score.toLocaleString("fa-IR")}٪ محدود کرده است.
+
+**راهکار تخصصی:**
+ویندوزهای ۱۰ و ۱۱ به تنهایی نزدیک به ۳ تا ۴ گیگابایت رم اشغال می‌کنند. ارتقای رم به حداقل ۸ یا ۱۶ گیگابایت با ماژول دوکاناله، پایداری مولتی‌تسکینگ و بازی‌ها را کاملاً تثبیت می‌کند.`;
+        } else {
+          return `سیستم شما با راندمان ${score.toLocaleString("fa-IR")}٪ وضعیت نسبتاً مناسبی دارد اما پردازنده در تسک‌های جدید به مرز توان می‌رسد. بهینه‌سازی بایوس، فعال‌سازی پروفایل عملکردی و سرویس حرارتی فن بالاترین پایداری را به سیستم بازمی‌گرداند.`;
+        }
+      }
+
+      // 2. Emergency & Physical Hazards (Abnormal Scenarios)
+      if (m.includes("آب") || m.includes("چای") || m.includes("قهوه") || m.includes("مایع") || m.includes("خیس") || m.includes("شربت")) {
+        return `⛔ **اقدام اضطراری نفوذ مایعات به سیستم:**
+۱. فوراً کابل شارژ و برق را از پریز بکشید و در صورت امکان باتری دستگاه را خارج فرمایید.
+۲. به هیچ عنوان دستگاه را برای تست روشن نکنید و از سشوار گرم یا کیسه برنج استفاده ننمایید (حرارت باعث پختن و تثبیت رسوبات اسیدی/قندی روی پایه‌های ریز چیپ‌ها می‌شود).
+۳. دستگاه را به صورت وارونه یا چادری روی پارچه تمیز بگذارید و در اولین فرصت جهت شستشوی تخصصی اولتراسونیک و خشک‌سازی صنعتی مدار به کارگاه منتقل فرمایید.`;
+      }
+
+      if (m.includes("بو") || m.includes("سوخت") || m.includes("دود") || m.includes("جرقه") || m.includes("آتش") || m.includes("سیم سوخته")) {
+        return `⚠️ **هشدار فوری ایمنی مدار تغذیه و پاور:**
+سریعاً دوشاخه برق سیستم را جدا نمایید. استشمام بوی سوختگی یا مشاهده دود/جرقه نشان‌دهنده ترکیدگی خازن‌های صافی، اتصال کوتاه در ریل‌های ۱۲ ولت پاور یا اتصال در ماسفت‌های مادربرد (VRM) است.
+ادامه اتصال به برق می‌تواند ولتاژ بالا را مستقیماً وارد CPU یا کارت گرافیک کرده و قطعات گران‌قیمت را غیرقابل‌تعمیر کند. تست قطعه‌به‌قطعه با تستر دیجیتال در کارگاه الزامی است.`;
+      }
+
+      if (m.includes("افتاد") || m.includes("ضربه") || m.includes("شکست") || m.includes("لولا")) {
+        return `تحلیل ضربه‌خوردگی فیزیکی:
+• در صورت وجود هارد دیسک مکانیکی (HDD)، به دلیل حساسیت میکرونی هد به دیسک، روشن کردن سیستم ممکن است خطوط دایره‌ای روی پلاتر ایجاد کرده و ریکاوری اطلاعات را ناممکن سازد.
+• شکستگی لولاها نیز معمولاً سبب کشیدگی و اتصال فلت تصویر با شاسی فلزی لپ‌تاپ می‌شود. پیش از روشن کردن، دستگاه باید از نظر عدم اتصالی برد بررسی گردد.`;
+      }
+
+      // 3. Display, GPU & Visual Artifacts
+      if (m.includes("آرتیفکت") || m.includes("بنفش") || m.includes("شطرنجی") || m.includes("خط روی صفحه") || m.includes("پرش تصویر") || m.includes("سبز")) {
+        return `تشخیص تخصصی نقص تصویری:
+۱. **فلت تصویر (eDP):** اگر با تغییر زاویه لولای لپ‌تاپ یا تکان دادن کابل مانیتور خطوط تغییر می‌کنند، مشکل از کابل فلت است.
+۲. **چیپ گرافیک یا حافظه VRAM:** اگر نقاط شطرنجی، خطوط پراکنده رنگی یا رنگ‌های عجیب (مثل بنفش یا سبز) هنگام اجرای ویندوز یا بازی ظاهر می‌شوند، نشان‌دهنده دیسولدر شدن یا خرابی چیپ‌های حافظه VRAM کارت گرافیک است که در کارگاه با ریبال (Reballing) و تعویض چیپ ترمیم می‌شود.`;
+      }
+
+      // 4. Motherboard Beep Codes & Boot Failures
+      if (m.includes("بوق") || m.includes("صدای بوق") || m.includes("چند تا بوق") || m.includes("beep")) {
+        return `رمزگشایی بوق‌های بایوس (Beep Codes):
+• **بوق‌های مکرر مداوم یا تک بوق طولانی:** معمولاً نشان‌دهنده کثیفی پین‌ها، اکسید شدن اسلات یا خطای شناسایی رم (RAM) است.
+• **یک بوق بلند و دو یا سه بوق کوتاه:** عدم شناسایی کارت گرافیک یا مشکل خروجی تصویر.
+• **چند بوق کوتاه سریع:** خطای مدار تغذیه مادربرد، بایوس معیوب یا افت ولتاژ دکمه پاور.`;
+      }
+
+      // 5. Blue Screen Stop Codes
+      if (m.includes("critical_process") || m.includes("critical process")) {
+        return `خطای استاپ‌کد **CRITICAL_PROCESS_DIED**:
+این خطا بیانگر متوقف شدن یکی از سرویس‌های حیاتی کرنل ویندوز است. در بیش از ۸۵٪ موارد به دلیل خرابی بلاک‌های خواندن/نوشتن هارد یا سکتورهای خراب درایو C رخ می‌دهد. ارتقا به SSD و کلون بدون پاک شدن اطلاعات راهکار قطعی این نقص است.`;
+      }
+
+      if (m.includes("memory_management") || m.includes("memory management")) {
+        return `خطای استاپ‌کد **MEMORY_MANAGEMENT**:
+ریشه این خطا ناپایداری در ماژول‌های رم، تداخل فرکانسی بین دو ماژول با تایمینگ‌های متفاوت یا خطای آدرس‌دهی حافظه است. تست تخصصی با استاندارد MemTest سخت‌افزاری ماژول معیوب را تعیین می‌نماید.`;
+      }
+
+      if (m.includes("whea") || m.includes("uncorrectable")) {
+        return `خطای استاپ‌کد **WHEA_UNCORRECTABLE_ERROR**:
+یک خطای مستقیم سخت‌افزاری ناشی از افت ولتاژ هسته‌های پردازنده، داغ شدن شدید بالای ۹۰ درجه (ترمال تراتلینگ بحرانی) یا ناپایداری ماسفت‌های تغذیه مادربرد است. نیاز به تست خمیر سیلیکون و ولتاژهای مادربرد دارد.`;
+      }
+
+      // 6. Games, FPS drops, Stuttering
+      if (m.includes("افت فریم") || m.includes("لگ") || m.includes("اف پی اس") || m.includes("fps") || m.includes("استاتر") || m.includes("افت سرعت بازی")) {
+        return `راهنمای فنی رفع لگ و افت فریم در بازی‌ها:
+۱. **پدیده Thermal Throttling:** بعد از ۱۰ تا ۱۵ دقیقه بازی، افزایش دمای GPU/CPU به بالای ۸۵ درجه باعث افت خودکار کلاک و ریزش فریم‌ریت می‌شود. تعویض خمیر سیلیکون با مدل کربنی و تمیزکاری پره‌های فن مشکل را برطرف می‌سازد.
+۲. **رم تک‌کاناله (Single Channel):** استفاده از یک اسلات رم به جای دو اسلات، تا ۳۰٪ پهنای باند بازی‌ها را کاهش داده و ایجاد Stutter می‌کند.
+۳. **نصب بازی روی هارد مکانیکی:** لود بافت‌های بازی‌های جدید نیازمند پهنای باند SSD است و هارد HDD باعث فریزهای لحظه‌ای در حین چرخش دوربین می‌شود.`;
+      }
+
+      // 7. General Upgrades & Services
+      if (m.includes("ssd") || m.includes("اس اس دی") || m.includes("هارد")) {
+        return `ارتقای پرسرعت SSD در مرکز پشتیبان پی‌سی:
+نصب SSDهای پرسرعت NVMe و SATA همراه با انتقال کامل سکتوری (بدون پاک شدن برنامه‌ها، اطلاعات شخصی یا لایسنس ویندوز) در کمتر از ۲ ساعت در کارگاه مرکزی با ضمانت کتبی انجام می‌شود.`;
+      }
+
+      if (m.includes("خمیر") || m.includes("دما") || m.includes("داغ") || m.includes("حرارت")) {
+        return `سرویس دوره‌ای حرارتی:
+خشک شدن خمیر سیلیکون بعد از ۱۲ ماه باعث بالا رفتن دمای پردازنده تا بالای ۹۰ درجه می‌شود. در کارگاه ما از خمیرهای مرغوب با ضریب انتقال حرارت بالا استفاده می‌شود که دمای کاری را بین ۱۵ تا ۲۵ درجه کاهش می‌دهد.`;
+      }
+
+      if (m.includes("قیمت") || m.includes("هزینه") || m.includes("ضمانت") || m.includes("گارانتی")) {
+        return `تعرفه‌ها و ضمانت خدمات کارگاه پشتیبان پی‌سی:
+کلیه خدمات ارتقا، تعمیرات مادربرد و سرویس‌های سخت‌افزاری مطابق نرخ مصوبه اتحادیه و همراه با **ضمانت کتبی کارگاه** و ارائه قرارداد رسمی تحویل مشتری می‌گردد. برای استعلام هزینه دقیق قطعه انتخابی می‌توانید از طریق دکمه رزرو نوبت اقدام فرمایید.`;
+      }
+
+      // 8. Abnormal / Out-of-Scope Queries (Graceful Intelligent Fallback)
+      return `سؤال شما توسط سیستم هوشمند ثبت و بررسی شد.
+سامانه تشخیصی پشتیبان پی‌سی به صورت متمرکز بر عیب‌یابی فنی سخت‌افزار، لپ‌تاپ، خطاهای ویندوز و بهینه‌سازی راندمان متمرکز است.
+اگر این پرسش به نقص، صدا، بوی غیرعادی، افت فریم یا ارتقای قطعات دستگاه شما مربوط است، لطفاً نشانه دقیق‌تر یا مدل دستگاه را بنویسید تا راهنمای گام‌به‌گام را دریافت فرمایید. همچنین می‌توانید از طریق دکمه رزرو نوبت، هماهنگی بررسی حضوری با سرپرست فنی کارگاه را انجام دهید.`;
+    }
+
+    /**
+     * Smart Bottleneck Consultation with dynamic context-aware prompt generation
+     */
+    function askAiAboutBottleneck() {
+      playHapticSound('click');
+      const cpuVal = document.getElementById("simCpu")?.value || "mid";
+      const ramVal = document.getElementById("simRam")?.value || "8";
+      const storageVal = document.getElementById("simStorage")?.value || "hdd";
+      const cpuLabel = document.getElementById("simCpu-label")?.textContent.trim() || "";
+      const ramLabel = document.getElementById("simRam-label")?.textContent.trim() || "";
+      const storageLabel = document.getElementById("simStorage-label")?.textContent.trim() || "";
+
+      let score = 90;
+      if (storageVal === "hdd") score -= 45;
+      else if (storageVal === "sata") score -= 15;
+      if (ramVal === "4") score -= 30;
+      else if (ramVal === "8") score -= 10;
+      if (cpuVal === "old") score -= 20;
+      else if (cpuVal === "mid") score -= 5;
+      score = Math.max(25, Math.min(98, score));
+
+      let contextualQuery = "";
+      if (score >= 85) {
+        contextualQuery = `مشخصات سیستم من: ${cpuLabel}، رم ${ramLabel}، ذخیره‌سازی ${storageLabel} با راندمان متوازن ${score.toLocaleString('fa-IR')}٪ است. با توجه به نبود گلوگاه فیزیکی شدید، چه توصیه‌هایی برای تنظیمات XMP بایوس، کنترل حرارت و حفظ حداکثر فریم‌ریت در بازی‌ها یا کارهای سنگین دارید؟`;
+      } else if (storageVal === "hdd") {
+        contextualQuery = `مشخصات سیستم من: ${cpuLabel}، رم ${ramLabel} و هارد دیسک مکانیکی (HDD) با راندمان ${score.toLocaleString('fa-IR')}٪ است. ارتقا به SSD چقدر سرعت بوت و لود برنامه‌ها را متحول می‌کند و انتقال ویندوز بدون حذف اطلاعات چگونه است؟`;
+      } else if (ramVal === "4") {
+        contextualQuery = `مشخصات سیستم من: ${cpuLabel}، رم ۴ گیگابایت و ذخیره‌سازی ${storageLabel} با راندمان ${score.toLocaleString('fa-IR')}٪ است. کمبود رم چقدر باعث فریز سیستم حین کار یا بازی می‌شود و ارتقای رم دوکاناله چه تاثیری دارد؟`;
+      } else {
+        contextualQuery = `مشخصات سیستم من: ${cpuLabel}، رم ${ramLabel}، فضای ذخیره‌سازی ${storageLabel} با راندمان ${score.toLocaleString('fa-IR')}٪ است. اولویت بعدی بهینه‌سازی یا ارتقا برای بیشترین بازدهی کجاست؟`;
+      }
+
+      toggleAiDrawer(true);
+      sendQuickAiQuery(contextualQuery);
+    }
+
+    /**
+     * Modern Frosted Glass Dropdown Handlers
+     */
+    function toggleCustomDropdown(type) {
+      playHapticSound('click');
+      const allMenus = ['cpu', 'ram', 'storage'];
+      allMenus.forEach(t => {
+        if (t !== type) {
+          closeCustomDropdown(t);
+        }
+      });
+
+      const cap = capitalize(type);
+      const menu = document.getElementById(`sim${cap}-menu`);
+      const arrow = document.getElementById(`sim${cap}-arrow`);
+      const trigger = document.getElementById(`sim${cap}-trigger`);
+      if (!menu) return;
+
+      const isHidden = menu.classList.contains("hidden");
+      if (isHidden) {
+        menu.classList.remove("hidden");
+        if (arrow) arrow.classList.add("rotate-180");
+        if (trigger) trigger.setAttribute("aria-expanded", "true");
+      } else {
+        closeCustomDropdown(type);
+      }
+    }
+
+    function closeCustomDropdown(type) {
+      const cap = capitalize(type);
+      const menu = document.getElementById(`sim${cap}-menu`);
+      const arrow = document.getElementById(`sim${cap}-arrow`);
+      const trigger = document.getElementById(`sim${cap}-trigger`);
+      if (menu) menu.classList.add("hidden");
+      if (arrow) arrow.classList.remove("rotate-180");
+      if (trigger) trigger.setAttribute("aria-expanded", "false");
+    }
+
+    function selectCustomDropdownOption(type, value, label) {
+      playHapticSound('click');
+      const cap = capitalize(type);
+      const input = document.getElementById(`sim${cap}`);
+      const labelEl = document.getElementById(`sim${cap}-label`);
+      if (input) input.value = value;
+      if (labelEl) labelEl.textContent = label;
+
+      // Update active option styling and checkmarks
+      const options = document.querySelectorAll(`.sim${cap}-opt`);
+      options.forEach(opt => {
+        const check = opt.querySelector(".check-icon");
+        if (opt.getAttribute("data-value") === value) {
+          opt.className = `sim${cap}-opt w-full text-right px-3 py-2 rounded-xl text-xs text-brand-dark dark:text-white bg-brand-blue/10 text-brand-blue font-bold transition flex items-center justify-between`;
+          if (check) check.classList.remove("hidden");
+        } else {
+          opt.className = `sim${cap}-opt w-full text-right px-3 py-2 rounded-xl text-xs text-brand-dark dark:text-white hover:bg-brand-blue/10 hover:text-brand-blue transition flex items-center justify-between`;
+          if (check) check.classList.add("hidden");
+        }
+      });
+
+      closeCustomDropdown(type);
+      runBottleneckSimulation();
+    }
+
+    function capitalize(s) {
+      return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+
+    function switchDiagMode(mode) {
+      playHapticSound('click');
+      const textCard = document.getElementById("aiTextDiagnosticCard");
+      const visionCard = document.getElementById("aiVisionDiagnosticCard");
+      const standardCard = document.getElementById("standardSymptomsCard");
+      const reportCard = document.getElementById("diagReportCard");
+
+      const btnText = document.getElementById("aiTabPromptBtn");
+      const btnVision = document.getElementById("aiTabVisionBtn");
+      const btnStandard = document.getElementById("aiTabStandardBtn");
+
+      const activeClass = "px-4 py-2 rounded-full text-xs font-bold transition bg-white dark:bg-brand-darkCard text-brand-blue shadow-sm border border-black/[0.08] dark:border-white/[0.08] flex items-center gap-1.5";
+      const inactiveClass = "px-4 py-2 rounded-full text-xs font-medium text-brand-gray hover:text-brand-dark dark:hover:text-white transition flex items-center gap-1.5";
+
+      if (btnText) btnText.className = inactiveClass;
+      if (btnVision) btnVision.className = inactiveClass;
+      if (btnStandard) btnStandard.className = inactiveClass;
+
+      if (textCard) textCard.classList.add("hidden");
+      if (visionCard) visionCard.classList.add("hidden");
+      if (standardCard) standardCard.classList.add("hidden");
+
+      if (mode === 'ai-text') {
+        if (textCard) textCard.classList.remove("hidden");
+        if (btnText) btnText.className = activeClass;
+        if (reportCard) reportCard.classList.add("hidden");
+      } else if (mode === 'ai-vision') {
+        if (visionCard) visionCard.classList.remove("hidden");
+        if (btnVision) btnVision.className = activeClass;
+        if (reportCard) reportCard.classList.add("hidden");
+      } else {
+        // Option 3: نشانه‌های متداول پیش‌فرض (Show bottom box report card)
+        if (standardCard) standardCard.classList.remove("hidden");
+        if (btnStandard) btnStandard.className = activeClass;
+        if (reportCard) reportCard.classList.remove("hidden");
+        updateDiagnosticReport();
+      }
+    }
+
+    /* Modern Dark / Light Mode Switcher */
+    function toggleTheme() {
+      playHapticSound('click');
+      const isDark = document.documentElement.classList.toggle("dark");
+      try {
+        localStorage.setItem("poshtiban_theme", isDark ? "dark" : "light");
+      } catch (e) {}
+      updateThemeUI(isDark);
+      showToast(isDark ? "حالت تیره فعال شد 🌙" : "حالت روشن فعال شد ☀️");
+    }
+
+    function updateThemeUI(isDark) {
+      const themeIcon = document.getElementById("themeToggleIcon");
+      const drawerThemeText = document.getElementById("drawerThemeText");
+      if (themeIcon) themeIcon.textContent = isDark ? "☀️" : "🌙";
+      if (drawerThemeText) drawerThemeText.textContent = isDark ? "تغییر به تم روشن ☀️" : "تغییر به تم تیره 🌙";
+    }
+
+    function toggleMobileMenu() {
+      playHapticSound('click');
+      const drawer = document.getElementById("mobileDrawer");
+      if (!drawer) return;
+      const willOpen = drawer.classList.contains("hidden");
+      drawer.classList.toggle("hidden");
+      if (willOpen) {
+        lockBodyScroll();
+      } else {
+        unlockBodyScroll();
+      }
+    }
+
+    /* Real-time Tehran Shop Hours Checker */
+    function initShopHours() {
+      const badge = document.getElementById("liveWorkStatusBadge");
+      const text = document.getElementById("shopHoursStatusText");
+      const dot = document.getElementById("shopHoursStatusDot");
+      if (!badge || !text) return;
+
+      const now = new Date();
+      const utcTime = now.getTime() + now.getTimezoneOffset() * 60000;
+      const tehranDate = new Date(utcTime + 3.5 * 3600000);
+      const day = tehranDate.getDay();
+      const hour = tehranDate.getHours() + tehranDate.getMinutes() / 60;
+
+      const isFriday = day === 5;
+      const isOpen = !isFriday && hour >= 9.5 && hour < 20.5;
+
+      if (isOpen) {
+        text.textContent = "پذیرش حضوری باز است";
+        badge.className = "hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shrink-0 whitespace-nowrap transition-colors";
+        if (dot) dot.className = "w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0";
+      } else {
+        text.textContent = "پذیرش آنلاین فعال";
+        badge.className = "hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 shrink-0 whitespace-nowrap transition-colors";
+        if (dot) dot.className = "w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse shrink-0";
+      }
+    }
+
+    /* Diagnostic Symptoms for Standard Tab */
+    function updateDiagnosticReport() {
+      const selected = document.querySelector('input[name="diagSymptom"]:checked');
+      if (!selected) return;
+      const val = selected.value;
+
+      const titleEl = document.getElementById("diagReportTitle");
+      const descEl = document.getElementById("diagReportDesc");
+      const badgeEl = document.getElementById("diagBadgeUrgency");
+      const aiBadge = document.getElementById("aiGeneratedBadge");
+
+      if (aiBadge) aiBadge.classList.add("hidden");
+
+      if (val === "thermal") {
+        if (titleEl) titleEl.textContent = `داغ شدن شدید و گرفتگی تهویه در ${selectedDiagDeviceType}`;
+        if (descEl) descEl.textContent = "بالا رفتن حرارت پردازنده باعث ایجاد پدیده افت کارایی حرارتی (Thermal Throttling) شده و برای محافظت از چیپست خاموش می‌شود.";
+        if (badgeEl) {
+          badgeEl.textContent = "نیازمند سرویس فن و خمیر کربنی";
+          badgeEl.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-500 mb-2 inline-block";
+        }
+        latestAiRecommendedService = "thermal";
+      } else if (val === "display") {
+        if (titleEl) titleEl.textContent = `عدم نمایش تصویر یا خطای ماژول رم / مدار مادربرد`;
+        if (descEl) descEl.textContent = "چراغ‌ها یا فن‌ها روشن می‌شوند اما تصویری نمایش داده نمی‌شود. معمولاً ناشی از اکسید شدن اسلات‌های رم یا نوسان مدار تغذیه است.";
+        if (badgeEl) {
+          badgeEl.textContent = "نیازمند عیب‌یابی برد و ولتاژ";
+          badgeEl.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-500/10 text-rose-500 mb-2 inline-block";
+        }
+        latestAiRecommendedService = "mobo";
+      } else if (val === "slow") {
+        if (titleEl) titleEl.textContent = `کندی شدید ویندوز ناشی از هارد دیسک فرسوده`;
+        if (descEl) descEl.textContent = "هارد مکانیکی قدیمی توان پاسخگویی به سیستم‌عامل‌های جدید را ندارد. ارتقا به SSD سرعت خواندن و نوشتن را چندین برابر می‌کند.";
+        if (badgeEl) {
+          badgeEl.textContent = "پیشنهاد ارتقای فوری به حافظه SSD";
+          badgeEl.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-brand-blue/10 text-brand-blue mb-2 inline-block";
+        }
+        latestAiRecommendedService = "ssd";
+      } else if (val === "bsod") {
+        if (titleEl) titleEl.textContent = `صفحه آبی مرگ (BSOD) و کرش مکرر سیستم`;
+        if (descEl) descEl.textContent = "توقف‌های ناگهانی عموماً به دلیل خطای رم، خرابی سکتورهای ویندوز یا تداخل درایورهای سخت‌افزاری رخ می‌دهد.";
+        if (badgeEl) {
+          badgeEl.textContent = "بررسی خطای کرنل و سلامت رم";
+          badgeEl.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 mb-2 inline-block";
+        }
+        latestAiRecommendedService = "ram";
+      }
+    }
+
+    const SERVICES_CATALOG = {
+      ssd: { name: "ارتقای SSD + کلون سکتوری ویندوز", price: 250000, type: "اجرت تخصصی" },
+      thermal: { name: "سرویس دوره‌ای فن و تعویض خمیر سیلیکون", price: 180000, type: "سرویس فیزیکی" },
+      ram: { name: "ارتقای ماژول حافظه رم (RAM)", price: 120000, type: "سخت‌افزار / اجرت" },
+      mobo: { name: "عیب‌یابی تخصصی مادربرد و مدار تغذیه", price: 300000, type: "آزمایشگاهی" }
+    };
+
+    let selectedBookingServiceIds = new Set(["ssd"]);
+    let selectedBookingDateStr = "";
+    let selectedBookingTimeStr = "۱۰:۰۰ الی ۱۳:۰۰";
+
+    function openBookingModal(preselectedServiceKey) {
+      playHapticSound('click');
+      const modal = document.getElementById("bookingModal");
+      if (!modal) return;
+      modal.classList.remove("hidden");
+      modal.classList.add("grid");
+      lockBodyScroll();
+
+      // Ensure intake checkboxes start unchecked
+      const c1 = document.getElementById("checkIntakeCharger");
+      const c2 = document.getElementById("checkIntakeBackup");
+      const c3 = document.getElementById("checkIntakePassword");
+      if (c1) c1.checked = false;
+      if (c2) c2.checked = false;
+      if (c3) c3.checked = false;
+      updateIntakeCheckboxesState();
+
+      initBookingCalendar();
+      goToBookingStep(1);
+
+      if (preselectedServiceKey && SERVICES_CATALOG[preselectedServiceKey]) {
+        selectedBookingServiceIds = new Set([preselectedServiceKey]);
+      }
+      updateBookingServiceCardsUI();
+    }
+
+    function closeBookingModal() {
+      const modal = document.getElementById("bookingModal");
+      if (modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("grid");
+      }
+      unlockBodyScroll();
+    }
+
+    function toggleBookingService(serviceId) {
+      playHapticSound('click');
+      if (selectedBookingServiceIds.has(serviceId)) {
+        if (selectedBookingServiceIds.size > 1) {
+          selectedBookingServiceIds.delete(serviceId);
+        } else {
+          showToast("حداقل یک خدمت باید انتخاب شده باشد.");
+          return;
+        }
+      } else {
+        selectedBookingServiceIds.add(serviceId);
+      }
+      updateBookingServiceCardsUI();
+    }
+
+    function updateBookingServiceCardsUI() {
+      let totalPrice = 0;
+      Object.keys(SERVICES_CATALOG).forEach(id => {
+        const card = document.getElementById(`serviceCard_${id}`);
+        if (!card) return;
+        const isSelected = selectedBookingServiceIds.has(id);
+        const chk = card.querySelector(".check-box");
+
+        if (isSelected) {
+          totalPrice += SERVICES_CATALOG[id].price;
+          card.classList.add("border-brand-blue", "bg-brand-blue/5", "dark:bg-brand-blue/10");
+          card.classList.remove("border-black/[0.08]", "dark:border-white/[0.08]");
+          if (chk) {
+            chk.textContent = "✓";
+            chk.className = "check-box w-5 h-5 rounded-lg bg-brand-blue text-white flex items-center justify-center text-xs font-bold shadow-sm transition-all";
+          }
+        } else {
+          card.classList.remove("border-brand-blue", "bg-brand-blue/5", "dark:bg-brand-blue/10");
+          card.classList.add("border-black/[0.08]", "dark:border-white/[0.08]");
+          if (chk) {
+            chk.textContent = "";
+            chk.className = "check-box w-5 h-5 rounded-lg border border-black/20 dark:border-white/20 flex items-center justify-center text-xs font-bold transition-all";
+          }
+        }
+      });
+
+      const countText = document.getElementById("bookSelectedCountText");
+      const totalText = document.getElementById("bookSelectedTotalText");
+      if (countText) countText.textContent = `${selectedBookingServiceIds.size} خدمت انتخابی`;
+      if (totalText) totalText.textContent = `${totalPrice.toLocaleString("fa-IR")} تومان`;
+    }
+
+    function bookDiagnosedIssue() {
+      openBookingModal(latestAiRecommendedService);
+    }
+
+    // --- Persian (Jalali) Calendar Utilities for Booking System ---
+    function toJalaali(gy, gm, gd) {
+      var g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+      var jy = (gy <= 1600) ? 0 : 979;
+      gy -= (gy <= 1600) ? 621 : 1600;
+      var gy2 = (gm > 2) ? (gy + 1) : gy;
+      var days = (365 * gy) + parseInt((gy2 + 3) / 4) - parseInt((gy2 + 99) / 100)
+        + parseInt((gy2 + 399) / 400) - 80 + gd + g_d_m[gm - 1];
+      jy += 33 * parseInt(days / 12053);
+      days %= 12053;
+      jy += 4 * parseInt(days / 1461);
+      days %= 1461;
+      jy += parseInt((days - 1) / 365);
+      if (days > 0) days = (days - 1) % 365;
+      var jm, jd;
+      if (days < 186) {
+        jm = 1 + parseInt(days / 31);
+        jd = 1 + (days % 31);
+      } else {
+        jm = 7 + parseInt((days - 186) / 30);
+        jd = 1 + ((days - 186) % 30);
+      }
+      return { jy: jy, jm: jm, jd: jd };
+    }
+
+    function toGregorian(jy, jm, jd) {
+      var gy = (jy <= 979) ? 621 : 1600;
+      jy -= (jy <= 979) ? 0 : 979;
+      var days = (365 * jy) + ((parseInt(jy / 33)) * 8) + (parseInt(((jy % 33) + 3) / 4))
+        + 78 + jd + ((jm < 7) ? (jm - 1) * 31 : ((jm - 7) * 30) + 186);
+      gy += 400 * parseInt(days / 146097);
+      days %= 146097;
+      if (days > 36524) {
+        gy += 100 * parseInt(--days / 36524);
+        days %= 36524;
+        if (days >= 365) days++;
+      }
+      gy += 4 * parseInt(days / 1461);
+      days %= 1461;
+      gy += parseInt((days - 1) / 365);
+      if (days > 0) days = (days - 1) % 365;
+      var gd = days + 1;
+      var sal_a = [0, 31, ((gy % 4 === 0 && gy % 100 !== 0) || (gy % 400 === 0)) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+      var gm;
+      for (gm = 0; gm < 13; gm++) {
+        var v = sal_a[gm];
+        if (gd <= v) break;
+        gd -= v;
+      }
+      return { gy: gy, gm: gm, gd: gd };
+    }
+
+    function isJalaaliLeapYear(jy) {
+      var g = toGregorian(jy, 12, 30);
+      var j = toJalaali(g.gy, g.gm, g.gd);
+      return j.jd === 30;
+    }
+
+    function jalaaliMonthLength(jy, jm) {
+      if (jm <= 6) return 31;
+      if (jm <= 11) return 30;
+      return isJalaaliLeapYear(jy) ? 30 : 29;
+    }
+
+    const JALAALI_MONTH_NAMES = ["", "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"];
+    const JALAALI_WEEKDAYS = ["شنبه", "یک‌شنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه"];
+
+    let calVisibleYear = 1405;
+    let calVisibleMonth = 7;
+    let selectedBookingDateObj = null; // { jy, jm, jd, weekday }
+
+    function getNowTehranDate() {
+      const now = new Date();
+      const utcTime = now.getTime() + now.getTimezoneOffset() * 60000;
+      return new Date(utcTime + 3.5 * 3600000);
+    }
+
+    function initBookingCalendar() {
+      const tehranNow = getNowTehranDate();
+      const todayJ = toJalaali(tehranNow.getFullYear(), tehranNow.getMonth() + 1, tehranNow.getDate());
+
+      // If not yet selected or needs reset, pick first available working day (Sat to Wed)
+      if (!selectedBookingDateObj) {
+        for (let offset = 0; offset < 7; offset++) {
+          const testD = new Date(tehranNow.getFullYear(), tehranNow.getMonth(), tehranNow.getDate() + offset, 12, 0, 0);
+          const w = (testD.getDay() + 1) % 7;
+          if (w <= 4) { // Saturday (0) through Wednesday (4)
+            const j = toJalaali(testD.getFullYear(), testD.getMonth() + 1, testD.getDate());
+            selectedBookingDateObj = { jy: j.jy, jm: j.jm, jd: j.jd, weekday: JALAALI_WEEKDAYS[w] };
+            break;
+          }
+        }
+      }
+
+      if (selectedBookingDateObj) {
+        calVisibleYear = selectedBookingDateObj.jy;
+        calVisibleMonth = selectedBookingDateObj.jm;
+        selectedBookingDateStr = `${selectedBookingDateObj.weekday}، ${selectedBookingDateObj.jd.toLocaleString('fa-IR')} ${JALAALI_MONTH_NAMES[selectedBookingDateObj.jm]} ${selectedBookingDateObj.jy.toLocaleString('fa-IR').replace(/٬/g, '')}`;
+        const badge = document.getElementById("calSelectedDateBadge");
+        if (badge) badge.textContent = selectedBookingDateStr;
+        const todayTag = document.getElementById("calTodayTag");
+        if (todayTag) {
+          const isToday = (selectedBookingDateObj.jy === todayJ.jy && selectedBookingDateObj.jm === todayJ.jm && selectedBookingDateObj.jd === todayJ.jd);
+          todayTag.style.display = isToday ? "inline-block" : "none";
+        }
+      }
+
+      renderCalendarDays();
+    }
+
+    function changeCalMonth(direction) {
+      playHapticSound('click');
+      let newM = calVisibleMonth + direction;
+      let newY = calVisibleYear;
+      if (newM > 12) {
+        newM = 1;
+        newY++;
+      } else if (newM < 1) {
+        newM = 12;
+        newY--;
+      }
+      calVisibleMonth = newM;
+      calVisibleYear = newY;
+      renderCalendarDays();
+    }
+
+    function renderCalendarDays() {
+      const tehranNow = getNowTehranDate();
+      const todayJ = toJalaali(tehranNow.getFullYear(), tehranNow.getMonth() + 1, tehranNow.getDate());
+      const maxDateG = new Date(tehranNow.getTime() + 60 * 86400000);
+      const maxDateJ = toJalaali(maxDateG.getFullYear(), maxDateG.getMonth() + 1, maxDateG.getDate());
+
+      const monthTitle = document.getElementById("calCurrentMonthYear");
+      if (monthTitle) {
+        monthTitle.textContent = `${JALAALI_MONTH_NAMES[calVisibleMonth]} ${calVisibleYear.toLocaleString('fa-IR').replace(/٬/g, '')}`;
+      }
+
+      const prevBtn = document.getElementById("calPrevMonthBtn");
+      const nextBtn = document.getElementById("calNextMonthBtn");
+
+      // Prev button disabled if at or before today's month
+      if (prevBtn) {
+        const isCurrentOrPastMonth = (calVisibleYear < todayJ.jy) || (calVisibleYear === todayJ.jy && calVisibleMonth <= todayJ.jm);
+        prevBtn.disabled = isCurrentOrPastMonth;
+      }
+      // Next button disabled if at or after max date's month
+      if (nextBtn) {
+        const isMaxOrBeyondMonth = (calVisibleYear > maxDateJ.jy) || (calVisibleYear === maxDateJ.jy && calVisibleMonth >= maxDateJ.jm);
+        nextBtn.disabled = isMaxOrBeyondMonth;
+      }
+
+      const container = document.getElementById("calDaysGrid");
+      if (!container) return;
+      container.innerHTML = "";
+
+      // First day of visible month
+      const gFirst = toGregorian(calVisibleYear, calVisibleMonth, 1);
+      const dFirst = new Date(gFirst.gy, gFirst.gm - 1, gFirst.gd);
+      const startDayIndex = (dFirst.getDay() + 1) % 7; // 0=Sat, 1=Sun, ..., 6=Fri
+      const monthLen = jalaaliMonthLength(calVisibleYear, calVisibleMonth);
+
+      // Empty padding cells before 1st of month
+      for (let i = 0; i < startDayIndex; i++) {
+        const emptyCell = document.createElement("div");
+        emptyCell.className = "h-8 sm:h-9";
+        container.appendChild(emptyCell);
+      }
+
+      const nowNorm = new Date(tehranNow.getFullYear(), tehranNow.getMonth(), tehranNow.getDate(), 12, 0, 0, 0);
+      const maxNorm = new Date(maxDateG.getFullYear(), maxDateG.getMonth(), maxDateG.getDate(), 12, 0, 0, 0);
+
+      for (let d = 1; d <= monthLen; d++) {
+        const gCur = toGregorian(calVisibleYear, calVisibleMonth, d);
+        const dCur = new Date(gCur.gy, gCur.gm - 1, gCur.gd, 12, 0, 0, 0);
+        const weekdayIdx = (dCur.getDay() + 1) % 7;
+        const weekdayName = JALAALI_WEEKDAYS[weekdayIdx];
+
+        const isPast = dCur < nowNorm;
+        const isBeyondMax = dCur > maxNorm;
+        const isWeekend = (weekdayIdx === 5 || weekdayIdx === 6); // Thu or Fri
+        const isToday = (calVisibleYear === todayJ.jy && calVisibleMonth === todayJ.jm && d === todayJ.jd);
+        const isSelected = selectedBookingDateObj &&
+                           (selectedBookingDateObj.jy === calVisibleYear &&
+                            selectedBookingDateObj.jm === calVisibleMonth &&
+                            selectedBookingDateObj.jd === d);
+
+        const cell = document.createElement("div");
+
+        if (isWeekend) {
+          // Thursday / Friday (Off)
+          cell.className = "cal-day-cell-off h-8 sm:h-9 rounded-xl flex items-center justify-center text-[11px] font-normal";
+          cell.title = "تعطیل هفتگی کارگاه";
+          cell.innerHTML = `<span>${d.toLocaleString('fa-IR')}</span>`;
+        } else if (isPast || isBeyondMax) {
+          // Past or outside 60-day limit
+          cell.className = "cal-day-cell-disabled h-8 sm:h-9 rounded-xl flex items-center justify-center text-[11px] font-normal";
+          cell.title = isPast ? "تاریخ گذشته" : "فراتر از سقف ۲ ماه آینده";
+          cell.innerHTML = `<span>${d.toLocaleString('fa-IR')}</span>`;
+        } else {
+          // Available working day (Saturday to Wednesday within 30 days)
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.onclick = () => selectCalendarDate(calVisibleYear, calVisibleMonth, d, weekdayName);
+
+          if (isSelected) {
+            btn.className = "cal-day-cell selected w-full h-8 sm:h-9 rounded-xl flex flex-col items-center justify-center text-xs font-bold transition bg-brand-blue text-white shadow-sm shadow-brand-blue/30 ring-2 ring-brand-blue/30";
+          } else {
+            btn.className = "cal-day-cell w-full h-8 sm:h-9 rounded-xl flex flex-col items-center justify-center text-xs font-semibold transition bg-white/70 dark:bg-white/5 border border-black/[0.04] dark:border-white/[0.06] text-brand-dark dark:text-white";
+          }
+
+          let inner = `<span>${d.toLocaleString('fa-IR')}</span>`;
+          if (isToday && !isSelected) {
+            inner += `<span class="w-1 h-1 rounded-full bg-brand-blue -mt-0.5"></span>`;
+          }
+          btn.innerHTML = inner;
+          cell.appendChild(btn);
+        }
+
+        container.appendChild(cell);
+      }
+    }
+
+    function selectCalendarDate(jy, jm, jd, weekday) {
+      playHapticSound('click');
+      selectedBookingDateObj = { jy, jm, jd, weekday };
+      selectedBookingDateStr = `${weekday}، ${jd.toLocaleString('fa-IR')} ${JALAALI_MONTH_NAMES[jm]} ${jy.toLocaleString('fa-IR').replace(/٬/g, '')}`;
+
+      const tehranNow = getNowTehranDate();
+      const todayJ = toJalaali(tehranNow.getFullYear(), tehranNow.getMonth() + 1, tehranNow.getDate());
+      const isToday = (jy === todayJ.jy && jm === todayJ.jm && jd === todayJ.jd);
+
+      const badge = document.getElementById("calSelectedDateBadge");
+      if (badge) badge.textContent = selectedBookingDateStr;
+
+      const todayTag = document.getElementById("calTodayTag");
+      if (todayTag) {
+        todayTag.style.display = isToday ? "inline-block" : "none";
+      }
+
+      renderCalendarDays();
+    }
+
+    function selectBookingTime(btn, timeStr) {
+      playHapticSound('click');
+      selectedBookingTimeStr = timeStr;
+      document.querySelectorAll(".book-time-btn").forEach(el => {
+        el.className = "book-time-btn p-3 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] text-xs font-semibold text-brand-dark dark:text-white hover:border-brand-blue flex items-center justify-center gap-2 transition";
+      });
+      btn.className = "book-time-btn p-3 rounded-2xl border border-brand-blue bg-brand-blue/10 text-brand-blue text-xs font-semibold flex items-center justify-center gap-2 transition";
+    }
+
+    function goToBookingStep(step) {
+      playHapticSound('click');
+      document.getElementById("bookingStep1").classList.add("hidden");
+      document.getElementById("bookingStep2").classList.add("hidden");
+      document.getElementById("bookingStep3").classList.add("hidden");
+      document.getElementById("bookingStep4").classList.add("hidden");
+
+      const target = document.getElementById(`bookingStep${step}`);
+      if (target) target.classList.remove("hidden");
+
+      if (step === 2) {
+        initBookingCalendar();
+      }
+
+      if (step === 3) {
+        updateIntakeCheckboxesState();
+        const timeSummary = document.getElementById("bookSummaryTime");
+        const countSummary = document.getElementById("bookSummaryServiceCount");
+        const priceSummary = document.getElementById("bookSummaryPriceText");
+
+        let sum = 0;
+        selectedBookingServiceIds.forEach(id => {
+          if (SERVICES_CATALOG[id]) sum += SERVICES_CATALOG[id].price;
+        });
+
+        if (timeSummary) timeSummary.textContent = `${selectedBookingDateStr} - ${selectedBookingTimeStr}`;
+        if (countSummary) countSummary.textContent = `${selectedBookingServiceIds.size} مورد`;
+        if (priceSummary) priceSummary.textContent = `${sum.toLocaleString("fa-IR")} تومان`;
+      }
+    }
+
+    function updateIntakeCheckboxesState() {
+      const c1 = document.getElementById("checkIntakeCharger");
+      const c2 = document.getElementById("checkIntakeBackup");
+      const c3 = document.getElementById("checkIntakePassword");
+      const btn = document.getElementById("bookSubmitBtn");
+      const countText = document.getElementById("intakeCheckCountText");
+      if (!btn) return;
+
+      const count = (c1?.checked ? 1 : 0) + (c2?.checked ? 1 : 0) + (c3?.checked ? 1 : 0);
+      if (countText) {
+        countText.textContent = `${count.toLocaleString('fa-IR')} از ۳ تایید شد`;
+      }
+
+      const allChecked = count === 3;
+      btn.disabled = !allChecked;
+      if (allChecked) {
+        btn.className = "w-2/3 py-3 rounded-full text-xs font-bold transition-all book-submit-btn-active";
+      } else {
+        btn.className = "w-2/3 py-3 rounded-full text-xs font-bold transition-all book-submit-btn-disabled";
+      }
+    }
+
+    function confirmBooking(e) {
+      e.preventDefault();
+
+      const c1 = document.getElementById("checkIntakeCharger")?.checked;
+      const c2 = document.getElementById("checkIntakeBackup")?.checked;
+      const c3 = document.getElementById("checkIntakePassword")?.checked;
+      if (!c1 || !c2 || !c3) {
+        showToast("لطفاً پیش از ثبت نوبت، تمامی ۳ مورد تاییدیه تحویل دستگاه را علامت بزنید.");
+        return;
+      }
+
+      playHapticSound('success');
+      const nameInput = document.getElementById("bookNameInput");
+      const clientName = nameInput ? nameInput.value.trim() : "کاربر گرامی";
+      const modelInput = document.getElementById("bookModelInput");
+      const deviceModel = modelInput && modelInput.value.trim() ? modelInput.value.trim() : "رایانه شخصی";
+      const phoneInput = document.getElementById("bookPhoneInput");
+      const rawPhone = phoneInput ? phoneInput.value.trim() : "";
+
+      // Normalize Persian / Arabic numerals to English digits
+      const clientPhone = rawPhone
+        .replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d))
+        .replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d));
+
+      const phoneRegex = /^09[0-9]{9}$/;
+      if (!phoneRegex.test(clientPhone)) {
+        showToast("لطفاً شماره موبایل معتبر ۱۱ رقمی (مثال: ۰۹۱۲۳۴۵۶۷۸۹) وارد فرمایید.");
+        if (phoneInput) phoneInput.focus();
+        return;
+      }
+
+      // Dynamic unique code generation (e.g. PC-1405-728)
+      const randomCode = "PC-1405-" + Math.floor(100 + Math.random() * 900);
+
+      // Save to localStorage
+      try {
+        const tickets = JSON.parse(localStorage.getItem("poshtiban_tickets") || "{}");
+        tickets[randomCode] = {
+          device: deviceModel,
+          client: clientName,
+          phone: clientPhone,
+          services: Array.from(selectedBookingServiceIds),
+          status: "ثبت‌شده و در نوبت تحویل",
+          step: 1,
+          notes: "نوبت شما در کارگاه مرکزی ثبت گردید. منتظر تحویل دستگاه طبق زمان انتخابی هستیم."
+        };
+        localStorage.setItem("poshtiban_tickets", JSON.stringify(tickets));
+      } catch (err) {}
+
+      const successCode = document.getElementById("bookSuccessCode");
+      const successName = document.getElementById("bookSuccessName");
+      const successCount = document.getElementById("bookSuccessServicesCount");
+      const successTime = document.getElementById("bookSuccessTime");
+
+      if (successCode) successCode.textContent = randomCode;
+      if (successName) successName.textContent = clientName;
+      if (successCount) successCount.textContent = `${selectedBookingServiceIds.size} خدمت`;
+      if (successTime) successTime.textContent = `${selectedBookingDateStr} (${selectedBookingTimeStr})`;
+
+      goToBookingStep(4);
+      showToast("نوبت پذیرش شما با موفقیت ثبت شد ✓");
+    }
+
+    function openAiSettingsModal() {
+      playHapticSound('click');
+      const modal = document.getElementById("aiSettingsModal");
+      if (!modal) return;
+      modal.classList.remove("hidden");
+      modal.classList.add("grid");
+      lockBodyScroll();
+
+      const input = document.getElementById("userCustomApiKeyInput");
+      const statusText = document.getElementById("apiKeyStatusText");
+      const savedKey = localStorage.getItem("poshtiban_custom_api_key") || "";
+
+      if (input) input.value = savedKey;
+      if (statusText) {
+        if (savedKey) {
+          statusText.textContent = "کلید اختصاصی کاربر فعال است";
+          statusText.className = "text-brand-blue font-bold";
+        } else {
+          statusText.textContent = "موتور آنبرد هوشمند فعال";
+          statusText.className = "text-emerald-500 font-bold";
+        }
+      }
+    }
+
+    function closeAiSettingsModal() {
+      const modal = document.getElementById("aiSettingsModal");
+      if (modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("grid");
+      }
+      unlockBodyScroll();
+    }
+
+    function saveCustomApiKey() {
+      const input = document.getElementById("userCustomApiKeyInput");
+      const val = input ? input.value.trim() : "";
+      if (val) {
+        localStorage.setItem("poshtiban_custom_api_key", val);
+        showToast("کلید API با موفقیت ذخیره گردید ✓");
+      } else {
+        localStorage.removeItem("poshtiban_custom_api_key");
+        showToast("موتور به حالت پیش‌فرض آنبرد بازگشت.");
+      }
+      closeAiSettingsModal();
+    }
+
+    function clearCustomApiKey() {
+      localStorage.removeItem("poshtiban_custom_api_key");
+      const input = document.getElementById("userCustomApiKeyInput");
+      if (input) input.value = "";
+      showToast("کلید اختصاصی حذف شد.");
+      closeAiSettingsModal();
+    }
+
+    const DEMO_TICKETS = {
+      "PC-1405-912": {
+        device: "لپ‌تاپ Asus Vivobook Pro 15",
+        client: "علیرضا شمس",
+        status: "در حال تعویض قطعه و تست پایداری",
+        step: 3,
+        notes: "تست سلامت هارد قدیمی انجام شد. اس‌اس‌دی ۱ ترابایت نصب و انتقال سکتوری ویندوز بدون نقص خاتمه یافت. سیستم در حال تست پایداری دماست."
+      },
+      "BK-1405-408": {
+        device: "کیس گیمینگ Core i7 12700K",
+        client: "محمد رضایی",
+        status: "تکمیل و آماده تحویل حضوری",
+        step: 4,
+        notes: "سرویس خمیر حرارتی Grizzly Kryonaut انجام شد. دمای پردازنده در تست بنچمارک از ۹۴ درجه به ۶۸ درجه کاهش یافت. کارت گارانتی و برگه تحویل صادر گردید."
+      },
+      "QC-1405-215": {
+        device: "لپ‌تاپ Lenovo Legion 5",
+        client: "پرهام حسینی",
+        status: "تست فنی اولیه و بررسی اسیلوسکوپ",
+        step: 2,
+        notes: "دستگاه تحویل آزمایشگاه سخت‌افزار شد. مدار تغذیه ۳.۳ و ۵ ولت مادربرد تحت بررسی اسیلوسکوپ قرار دارد."
+      }
+    };
+
+    function openTrackingModal() {
+      playHapticSound('click');
+      const modal = document.getElementById("trackingModal");
+      if (!modal) return;
+      modal.classList.remove("hidden");
+      modal.classList.add("grid");
+      lockBodyScroll();
+    }
+
+    function openTrackingModalWithCode(code) {
+      closeBookingModal();
+      openTrackingModal();
+      const input = document.getElementById("trackingSearchInput");
+      if (input) input.value = code;
+      searchTrackingTicket();
+    }
+
+    function closeTrackingModal() {
+      const modal = document.getElementById("trackingModal");
+      if (modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("grid");
+      }
+      unlockBodyScroll();
+    }
+
+    function setTrackingDemo(code) {
+      const input = document.getElementById("trackingSearchInput");
+      if (input) {
+        input.value = code;
+        searchTrackingTicket();
+      }
+    }
+
+    function searchTrackingTicket() {
+      playHapticSound('click');
+      const input = document.getElementById("trackingSearchInput");
+      const val = input ? input.value.trim().toUpperCase() : "";
+
+      if (!val) {
+        showToast("لطفاً شماره قبض یا کد پیگیری را وارد کنید.");
+        return;
+      }
+
+      let ticket = DEMO_TICKETS[val];
+      if (!ticket) {
+        try {
+          const localTickets = JSON.parse(localStorage.getItem("poshtiban_tickets") || "{}");
+          if (localTickets[val]) ticket = localTickets[val];
+        } catch (e) {}
+      }
+
+      const deviceTitle = document.getElementById("trackDeviceTitle");
+      const statusBadge = document.getElementById("trackStatusBadge");
+      const techNotes = document.getElementById("trackTechnicianNotes");
+      const progressBar = document.getElementById("trackProgressBar");
+      const s1 = document.getElementById("stepLabel1");
+      const s2 = document.getElementById("stepLabel2");
+      const s3 = document.getElementById("stepLabel3");
+      const s4 = document.getElementById("stepLabel4");
+
+      if (ticket) {
+        if (deviceTitle) deviceTitle.textContent = ticket.device;
+        if (statusBadge) statusBadge.textContent = ticket.status;
+        if (techNotes) techNotes.textContent = ticket.notes;
+
+        const step = ticket.step || 1;
+        const percents = { 1: 25, 2: 50, 3: 75, 4: 100 };
+        if (progressBar) progressBar.style.width = `${percents[step] || 50}%`;
+
+        // Update step colors
+        const activeGreen = "text-emerald-500 font-bold";
+        const activeBlue = "text-brand-blue font-bold";
+        const inactive = "text-brand-gray";
+
+        if (s1) s1.className = step >= 1 ? (step === 1 ? activeBlue : activeGreen) : inactive;
+        if (s2) s2.className = step >= 2 ? (step === 2 ? activeBlue : activeGreen) : inactive;
+        if (s3) s3.className = step >= 3 ? (step === 3 ? activeBlue : activeGreen) : inactive;
+        if (s4) s4.className = step >= 4 ? activeGreen : inactive;
+
+        showToast(`استعلام وضعیت نوبت ${val} انجام شد ✓`);
+      } else {
+        if (deviceTitle) deviceTitle.textContent = `دستگاه با کد ${val}`;
+        if (statusBadge) statusBadge.textContent = "در انتظار بررسی پذیرش";
+        if (techNotes) techNotes.textContent = "کد رهگیری در سیستم پذیرش ثبت شده است. کارشناس مربوطه پس از تست اولیه گزارش را ثبت خواهد کرد.";
+        if (progressBar) progressBar.style.width = "25%";
+        showToast("اطلاعات اولیه بازیابی شد.");
+      }
+    }
+
+    /* SSD Speed Booster Benchmark Logic */
+    function setStorageBenchmark(type) {
+      playHapticSound('click');
+      const btnHdd = document.getElementById("benchBtnHdd");
+      const btnSata = document.getElementById("benchBtnSata");
+      const btnNvme = document.getElementById("benchBtnNvme");
+
+      const activeClass = "px-4 py-1.5 rounded-full text-xs font-bold transition bg-white dark:bg-brand-dark text-brand-blue shadow-sm";
+      const inactiveClass = "px-4 py-1.5 rounded-full text-xs font-bold transition text-brand-gray hover:text-brand-dark dark:hover:text-white";
+
+      btnHdd.className = inactiveClass;
+      btnSata.className = inactiveClass;
+      btnNvme.className = inactiveClass;
+
+      const bootEl = document.getElementById("benchBootTime");
+      const appEl = document.getElementById("benchAppTime");
+      const readEl = document.getElementById("benchReadSpeed");
+
+      const bootBar = document.getElementById("benchBootBar");
+      const appBar = document.getElementById("benchAppBar");
+      const readBar = document.getElementById("benchReadBar");
+
+      const bootDiff = document.getElementById("benchBootDiff");
+      const appDiff = document.getElementById("benchAppDiff");
+      const readDiff = document.getElementById("benchReadDiff");
+
+      if (type === 'hdd') {
+        btnHdd.className = activeClass;
+        bootEl.textContent = "۵۵ ثانیه";
+        appEl.textContent = "۱۸.۵ ثانیه";
+        readEl.textContent = "۱۱۰ MB/s";
+        bootBar.style.width = "18%";
+        appBar.style.width = "15%";
+        readBar.style.width = "8%";
+        bootDiff.textContent = "کندی شدید حین بارگذاری ویندوز";
+        appDiff.textContent = "فریز مکرر در باز کردن چندین تب مرورگر";
+        readDiff.textContent = "سرعت مکانیکی بسیار محدود دیسک";
+      } else if (type === 'sata') {
+        btnSata.className = activeClass;
+        bootEl.textContent = "۱۴ ثانیه";
+        appEl.textContent = "۴.۲ ثانیه";
+        readEl.textContent = "۵۵۰ MB/s";
+        bootBar.style.width = "75%";
+        appBar.style.width = "72%";
+        readBar.style.width = "40%";
+        bootDiff.textContent = "۴ برابر سریع‌تر از هارد معمولی";
+        appDiff.textContent = "پاسخ‌دهی روان و بدون تاخیر نرم‌افزارها";
+        readDiff.textContent = "بهره‌گیری کامل از درگاه SATA III";
+      } else {
+        btnNvme.className = activeClass;
+        bootEl.textContent = "۷ ثانیه";
+        appEl.textContent = "۲.۴ ثانیه";
+        readEl.textContent = "۵,۰۰۰ MB/s";
+        bootBar.style.width = "95%";
+        appBar.style.width = "90%";
+        readBar.style.width = "95%";
+        bootDiff.textContent = "تا ۸ برابر سریع‌تر از هارد دیسک";
+        appDiff.textContent = "لود آنی سنگین‌ترین پروژه‌ها";
+        readDiff.textContent = "۵۰ برابر پهنای باند هارد معمولی";
+      }
+    }
+
+    function runBottleneckSimulation() {
+      const cpu = document.getElementById("simCpu") ? document.getElementById("simCpu").value : "mid";
+      const ram = document.getElementById("simRam") ? document.getElementById("simRam").value : "8";
+      const storage = document.getElementById("simStorage") ? document.getElementById("simStorage").value : "hdd";
+
+      const scoreEl = document.getElementById("simScoreVal");
+      const pillEl = document.getElementById("simStatusPill");
+      const titleEl = document.getElementById("simBottleneckTitle");
+      const descEl = document.getElementById("simBottleneckDesc");
+      const projEl = document.getElementById("simUpgradeProjectedScore");
+
+      let score = 90;
+      let bottleneckType = "balanced";
+
+      if (storage === "hdd") {
+        score -= 45;
+        bottleneckType = "storage";
+      } else if (storage === "sata") {
+        score -= 15;
+      }
+
+      if (ram === "4") {
+        score -= 30;
+        if (bottleneckType === "balanced") bottleneckType = "ram";
+      } else if (ram === "8") {
+        score -= 10;
+      }
+
+      if (cpu === "old") {
+        score -= 20;
+        if (bottleneckType === "balanced") bottleneckType = "cpu";
+      } else if (cpu === "mid") {
+        score -= 5;
+      }
+
+      score = Math.max(25, Math.min(98, score));
+      if (scoreEl) scoreEl.textContent = `${score.toLocaleString("fa-IR")}٪`;
+
+      if (bottleneckType === "storage") {
+        if (titleEl) titleEl.textContent = "هارد مکانیکی مانع سرعت سیستم شماست";
+        if (descEl) descEl.textContent = "پردازنده و رم در انتظار واکشی کند فایل‌ها معطل می‌شوند. با ارتقا به SSD راندمان سیستم متحول می‌شود.";
+        if (pillEl) {
+          pillEl.textContent = "گلوگاه حافظه شناسایی شد";
+          pillEl.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-500 mb-1 inline-block";
+        }
+        if (projEl) projEl.textContent = "۸۸٪ (+۴۳٪ جهش کارایی)";
+      } else if (bottleneckType === "ram") {
+        if (titleEl) titleEl.textContent = "کمبود حافظه رم (RAM) عامل فریز سیستم است";
+        if (descEl) descEl.textContent = "حافظه ۴ گیگ برای برنامه‌های امروزی محدود است و سیستم مجبور به استفاده کند از درایو به عنوان رم مجازی می‌شود.";
+        if (pillEl) {
+          pillEl.textContent = "گلوگاه حافظه موقت (RAM)";
+          pillEl.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-500 mb-1 inline-block";
+        }
+        if (projEl) projEl.textContent = "۸۵٪ (+۳۵٪ جهش کارایی)";
+      } else if (bottleneckType === "cpu") {
+        if (titleEl) titleEl.textContent = "پردازنده در پردازش‌های سنگین محدودیت دارد";
+        if (descEl) descEl.textContent = "سرویس حرارتی و ارتقای رم و SSD می‌تواند تنفس تازه‌ای به سیستم قدیمی ببخشد.";
+        if (pillEl) {
+          pillEl.textContent = "محدودیت پردازشی";
+          pillEl.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-500 mb-1 inline-block";
+        }
+        if (projEl) projEl.textContent = "۷۸٪ (+۲۵٪ بهبود)";
+      } else {
+        if (titleEl) titleEl.textContent = "تعادل سخت‌افزاری سیستم در وضعیت مطلوب";
+        if (descEl) descEl.textContent = "قطعات توازن بالایی دارند؛ تنها سرویس دوره‌ای فن و خمیر سیلیکون برای تضمین پایداری توصیه می‌شود.";
+        if (pillEl) {
+          pillEl.textContent = "راندمان متوازن";
+          pillEl.className = "text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 mb-1 inline-block";
+        }
+        if (projEl) projEl.textContent = "۹۵٪ (حالت ایده‌آل)";
+      }
+    }
+
+    /* Remote Modal Handlers */
+    function openRemoteModal() {
+      playHapticSound('click');
+      const modal = document.getElementById("remoteModal");
+      if (!modal) return;
+      modal.classList.remove("hidden");
+      modal.classList.add("grid");
+      lockBodyScroll();
+    }
+
+    function closeRemoteModal() {
+      const modal = document.getElementById("remoteModal");
+      if (modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("grid");
+      }
+      unlockBodyScroll();
+    }
+
+    function handleRemoteSubmit(e) {
+      e.preventDefault();
+      closeRemoteModal();
+      showToast("درخواست ثبت شد. کارشناس کشیک تا ۵ دقیقه دیگر تماس می‌گیرد.");
+    }
+
+    /* FAQ Accordion Toggle */
+    function toggleFaq(btn) {
+      playHapticSound('click');
+      const answer = btn.nextElementSibling;
+      const icon = btn.querySelector(".faq-icon");
+      if (!answer) return;
+
+      const isHidden = answer.classList.contains("hidden");
+      if (isHidden) {
+        answer.classList.remove("hidden");
+        if (icon) icon.classList.add("rotate-180");
+      } else {
+        answer.classList.add("hidden");
+        if (icon) icon.classList.remove("rotate-180");
+      }
+    }
+
+    /* Initialization on Page Load */
+    window.addEventListener("DOMContentLoaded", () => {
+      // Header Dynamic Glass Effect on Scroll
+      window.addEventListener("scroll", () => {
+        const header = document.getElementById("mainHeader");
+        if (!header) return;
+        if (window.scrollY > 15) {
+          header.classList.add("frosted-glass-scrolled");
+        } else {
+          header.classList.remove("frosted-glass-scrolled");
+        }
+      }, { passive: true });
+
+      initShopHours();
+      runBottleneckSimulation();
+      updateDiagnosticReport();
+      updateBookingServiceCardsUI();
+
+      // Theme detection
+      const savedTheme = localStorage.getItem("poshtiban_theme");
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add("dark");
+        updateThemeUI(true);
+      } else {
+        document.documentElement.classList.remove("dark");
+        updateThemeUI(false);
+      }
+
+      // Close modals when clicking backdrop
+      [
+        { id: "remoteModal", close: closeRemoteModal },
+        { id: "bookingModal", close: closeBookingModal },
+        { id: "trackingModal", close: closeTrackingModal },
+        { id: "aiSettingsModal", close: closeAiSettingsModal }
+      ].forEach(({ id, close }) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener("click", (e) => {
+            if (e.target === el) close();
+          });
+        }
+      });
+
+      // Escape key listener
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeRemoteModal();
+          closeBookingModal();
+          closeTrackingModal();
+          closeAiSettingsModal();
+          toggleAiDrawer(false);
+          ['cpu', 'ram', 'storage'].forEach(closeCustomDropdown);
+        }
+      });
+
+      // Click outside to close custom dropdowns
+      document.addEventListener("click", (e) => {
+        ['cpu', 'ram', 'storage'].forEach(t => {
+          const cap = capitalize(t);
+          const container = document.getElementById(`customDrop${cap}Container`);
+          if (container && !container.contains(e.target)) {
+            closeCustomDropdown(t);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

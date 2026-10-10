@@ -1,0 +1,15 @@
+{
+  "name": "tailwind",
+  "version": "1.0.0",
+  "description": "`assets/tailwind-frozen.css` is what the offline bundle inlines. Regenerate it whenever a **new Tailwind class** appears in `پشتیبان_رایانه.html` (otherwise `assemble_offline.py` exits 1 and lists the classes without a rule).",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
